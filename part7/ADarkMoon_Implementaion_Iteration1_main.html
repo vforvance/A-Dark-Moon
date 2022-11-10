@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="ADarkMoon_main.css">
+</head>
+<body>
+    <div class="split left">
+      <div id="eventText">
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+        </div>
+    </div>
+      
+      <div class="split right">
+        <div class="centered">
+          <button id="screen1Tab" onclick="screen1Display()">Screen 1</button>
+          <button id="screen2Tab" onclick="screen2Display()">Screen 2</button>
+          <button id="screen3Tab" onclick="screen3Display()">Screen 3</button>
+          <table id="resourceTable" align="right">
+            <tr>
+                <th>Resource</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <th>Iron</th>
+                <th><input type="number" class="resources" id="ironAmt" max="9999" readonly></th>
+            </tr>
+        </table>
+          <div id="screen1">
+            <h1>Screen 1</h1>
+            <button onclick="eventText(Events('0'))">Start Fire</button><br>
+            <button onclick="eventText(Events('1'))">Me too</button>
+          </div>
+          <div id="screen2">
+            <h1>Screen 2</h1>
+          </div>
+          <div id="screen3">
+            <h1>Screen 3</h1>
+          </div>
+        </div>
+      </div>
+    <script>
+        //display screen funcitons
+
+    document.getElementById("ironAmt").value = 10;
+    function screen1Display(){
+      	document.getElementById("screen1").style.display = "block";
+        document.getElementById("screen2").style.display = "none";
+        document.getElementById("screen3").style.display = "none";
+    }
+    function screen2Display(){
+      	document.getElementById("screen2").style.display = "block";
+        document.getElementById("screen1").style.display = "none";
+        document.getElementById("screen3").style.display = "none";
+    }
+    function screen3Display(){
+      	document.getElementById("screen3").style.display = "block";
+        document.getElementById("screen2").style.display = "none";
+        document.getElementById("screen1").style.display = "none";
+    }
+
+
+	//Update the text log 
+      function eventText(logText) {
+		//store all text paragraphs
+		textNodes = document.getElementById('eventText').children; 
+			
+			//iterate through textnodes
+			for(let i = textNodes.length-1; i != 0; i--){
+				textNodes[i].innerText = textNodes[i-1].innerText;
+				textNodes[i].style.opacity = ((textNodes.length-i)/textNodes.length);
+				}
+				//add current event to the top
+				textNodes[0].innerText = logText;
+      }
+	  //stores event text 
+	  function Events(eventID) {
+		if(eventID == 0)
+		{
+			let fireEvents = ['fire is stoked','fire is roaring','fire is warm'];
+            document.getElementById("ironAmt").value ++;
+			return(fireEvents[Math.floor(Math.random()*fireEvents.length)]);
+		}
+		if(eventID == 1)
+		{
+			let meTooEvents = ['floor creaks','metal walls are cold','they are restless'];
+            document.getElementById("ironAmt").value --;
+			return(meTooEvents[Math.floor(Math.random()*meTooEvents.length)]);
+		}
+      }
+     
+    </script>
+</body>
+</html>
