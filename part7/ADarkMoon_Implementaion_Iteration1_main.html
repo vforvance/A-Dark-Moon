@@ -3,6 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="ADarkMoon_main.css">
+
+    <script src="ScreenDisplay.js"></script>
 </head>
 <body>
     <div class="split left">
@@ -34,19 +36,99 @@
           <button id="screen2Tab" onclick="screen2Display()">Screen 2</button>
           <button id="screen3Tab" onclick="screen3Display()">Screen 3</button>
           <table id="resourceTable" align="right">
+            <caption>Resources</caption>
             <tr>
                 <th>Resource</th>
                 <th>Amount</th>
             </tr>
             <tr>
+              <th>Rations</th>
+              <th><input type="number" class="resources" id="rationAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Water</th>
+              <th><input type="number" class="resources" id="waterAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Stone</th>
+              <th><input type="number" class="resources" id="stoneAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Bones</th>
+              <th><input type="number" class="resources" id="bonesAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Animal Skin</th>
+              <th><input type="number" class="resources" id="animalSkinAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
                 <th>Iron</th>
                 <th><input type="number" class="resources" id="ironAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Coal</th>
+              <th><input type="number" class="resources" id="coalAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Steel</th>
+              <th><input type="number" class="resources" id="steelAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Copper</th>
+              <th><input type="number" class="resources" id="copperAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Titanium</th>
+              <th><input type="number" class="resources" id="titaniumAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Uranium</th>
+              <th><input type="number" class="resources" id="uraniumAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Vibranium</th>
+              <th><input type="number" class="resources" id="vibraniumAmt" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Oil</th>
+              <th><input type="number" class="resources" id="oilAmt" max="9999" readonly></th>
             </tr>
         </table>
           <div id="screen1">
             <h1>Screen 1</h1>
             <button onclick="eventText(Events('0'))">Start Fire</button><br>
             <button onclick="eventText(Events('1'))">Me too</button>
+            <table id="itemTable" align="right">
+              <caption>Items</caption>
+              <tr>
+                <th>Item</th>
+                <th>Amount</th>
+              </tr>
+              <tr>
+                <th>Nav Beacon</th>
+                <th><input type="number" class="items" id="navBeaconAmt" max="9999" readonly></th>
+              </tr>
+              <tr>
+                <th>Light Saber</th>
+                <th><input type="number" class="items" id="lightSaberAmt" max="9999" readonly></th>
+              </tr>
+              <tr>
+                <th>Gun</th>
+                <th><input type="number" class="items" id="gunAmt" max="9999" readonly></th>
+              </tr>
+              <tr>
+                <th>Bullets</th>
+                <th><input type="number" class="items" id="bulletsAmt" max="9999" readonly></th>
+              </tr>
+              <tr>
+                <th>Grenades</th>
+                <th><input type="number" class="items" id="grenadesAmt" max="9999" readonly></th>
+              </tr>
+              <tr>
+                <th>Light Saber</th>
+                <th><input type="number" class="items" id="lightSaberAmt" max="9999" readonly></th>
+              </tr>
+            </table>
           </div>
           <div id="screen2">
             <h1>Screen 2</h1>
@@ -60,21 +142,7 @@
         //display screen funcitons
 
     document.getElementById("ironAmt").value = 10;
-    function screen1Display(){
-      	document.getElementById("screen1").style.display = "block";
-        document.getElementById("screen2").style.display = "none";
-        document.getElementById("screen3").style.display = "none";
-    }
-    function screen2Display(){
-      	document.getElementById("screen2").style.display = "block";
-        document.getElementById("screen1").style.display = "none";
-        document.getElementById("screen3").style.display = "none";
-    }
-    function screen3Display(){
-      	document.getElementById("screen3").style.display = "block";
-        document.getElementById("screen2").style.display = "none";
-        document.getElementById("screen1").style.display = "none";
-    }
+ 
 
 
 	//Update the text log 

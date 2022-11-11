@@ -22,11 +22,11 @@ body {
     background-color: red;
 }
 
-#resourceTable{
+#resourceTable, #itemTable{
     border: 1px solid black; 
 }
 
-.resources{
+.resources, .items{
     background-color: transparent;
     border-color: transparent;
     text-align: right;
