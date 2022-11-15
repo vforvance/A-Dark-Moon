@@ -6,8 +6,10 @@
 
     <script src="ScreenDisplay.js"></script>
     <script src="BtnHandler.js"></script>
+    <script src="screenOne.js"></script>
+    <script src="screenTwo.js"></script>
 </head>
-<body>
+<body onload="screen1Display()">
     <div class="split left">
       <div id="eventText">
 			<p></p>
@@ -103,7 +105,7 @@
               <h3>Build</h3> <br>
               <button id="trapBtn" class="Btn" onclick="baseBtnHandler(this)">Trap</button> <br>
               <button id="backpackBtn" class="Btn" onclick="baseBtnHandler(this)">Backpack</button> <br>
-              <button id="cabinBtn" class="Btn" onclick="baseBtnHandler(this)">Cabin</button> <br>
+              <button id="cabinBtn" class="Btn" onclick="buildCabin()">Cabin</button> <br>
               <button id="hostelBtn" class="Btn" onclick="baseBtnHandler(this)">Hostel</button> <br>
               <button id="marketBtn" class="Btn" onclick="baseBtnHandler(this)">Market</button> <br>
               <button id="foodPreserverBtn" class="Btn" onclick="baseBtnHandler(this)">Food Preserver</button> <br>
@@ -167,9 +169,31 @@
               </tr>
             </table>
           </div>
+
+
           <div id="screen2">
             <h1>Screen 2</h1>
+            <button id="gatherStone" onclick="gatherStone()">Gather Stone</button><br>
+
+            <p>Gatherer</p>
+            <input id="gatherer" value="0" type="number" class="jobs" readonly><br>
+            <p>Hunter</p>
+            <input id="hunter" type="number" onchange="gathererManager()" value="0" class="jobs"><br>
+
+            <table id="villageTable">
+              <caption>Village</caption>
+              <tr>
+                <th>Cabins</th>
+                <td><input type="number" value="0" class="village" id="cabinAmt" max="9999" readonly></td>
+              </tr>
+              <tr>
+                <th>Population</th>
+                <td><input type="number" value="0" class="village" id="population" max="9999" readonly></td>
+              </tr>
+            </table>
           </div>
+
+
           <div id="screen3">
             <h1>Screen 3</h1>
           </div>
