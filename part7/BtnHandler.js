@@ -3,7 +3,7 @@
 function baseBtnHandler(btnName) {
     btnName.style.opacity = "0.5";
     btnName.disabled = true;
-    document.getElementById("ironAmt").value ++;
+    //document.getElementById("ironAmt").value ++;
 
     setTimeout(() => {
         btnName.style.opacity = "1.0";
