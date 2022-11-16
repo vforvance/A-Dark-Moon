@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body onload="generateGrid(25)">
+<body onload="generateGrid(35)">
     <div class="split left">
       <div id="eventText">
 			<p></p>
@@ -51,12 +51,13 @@
 			<p></p>
         </div>
     </div>
-    <input type="number" id="playerPos" name="playerPos" min="12" max="12">
+    <input type="number" id="playerPosRow" name="playerPos" value="12">
+	    <input type="number" id="playerPosCol" name="playerPos" value="12">
       <div class="split right">
         <div class="centered">
           <button onclick="eventText(Events('0'))">Start Fire</button>
           <button onclick="eventText(Events('1'))">Me too</button>		
-		  <table id ="grid" style="width:1%">
+		  <table id ="grid" style="width:5%">
 
 		  </table>
         </div>
@@ -108,61 +109,60 @@
 	}
 		
 	function myFunction() {
-	var row = document.getElementById("playerPos").min;
-	var col = document.getElementById("playerPos").max;
+	let row = document.getElementById("playerPosRow").value;
+	let col = document.getElementById("playerPosCol").value;
 	if(event.key == "ArrowUp")
 	{
 			var x = document.getElementById("grid").rows[row].cells[col];
 			x.innerHTML = "E";
-			
-			var x = document.getElementById("grid").rows[row-1].cells[col];
+
+			x = document.getElementById("grid").rows[row-1].cells[col];
 			x.innerHTML = "@";
 			
 			//update row
-			document.getElementById("playerPos").min = row-1;
-			pos(document.getElementById("playerPos").min, document.getElementById("playerPos").max);
+			document.getElementById("playerPosRow").value = row-1;
+			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 			
 	}
 	if(event.key == "ArrowDown")
 	{
 			var x = document.getElementById("grid").rows[row].cells[col];
 			x.innerHTML = "E";
-			
-			var x = document.getElementById("grid").rows[row+1].cells[col];
+	
+			x = document.getElementById("grid").rows[row-(-1)].cells[col];
 			x.innerHTML = "@";
 			
 			//update row
-			document.getElementById("playerPos").min = row+1;
-			pos(document.getElementById("playerPos").min, document.getElementById("playerPos").max);
+			document.getElementById("playerPosRow").value = row-(-1);
+			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 	}
 	if(event.key == "ArrowLeft")
 	{
 			var x = document.getElementById("grid").rows[row].cells[col];
 			x.innerHTML = "E";
-			
-			var x = document.getElementById("grid").rows[row].cells[col-1];
+
+			x = document.getElementById("grid").rows[row].cells[col-1];
 			x.innerHTML = "@";
 			
 			//update row
-			document.getElementById("playerPos").max = col-1;
-			pos(document.getElementById("playerPos").min, document.getElementById("playerPos").max);
+			document.getElementById("playerPosCol").value = col-1;
+			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 	}
 	if(event.key == "ArrowRight")
 	{
 			var x = document.getElementById("grid").rows[row].cells[col];
 			x.innerHTML = "E";
-			
-			var x = document.getElementById("grid").rows[row].cells[col+1];
+
+			x = document.getElementById("grid").rows[row].cells[col-(-1)];
 			x.innerHTML = "@";
 			
 			//update row
-			document.getElementById("playerPos").max = col+1;
-			pos(document.getElementById("playerPos").min, document.getElementById("playerPos").max);
+			document.getElementById("playerPosCol").value = col-(-1);
+			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 	}
 }
 function pos(row,col){
-		console.log(row);
-		console.log(col);
+		console.log(row,col);
 }  
 </script>
 
