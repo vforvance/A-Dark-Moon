@@ -14,49 +14,62 @@ function gatherStone() {//adds stone resources on click
 }
 
 ///Screen Two
-
-
 //Village Population Managers
+//Jobs
 let jobs = document.getElementsByClassName("jobs");
 /*jobs indexes
 i=0 gatherer
 i=1 hunter
   */
 
+//returns current number of villagers in jobs
+function getJobPopulation() {
+    let jobsPop = 0;
+    for (let i = 0; i < jobs.length; i++) {
+        jobsPop += parseInt(jobs[i].value);
+    }
+    return jobsPop;
+}
 
+//returns current number villagers as int regardless of jobs
+function getPopulation() {
+    return parseInt(document.getElementById("population").value);
+}
+//changes population by n
 function populationChange(n) {
     let population = document.getElementById("population");
-
+    population.value = parseInt(population.value) + n;
     gathererManager(4);
-    for (let i = 0; i < n; i++) {
-        population.value++;
-    }
 }
 
-//rearragnes current popualtion to fit recent request for gatherers
+//changes amount of gatherers from requested number n
 function gathererManager(n) {
     let gatherers = document.getElementById("gatherer");
-
-    if (n > 0) {//add gatherers
-        for (let i = 0; i < n; i++) {
-            gatherers.value++;
-        }
-    }
-    else if (n < 0) {//remove gatherers
-        for (let i = 0; i > n; i--) {
-            gatherers.value--;
-        }
-    }
+    gatherers.value = parseInt(gatherers.value) + n;
+}
+//returns current number of gatherers as int
+function getGathererPop() {
+    return parseInt(document.getElementById("gatherer").value);
 }
 
-let pastValue = 0;
-function hunterManager(n) {
-    n = 5//test case
+//rearragnes jobs to adjust to current request for hunters (+ or -)
+function hunterManager() {
     let hunters = document.getElementById("hunter");
-    if (n > pastValue) {//add hunters
-        gathererManager(-1);
+    let diff = getJobPopulation() - getPopulation();
+    if (diff > 0) {//remove gatherers - add hunters (up button)
+        if (getGathererPop() == 0) {//not enough. change reversed
+            hunters.value--;
+        }
+        else {//enough. change reconciled
+            gathererManager(-1);
+        }
     }
-    else {//remove hunters
-
+    else if (diff < 0) {//add gatherers - removde hunters (down button)
+        if (parseInt(hunters.value) == -1) {//not enough. change reversed
+            hunters.value++;
+        }
+        else {//enough. change reconciled
+            gathererManager(1);
+        }
     }
 }

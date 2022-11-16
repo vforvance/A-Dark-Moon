@@ -36,7 +36,7 @@
         <div class="centered">
           <button id="screen1Tab" onclick="screen1Display()">Screen 1</button>
           <button id="screen2Tab" onclick="screen2Display()">Screen 2</button>
-          <button id="screen3Tab" onclick="screen3Display()">Screen 3</button>
+          <button id="screen3Tab" onclick="screen3Display()">Screen 3</button><br>
           <table id="resourceTable" align="right">
             <caption>Resources</caption>
             <tr>
@@ -96,7 +96,7 @@
               <th><input type="number" class="resources" id="oilAmt" max="9999" readonly></th>
             </tr>
         </table>
-          <button onclick="eventText(Events('0'))">Start Fire</button><br>
+          <button onclick="eventText(Events('0'))">Start Fire</button>
           <button onclick="eventText(Events('1'))">Me too</button> <br>
           <div id="screen1">
             <h1>Screen 1</h1>
@@ -172,12 +172,16 @@
 
           <div id="screen2">
             <h1>Screen 2</h1>
-            <button id="gatherStone" onclick="gatherStone()">Gather Stone</button><br>
+            <div id="pageTwoBtns">
+              <button id="gatherStone" class="Btn" onclick="gatherStone()">Gather Stone</button><br>
+            </div>
 
-            <p>Gatherer</p>
-            <input id="gatherer" value="0" type="number" class="jobs" readonly><br>
-            <p>Hunter</p>
-            <input id="hunter" type="number" onchange="hunterManager()" value="0" class="jobs"><br>
+            <div id="jobTable">
+              <label for="gatherer">Gatherer</label>
+              <input id="gatherer" value="0" type="number" class="jobs" readonly><br>
+              <label for="hunter">Hunter</label>
+              <input id="hunter" type="number" onchange="hunterManager()" value="0" class="jobs"><br>
+            </div>
 
             <table id="villageTable">
               <caption>Village</caption>
