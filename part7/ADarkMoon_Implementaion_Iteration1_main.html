@@ -7,10 +7,10 @@
     <script src="ScreenDisplay.js"></script>
     <script src="BtnHandler.js"></script>
     <script src="screenOneTwo.js"></script>
-	<script src="screenThree.js"></script>
+	  <script src="screenThree.js"></script>
+    <script src="startUp.js"></script>
 </head>
-<body onload="generateGrid(35)">
-<body onload="screen1Display()">
+<body onload="generateGrid(35); startGame();">
     <div class="split left">
       <div id="eventText">
 			<p></p>
@@ -98,8 +98,7 @@
               <th><input type="number" class="resources" id="oilAmt" max="9999" readonly></th>
             </tr>
         </table>
-          <button onclick="eventText(Events('0'))">Start Fire</button>
-          <button onclick="eventText(Events('1'))">Me too</button> <br>
+          <button id="sndMessage" onclick="eventText(Events('0'))">Send Message</button>
           <div id="screen1">
             <h1>Screen 1</h1>
             <div id="buildBtns">
@@ -201,18 +200,18 @@
 
           <div id="screen3">
             <h1>Screen 3</h1>
-			 <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
-			 <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
-    		
-					<input type="number" id="fuel" name="fuel" value="50" readonly>
-				<label for="fuel">Fuel</label><br>
-					<input type="number" id="food" name="food" value="50" readonly>
-				<label for="food">Food</label><br> 
-					<input type="number" id="water" name="water" value="50"readonly>  
-				<label for="water">Water</label><br> 
-					<input type="number" id="health" name="water" value="20"readonly> 
-				<label for="health">Health</label><br>
-			
+			        <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
+			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
+            <form id="exploreStats">
+					    <input type="number" id="fuel" name="fuel" value="50" readonly>
+				      <label for="fuel">Fuel</label><br>
+					    <input type="number" id="food" name="food" value="50" readonly>
+				      <label for="food">Food</label><br> 
+					    <input type="number" id="water" name="water" value="50"readonly>  
+				      <label for="water">Water</label><br> 
+					    <input type="number" id="health" name="water" value="20"readonly> 
+				      <label for="health">Health</label><br>
+            </form>
 		  <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
 		  
 		  <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
