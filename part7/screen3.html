@@ -26,10 +26,97 @@
             right: 0;
             background-color: red;
         }
+	            #embarkTable
+        {
+            border: 1px solid white;
+            width: 50%;
+        }
+
+        #embarkTable td
+        {
+            width: 50%;
+            text-align: left;
+        }
+
+
+        #embarkScreen p
+        {
+            margin: 0;
+            padding: 0;
+            line-height:2px;
+        }
+
+
+
+        input[type="number"], textarea
+        {
+            background-color: #111;
+            border-color: transparent;
+            color: white;
+            width: 100px;
+            text-align: center;
+        }
+        #Arrow
+        {
+        	  border: none;
+              background-color: #111;
+              padding: 2px;
+              border-width: 0 1px 1px 0;
+              cursor: pointer;
+              color: white;
+        }
+
+        #embarkBtn
+        {
+            border: 1px solid white;
+            background-color: #111;
+            color: white;
+            padding: 15px;
+        }
     </style>
 </head>
 <body onload="generateGrid(35)">
     <div class="split left">
+        <div id="embarkScreen">
+            <table id="embarkTable">
+                <tr> 
+                    <td><strong>Supplies</strong></td>
+                    <td></td>
+                    <td><strong>Free</strong></td><td id="freeStorage"></td>
+                </tr>
+                <tr>
+                    <td>Nav Beacon</td>
+                    <td id="navBeaconAmt" style="text-align:left"></td>
+                    <td>
+                        <p1><button id="Arrow" onclick="navBeaconAmtManager(-1, navBeaconAmt, 1, 1)"><</button><button id="Arrow" onclick="navBeaconAmtManager(1, navBeaconAmt, 1, 1)">></button></p1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Light Saber</td>
+                    <td id="lightSaberAmt"></td>
+                    <td>
+                        <p1><button id="Arrow" onclick="lightSaberAmtManager(-1, lightSaberAmt, 2, 1)"><</button><button id="Arrow" onclick="lightSaberAmtManager(1, lightSaberAmt, 2, 1)">></button></p1> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bullets</td>
+                    <td id="bulletsAmt"></td>
+                    <td>
+                        <p1><button id="Arrow" onclick="bulletsAmtManager(-1, bulletsAmt, 3, 1)"><</button><button id="Arrow" onclick="bulletsAmtManager(1, bulletsAmt, 3, 1)">></button></p1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Grenades</td>
+                    <td id="grenadesAmt"></td>
+                    <td>
+                        <p1><button id="Arrow" onclick="grenadesAmtManager(-1, grenadesAmt, 4, 1)"><</button><button id="Arrow" onclick="grenadesAmtManager(1, grenadesAmt, 4, 1)">></button></p1>
+                    </td>
+                </tr>
+            </table>
+            <P></P>
+            <P></P>
+            <button id="embarkBtn" onclick="">Embark</button>
+        </div>
       <div id="eventText">
 			<p></p>
 			<p></p>
@@ -75,6 +162,17 @@
         </div>
       </div>
     <script>
+        //tester numbers for Embark's subtracting and adding resources
+        let navBeaconAmt = 0;
+        document.getElementById("navBeaconAmt").innerHTML = navBeaconAmt;
+        let lightSaberAmt = 0;
+        document.getElementById("lightSaberAmt").innerHTML = lightSaberAmt;
+        let bulletsAmt = 0;
+        document.getElementById("bulletsAmt").innerHTML = bulletsAmt;
+        let grenadesAmt = 0;
+        document.getElementById("grenadesAmt").innerHTML = grenadesAmt;
+        let freeStorage = 100;
+        document.getElementById("freeStorage").innerHTML = freeStorage;
 	//Update the text log 
       function eventText(logText) {
 		//store all text paragraphs
@@ -281,6 +379,77 @@ function killPlayer()
 function pos(row,col){
 		console.log(row,col);
 }  
+function navBeaconAmtManager(action, resource, row, column)
+{
+    if (action == -1)
+    {
+        resource-=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        navBeaconAmt = resource;
+    }
+    else if (action == 1)
+    {
+        resource+=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        navBeaconAmt = resource;
+    }
+}
+
+function lightSaberAmtManager(action, resource, row, column)
+{
+    if (action == -1)
+    {
+        resource-=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        lightSaberAmt = resource;
+    }
+    else if (action == 1)
+    {
+        resource+=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        lightSaberAmt = resource;
+    }
+}
+
+function bulletsAmtManager(action, resource, row, column)
+{
+    if (action == -1)
+    {
+        resource-=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        bulletsAmt = resource;
+    }
+    else if (action == 1)
+    {
+        resource+=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        bulletsAmt = resource;
+    }
+}
+
+function grenadesAmtManager(action, resource, row, column)
+{
+    if (action == -1)
+    {
+        resource-=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        grenadesAmt = resource;
+    }
+    else if (action == 1)
+    {
+        resource+=1;
+        var myTable = document.getElementById("embarkTable");
+        myTable.rows[row].cells[column].innerHTML = resource;
+        grenadesAmt = resource;
+    }
+}
 </script>
 
    
