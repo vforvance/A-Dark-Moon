@@ -19,19 +19,21 @@ body {
 
 .right {
     right: 0;
-    background-color: green;
+    background-color: #30D5C8;
 }
 
 #resourceTable{
     border: 1px solid black;
-    float: right;
+    box-align: right;
     margin: 30px;  
+    box-align: right;
 }
 
 #itemTable{
     border: 1px solid black;
     clear: right;
     margin: 30px;
+    box-align: right;
 }
 
 input[type=number] {
@@ -45,7 +47,7 @@ input[type=number] {
 
 #villageTable{
     border: 1px solid black;
-    float: right;
+    box-align: right;
     clear: right;
     margin: 30px
 }
