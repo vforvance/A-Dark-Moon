@@ -7,7 +7,9 @@
     <script src="ScreenDisplay.js"></script>
     <script src="BtnHandler.js"></script>
     <script src="screenOneTwo.js"></script>
+	<script src="screenThree.js"></script>
 </head>
+<body onload="generateGrid(35)">
 <body onload="screen1Display()">
     <div class="split left">
       <div id="eventText">
@@ -199,6 +201,27 @@
 
           <div id="screen3">
             <h1>Screen 3</h1>
+			 <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
+			 <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
+    		
+					<input type="number" id="fuel" name="fuel" value="50" readonly>
+				<label for="fuel">Fuel</label><br>
+					<input type="number" id="food" name="food" value="50" readonly>
+				<label for="food">Food</label><br> 
+					<input type="number" id="water" name="water" value="50"readonly>  
+				<label for="water">Water</label><br> 
+					<input type="number" id="health" name="water" value="20"readonly> 
+				<label for="health">Health</label><br>
+			
+		  <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
+		  
+		  <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
+		  <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden> 			 
+		  <p id ="enemy"></p>
+		   <input type="number" id="inBattle" name="inBattle" value="0" readonly hidden>	
+			
+		  <table id ="grid">
+		  </table>
           </div>
         </div>
       </div>
