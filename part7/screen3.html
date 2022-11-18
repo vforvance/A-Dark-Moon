@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body onload="generateGrid(40)">
+<body onload="generateGrid(35)">
     <div class="split left">
       <div id="eventText">
 			<p></p>
@@ -54,17 +54,23 @@
     <input type="number" id="playerPosRow" name="playerPos" value="12">
     <input type="number" id="playerPosCol" name="playerPos" value="12">
     
-    <input type="number" id="fuel" name="fuel" value="12">
-    <input type="number" id="food" name="food" value="12">
-    <input type="number" id="water" name="water" value="12">
-    <input type="number" id="health" name="water" value="12"> 
      
       <div class="split right">
         <div class="centered">
           <button onclick="eventText(Events('0'))">Start Fire</button>
-          <button onclick="eventText(Events('1'))">Me too</button>		
+          <button onclick="eventText(Events('1'))">Me too</button><br>		
+		  
+		 
+		  <input type="number" id="fuel" name="fuel" value="50">
+			<label for="fuel">Fuel</label><br>
+		  <input type="number" id="food" name="food" value="50">
+			 <label for="food">Food</label><br> 
+		  <input type="number" id="water" name="water" value="50">  
+		   <label for="water">Water</label><br> 
+          <input type="number" id="health" name="water" value="100"> 
+			<label for="health">Health</label><br>
 		  <table id ="grid" style="width:5%">
-
+		
 		  </table>
         </div>
       </div>
@@ -95,8 +101,10 @@
 			return(meTooEvents[Math.floor(Math.random()*meTooEvents.length)]);
 		}
       }
+	  
 	  //generate exploration grid
 	  //@ represents player location
+	  //collum value 0/1: 0 = not visited, 1 = visted 
 	  function generateGrid(size){
 		const grid = document.getElementById("grid");
 			for(let row = 0; row <= size; row++){
@@ -106,13 +114,18 @@
 					{
 						 var nCol = nRow.insertCell(col);
 						 nCol.id = col;
+						 nCol.value = "0"
 						 nCol.innerHTML = "?";
+						 nCol.style.opacity = "0";
 					}
 		}
 		var x = document.getElementById("grid").rows[12].cells[12];
+		revealArea(12,12);
+		x.style.opacity = "100";
+		x.value = "1"
 		x.innerHTML = "@";
 		document.addEventListener("keydown", myFunction);
-	}
+	}	
 		
 	function myFunction() {
 	let row = document.getElementById("playerPosRow").value;
@@ -124,10 +137,13 @@
 
 			x = document.getElementById("grid").rows[row-1].cells[col];
 			x.innerHTML = "@";
-			
+			x.style.opacity = "100";
+			x.value = "1";
+				
 			//update row
 			document.getElementById("playerPosRow").value = row-1;
-			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
 			
 	}
@@ -138,10 +154,13 @@
 	
 			x = document.getElementById("grid").rows[row-(-1)].cells[col];
 			x.innerHTML = "@";
+			x.style.opacity = "100";
+			x.value = "1";
 			
 			//update row
 			document.getElementById("playerPosRow").value = row-(-1);
-			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
 	}
 	if(event.key == "ArrowLeft")
@@ -151,10 +170,13 @@
 
 			x = document.getElementById("grid").rows[row].cells[col-1];
 			x.innerHTML = "@";
+			x.style.opacity = "100";
+			x.value = "1";
 			
 			//update row
 			document.getElementById("playerPosCol").value = col-1;
-			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 			consumeFWF();
 	}
 	if(event.key == "ArrowRight")
@@ -164,10 +186,13 @@
 
 			x = document.getElementById("grid").rows[row].cells[col-(-1)];
 			x.innerHTML = "@";
+			x.style.opacity = "100";
+			x.value = "1";
 			
 			//update row
 			document.getElementById("playerPosCol").value = col-(-1);
-			pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 			consumeFWF();
 	}
 }
@@ -192,6 +217,62 @@ function consumeFWF()
 	}
 	
 }
+
+function revealArea(playerRow,playerCol)
+{
+		
+		for(let i = -2; i <3;i++)
+		{
+			row = +playerRow + +i;
+			//get right adjecent col
+			for(let k = -1; k < 3	;k++){
+				let col = +playerCol + +k;
+				if(checkBounds(row,col))
+				{
+					x = document.getElementById("grid").rows[row].cells[col];
+					if(x.value ==0){
+						x.style.opacity = ".5";
+					}
+				}
+			}
+			//get left adjecent col
+			for(let j = -1; j > -3;j--){
+				let col = +playerCol + +j;
+				if(checkBounds(row,col))
+				{
+					x = document.getElementById("grid").rows[row].cells[col];
+					if(x.value ==0){
+						x.style.opacity = ".5";
+					}
+				}
+			}
+		}
+	
+}
+function checkBounds(playerRow,playerCol)
+{
+	let gridSize = 35;
+	if(playerRow >=0 && playerRow <= 35)
+	{
+		if(playerCol >=0 && playerCol <= 35)
+		{
+			console.log(playerRow,playerCol);
+			return true;
+		}
+		else
+		{
+			console.log("OFB",playerRow,playerCol);
+			return false;
+		}
+	}
+	else
+	{
+		console.log("OFB",playerRow,playerCol);
+		return false;
+	}
+	
+}
+
 
 function killPlayer()
 {
