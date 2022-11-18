@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+        }
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+        
+        .right {
+            right: 0;
+            background-color: red;
+        }
+    </style>
+</head>
+<body onload="generateGrid(35)">
+    <div class="split left">
+      <div id="eventText">
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+        </div>
+    </div>
+    <input type="number" id="playerPosRow" name="playerPos" value="">
+    <input type="number" id="playerPosCol" name="playerPos" value="">
+    
+     
+      <div class="split right">
+        <div class="centered">
+          <button onclick="eventText(Events('0'))">Start Fire</button>
+          <button onclick="eventText(Events('1'))">Me too</button><br>		
+		  
+		 
+		  <input type="number" id="fuel" name="fuel" value="50">
+			<label for="fuel">Fuel</label><br>
+		  <input type="number" id="food" name="food" value="50">
+			 <label for="food">Food</label><br> 
+		  <input type="number" id="water" name="water" value="50">  
+		   <label for="water">Water</label><br> 
+          <input type="number" id="health" name="water" value="100"> 
+			<label for="health">Health</label><br>
+		  <table id ="grid" style="width:10%">
+		
+		  </table>
+        </div>
+      </div>
+    <script>
+	//Update the text log 
+      function eventText(logText) {
+		//store all text paragraphs
+		textNodes = document.getElementById('eventText').children; 
+			
+			//iterate through textnodes
+			for(let i = textNodes.length-1; i != 0; i--){
+				textNodes[i].innerText = textNodes[i-1].innerText;
+				textNodes[i].style.opacity = ((textNodes.length-i)/textNodes.length);
+				}
+				//add current event to the top
+				textNodes[0].innerText = logText;
+      }
+	  //stores event text 
+	  function Events(eventID) {
+		if(eventID == 0)
+		{
+			let fireEvents = ['fire is stoked','fire is roaring','fire is warm'];
+			return(fireEvents[Math.floor(Math.random()*fireEvents.length)]);
+		}
+		if(eventID == 1)
+		{
+			let meTooEvents = ['floor creaks','metal walls are cold','they are restless'];
+			return(meTooEvents[Math.floor(Math.random()*meTooEvents.length)]);
+		}
+      }
+	  
+	  //generate exploration grid
+	  //@ represents player location
+	  //collum value 0/1: 0 = not visited, 1 = visted 
+	  function generateGrid(size){
+		const grid = document.getElementById("grid");
+			for(let row = 0; row <= size; row++){
+				  var nRow = grid.insertRow(row);
+				  nRow.id = row;
+					for(let col = 0; col <=size; col++)
+					{
+						 var nCol = nRow.insertCell(col);
+						 nCol.id = col;
+						 nCol.value = "0"
+						 nCol.name = "empty";
+						 nCol.innerHTML = "*";
+						 nCol.style.opacity = "0";
+					}
+		}
+		
+		for(let i = 0; i < (35*35)*.24; i++)
+		{
+			let row = Math.floor(Math.random() * 36);
+			let col = Math.floor(Math.random() * 36);
+			let x = document.getElementById("grid").rows[row].cells[col];
+			if(x.name == "empty")
+			{
+				x.innerHTML = "?";
+				x.name = "planet";
+			}
+		}
+		
+		
+		let startRow = Math.floor(Math.random() * 36);
+		let startCol = Math.floor(Math.random() * 36);
+		document.getElementById("playerPosRow").value = startRow;
+		document.getElementById("playerPosCol").value = startCol;
+		var x = document.getElementById("grid").rows[startRow].cells[startCol];
+		revealArea(startRow,startCol);
+		x.style.opacity = "100";
+		x.value = "1"
+		x.innerHTML = "@";
+		document.addEventListener("keydown", myFunction);
+	}	
+		
+	function myFunction() {
+	let row = document.getElementById("playerPosRow").value;
+	let col = document.getElementById("playerPosCol").value;
+	if(event.key == "ArrowUp")
+	{
+			var x = document.getElementById("grid").rows[row].cells[col];
+			x.innerHTML = "E";
+
+			x = document.getElementById("grid").rows[row-1].cells[col];
+			if(x.innerHTML == "?"){
+				alert("battle start!");
+			}
+			x.innerHTML = "@";
+			x.style.opacity = "100";
+			x.value = "1";
+				
+			//update row
+			document.getElementById("playerPosRow").value = row-1;
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			consumeFWF();
+			
+	}
+	if(event.key == "ArrowDown")
+	{
+			var x = document.getElementById("grid").rows[row].cells[col];
+			x.innerHTML = "E";
+			
+			x = document.getElementById("grid").rows[row-(-1)].cells[col];
+			
+			if(x.innerHTML == "?"){
+				alert("battle start!");
+			}
+			
+			x.innerHTML = "@";
+			x.style.opacity = "100";
+			x.value = "1";
+			
+			//update row
+			document.getElementById("playerPosRow").value = row-(-1);
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			consumeFWF();
+	}
+	if(event.key == "ArrowLeft")
+	{
+			var x = document.getElementById("grid").rows[row].cells[col];
+			x.innerHTML = "E";
+
+			x = document.getElementById("grid").rows[row].cells[col-1];
+			
+			if(x.innerHTML == "?"){
+				alert("battle start!");
+			}
+			
+			x.innerHTML = "@";
+			x.style.opacity = "100";
+			x.value = "1";
+			
+			//update row
+			document.getElementById("playerPosCol").value = col-1;
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			consumeFWF();
+	}
+	if(event.key == "ArrowRight")
+	{
+			var x = document.getElementById("grid").rows[row].cells[col];
+			x.innerHTML = "E";
+
+			x = document.getElementById("grid").rows[row].cells[col-(-1)];
+			
+			if(x.innerHTML == "?"){
+				alert("battle start!");
+			}
+			
+			x.innerHTML = "@";
+			x.style.opacity = "100";
+			x.value = "1";
+			
+			//update row
+			document.getElementById("playerPosCol").value = col-(-1);
+			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			consumeFWF();
+	}
+}
+//consume fuel, water, food
+function consumeFWF()
+{
+	var fuel = document.getElementById("fuel").value;
+	var water = document.getElementById("water").value;
+	var food = document.getElementById("food").value;
+	
+	fuel = fuel-4;
+	water = water-2;
+	food = food-1;
+	
+	document.getElementById("fuel").value = fuel;
+	document.getElementById("water").value = water;
+	document.getElementById("food").value = food;
+	
+	if(fuel <=0 || water <=0 || food <=0)
+	{
+		killPLayer();
+	}
+	
+}
+
+function revealArea(playerRow,playerCol)
+{
+		
+		for(let i = -2; i <3;i++)
+		{
+			row = +playerRow + +i;
+			//get right adjecent col
+			for(let k = -1; k < 3	;k++){
+				let col = +playerCol + +k;
+				if(checkBounds(row,col))
+				{
+					x = document.getElementById("grid").rows[row].cells[col];
+					if(x.value ==0){
+						x.style.opacity = ".5";
+					}
+				}
+			}
+			//get left adjecent col
+			for(let j = -1; j > -3;j--){
+				let col = +playerCol + +j;
+				if(checkBounds(row,col))
+				{
+					x = document.getElementById("grid").rows[row].cells[col];
+					if(x.value ==0){
+						x.style.opacity = ".5";
+					}
+				}
+			}
+		}
+	
+}
+function checkBounds(playerRow,playerCol)
+{
+	let gridSize = 35;
+	if(playerRow >=0 && playerRow <= 35)
+	{
+		if(playerCol >=0 && playerCol <= 35)
+		{
+			console.log(playerRow,playerCol);
+			return true;
+		}
+		else
+		{
+			console.log("OFB",playerRow,playerCol);
+			return false;
+		}
+	}
+	else
+	{
+		console.log("OFB",playerRow,playerCol);
+		return false;
+	}
+	
+}
+
+
+function killPlayer()
+{
+	//Punish Resources
+}
+function pos(row,col){
+		console.log(row,col);
+}  
+</script>
+
+   
+
+	
+	
+	
+	
+</body>
+</html>
