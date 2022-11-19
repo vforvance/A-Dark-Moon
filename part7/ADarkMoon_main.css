@@ -40,8 +40,10 @@ input[type=number] {
     text-align:right;
 }
 
-#hunter::-webkit-inner-spin-button, 
-#hunter::-webkit-outer-spin-button {  
+#operator::-webkit-inner-spin-button, 
+#operator::-webkit-outer-spin-button,
+#mechanic::-webkit-inner-spin-button, 
+#mechanic::-webkit-outer-spin-button {  
     opacity: 1;
 }
 

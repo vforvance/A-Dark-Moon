@@ -253,18 +253,18 @@ function checkBounds(playerRow,playerCol)
 	{
 		if(playerCol >=0 && playerCol <= 35)
 		{
-			console.log(playerRow,playerCol);
+			//console.log(playerRow,playerCol);
 			return true;
 		}
 		else
 		{
-			console.log("OFB",playerRow,playerCol);
+			//console.log("OFB",playerRow,playerCol);
 			return false;
 		}
 	}
 	else
 	{
-		console.log("OFB",playerRow,playerCol);
+		//console.log("OFB",playerRow,playerCol);
 		return false;
 	}
 	
@@ -286,5 +286,5 @@ function killPlayer()
 		x.innerHTML = "?";
 }
 function pos(row,col){
-		console.log(row,col);
+		//console.log(row,col);
 }  

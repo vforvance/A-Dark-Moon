@@ -6,7 +6,8 @@
 
     <script src="ScreenDisplay.js"></script>
     <script src="BtnHandler.js"></script>
-    <script src="screenOneTwo.js"></script>
+    <script src="screenOne.js"></script>
+    <script src="screenTwo.js"></script>
 	  <script src="screenThree.js"></script>
     <script src="startUp.js"></script>
 </head>
@@ -50,12 +51,12 @@
               <th><input type="number" class="resources" id="rationAmt"  max="9999" readonly></th>
             </tr>
             <tr>
-              <th>Water</th>
-              <th><input type="number" class="resources" id="waterAmt" max="9999" readonly></th>
+              <th>Fuel</th>
+              <th><input type="number" class="resources" id="fuelAmt" value="0" max="9999" readonly></th>
             </tr>
             <tr>
               <th>Stone</th>
-              <th><input type="number" class="resources" id="stoneAmt" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="stoneAmt" max="9999" readonly></th>
             </tr>
             <tr>
               <th>Bones</th>
@@ -174,14 +175,17 @@
           <div id="screen2">
             <h1>Screen 2</h1>
             <div id="pageTwoBtns">
-              <button id="gatherStone" class="Btn" onclick="gatherStone(); baseBtnHandler(this);">Gather Stone</button><br>
+              <button id="mineIron" class="Btn" onclick="mineIron(); baseBtnHandler(this);">Mine Iron</button><br>
+              <button id="checkPods" class="Btn" onclick="checkPods(); baseBtnHandler(this);">Check Pods</button>
             </div>
 
             <div id="jobTable">
-              <label for="gatherer">Gatherer</label>
-              <input id="gatherer" value="0" type="number" class="jobs" readonly><br>
-              <label for="hunter">Hunter</label>
-              <input id="hunter" type="number" onchange="hunterManager()" value="0" min="0" class="jobs"><br>
+              <label for="miner">Miner</label>
+              <input id="miner" value="0" type="number" class="jobs" readonly><br>
+              <label for="operator">Operator</label>
+              <input id="operator" type="number" onchange="operatorManager()" value="0" min="0" class="jobs"><br>
+              <label for="mechanic">Mechanic</label>
+              <input id="mechanic" type="number" onchange="mechanicManager()" value="0" min="0" class="jobs"><br>
             </div>
 
             <table id="villageTable">
