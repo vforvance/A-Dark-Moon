@@ -74,3 +74,12 @@ function hunterManager() {
     }
     //need to change algorithm to .min and .max and use n not just ++/--
 }
+// having 5 hunters will give you stone every 20 seconds
+function autoGather(){
+    let hunters = document.getElementbyId ("hunter");
+    if (hunters.value = 5) {
+
+        setTimeout(gatherStone, 10000);
+    }
+
+}
