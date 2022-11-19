@@ -58,13 +58,13 @@ function hunterManager() {
     let diff = getJobPopulation() - getPopulation();
     if (diff > 0) {//remove gatherers - add hunters (up button)
         if (getGathererPop() == 0) {//not enough. change reversed
-            hunters.value--;
+            hunters.value = hunters.value;
         }
         else {//enough. change reconciled
             gathererManager(-1);
         }
     }
-    else if (diff < 0) {//add gatherers - removde hunters (down button)
+    else if (diff < 0) {//add gatherers - remove hunters (down button)
         if (parseInt(hunters.value) == -1) {//not enough. change reversed
             hunters.value++;
         }
@@ -72,4 +72,5 @@ function hunterManager() {
             gathererManager(1);
         }
     }
+    //need to change algorithm to .min and .max and use n not just ++/--
 }

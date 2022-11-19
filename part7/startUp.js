@@ -1,7 +1,7 @@
 //bool to control this on or off
 //true hides all objects
 //false displays everything
-let boolStart = false
+let boolStart = false;
 
 function startGame(){
     if(boolStart == true)
