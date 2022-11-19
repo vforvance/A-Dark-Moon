@@ -47,9 +47,10 @@ input[type=number] {
 
 #villageTable{
     border: 1px solid black;
-    box-align: right;
     clear: right;
-    margin: 30px
+    position: absolute;
+    bottom: 15%;
+    right: 30px;
 }
 
 #pageTwoBtns{
