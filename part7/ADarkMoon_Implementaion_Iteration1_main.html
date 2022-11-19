@@ -47,7 +47,7 @@
             </tr>
             <tr>
               <th>Rations</th>
-              <th><input type="number" class="resources" id="rationAmt" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="rationAmt"  max="9999" readonly></th>
             </tr>
             <tr>
               <th>Water</th>
@@ -55,7 +55,7 @@
             </tr>
             <tr>
               <th>Stone</th>
-              <th><input type="number" class="resources" id="stoneAmt" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="stoneAmt" value="0" max="9999" readonly></th>
             </tr>
             <tr>
               <th>Bones</th>
@@ -174,14 +174,14 @@
           <div id="screen2">
             <h1>Screen 2</h1>
             <div id="pageTwoBtns">
-              <button id="gatherStone" class="Btn" onclick="gatherStone()">Gather Stone</button><br>
+              <button id="gatherStone" class="Btn" onclick="gatherStone(); baseBtnHandler(this);">Gather Stone</button><br>
             </div>
 
             <div id="jobTable">
               <label for="gatherer">Gatherer</label>
               <input id="gatherer" value="0" type="number" class="jobs" readonly><br>
               <label for="hunter">Hunter</label>
-              <input id="hunter" type="number" onchange="hunterManager()" value="0" class="jobs"><br>
+              <input id="hunter" type="number" onchange="hunterManager()" value="0" min="0" class="jobs"><br>
             </div>
 
             <table id="villageTable">
