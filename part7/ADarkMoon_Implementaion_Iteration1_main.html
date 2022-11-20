@@ -183,9 +183,9 @@
               <label for="miner">Miner</label>
               <input id="miner" value="0" type="number" class="jobs" readonly><br>
               <label for="operator">Operator</label>
-              <input id="operator" type="number" onchange="operatorManager()" value="0" min="0" class="jobs"><br>
+              <input id="operator" type="number" onchange="operatorManager()" onKeyDown="return false" value="0" min="0" class="jobs"><br>
               <label for="mechanic">Mechanic</label>
-              <input id="mechanic" type="number" onchange="mechanicManager()" value="0" min="0" class="jobs"><br>
+              <input id="mechanic" type="number" onchange="mechanicManager()" onKeyDown="return false" value="0" min="0" class="jobs"><br>
             </div>
 
             <table id="villageTable">
