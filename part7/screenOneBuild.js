@@ -50,10 +50,10 @@ function buildShip()
 
 function buildRefinery()
 {
-    ironAmt = document.getElementById("ironAmt");
-    fuelAmt = document.getElementById("fuelAmt");
-    refineryBtn = document.getElementById("refineryBtn");
-    refineryAmt = document.getElementById("refineryAmt");
+    var ironAmt = document.getElementById("ironAmt");
+    var fuelAmt = document.getElementById("fuelAmt");
+    var refineryBtn = document.getElementById("refineryBtn");
+    var refineryAmt = document.getElementById("refineryAmt");
 
     ironAmt.value = parseInt(ironAmt.value) - 200;
     fuelAmt.value = parseInt(fuelAmt.value) - 100; 
@@ -65,10 +65,10 @@ function buildRefinery()
 
 function buildMechanic()
 {
-    ironAmt = document.getElementById("ironAmt");
-    fuelAmt = document.getElementById("fuelAmt");
-    mechanicBtn = document.getElementById("mechanicBtn");
-    mechanicAmt = document.getElementById("mechanicAmt");
+    var ironAmt = document.getElementById("ironAmt");
+    var fuelAmt = document.getElementById("fuelAmt");
+    var mechanicBtn = document.getElementById("mechanicBtn");
+    var mechanicAmt = document.getElementById("mechanicAmt");
     
     ironAmt.value = parseInt(ironAmt.value) - 200;
     fuelAmt.value = parseInt(fuelAmt.value) - 200; 
@@ -80,10 +80,10 @@ function buildMechanic()
 
 function buildSpaceHub()
 {
-    ironAmt = document.getElementById("ironAmt");
-    fuelAmt = document.getElementById("fuelAmt");
-    spaceHubBtn = document.getElementById("spaceHubBtn");
-    spaceHubAmt = document.getElementById("spaceHubAmt");
+    var ironAmt = document.getElementById("ironAmt");
+    var fuelAmt = document.getElementById("fuelAmt");
+    var spaceHubBtn = document.getElementById("spaceHubBtn");
+    var spaceHubAmt = document.getElementById("spaceHubAmt");
 
     ironAmt.value = parseInt(ironAmt.value) - 400;
     fuelAmt.value = parseInt(fuelAmt.value) - 200; 

@@ -6,7 +6,8 @@
 
     <script src="ScreenDisplay.js"></script>
     <script src="BtnHandler.js"></script>
-    <script src="screenOne.js"></script>
+    <script src="screenOneBuild.js"></script>
+    <script src="screenOneBuy.js"></script>
     <script src="screenTwo.js"></script>
 	  <script src="screenThree.js"></script>
     <script src="startUp.js"></script>
@@ -56,8 +57,12 @@
             </tr>
             <tr>
               <th>Repair Packs</th>
-              <th><input type="number" class="resources" id="repairPackAmt" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="repairPackAmt" value="0" max="9999" readonly></th>
           </tr>
+          <tr>
+            <th>Planet Cores</th>
+            <th><input type="number" class="resources" id="planetCoreAmt" value="0" max="9999" readonly></th>
+        </tr>
         </table>
         <table id="villageTable" align="right">
           <caption>Village</caption>
@@ -100,15 +105,15 @@
             </div>
             <div id="buyBtns">
               <h3>Buy</h3> <br>
-              <button id="ironBtn" class="Btn" onclick="baseBtnHandler(this)">Iron</button> <br>
-              <button id="fuelBtn" class="Btn" onclick="baseBtnHandler(this)">Fuel</button> <br>
-              <button id="repairPackBtn" class="Btn" onclick="baseBtnHandler(this)">Repair Packs</button> <br>
-              <button id="navBtn" class="Btn" onclick="baseBtnHandler(this)">Nav Computer</button> <br>
-              <button id="health1Btn" class="Btn" onclick="baseBtnHandler(this)">Health Upgrade 1</button> <br>
-              <button id="health2Btn" class="Btn" onclick="baseBtnHandler(this)">Health Upgrade 2</button> <br>
-              <button id="dmg1Btn" class="Btn" onclick="baseBtnHandler(this)">Damage Upgrade 1</button> <br>
-              <button id="dmg2Btn" class="Btn" onclick="baseBtnHandler(this)">Damage Upgrade 2</button> <br>
-              <button id="deathStarBtn" class="Btn" onclick="baseBtnHandler(this)">Death Star</button> <br>
+              <button id="ironBtn" class="Btn" onclick="buyIron()">Iron</button> <br>
+              <button id="fuelBtn" class="Btn" onclick="buyFuel()">Fuel</button> <br>
+              <button id="repairPackBtn" class="Btn" onclick="buyRepairPack()">Repair Packs</button> <br>
+              <button id="navBtn" class="Btn" onclick="buyNavCPU()">Nav Computer</button> <br>
+              <button id="health1Btn" class="Btn" onclick="buyHealth1()">Health Upgrade 1</button> <br>
+              <button id="health2Btn" class="Btn" onclick="buyHealth2()">Health Upgrade 2</button> <br>
+              <button id="dmg1Btn" class="Btn" onclick="buyDmg1()">Damage Upgrade 1</button> <br>
+              <button id="dmg2Btn" class="Btn" onclick="buyDmg2()">Damage Upgrade 2</button> <br>
+              <button id="deathStarBtn" class="Btn" onclick="buyDeathStar()">Death Star</button> <br>
             </div>
             <table id="itemTable" align="right">
               <caption>Items</caption>
@@ -118,31 +123,31 @@
               </tr>
               <tr>
                 <th>O2 Tank</th>
-                <th><input type="number" class="items" id="o2TankAmt" max="9999" readonly></th>
+                <th><input type="number" class="items" id="o2TankAmt" value="0" max="9999" readonly></th>
               </tr>
               <tr>
                 <th>Nav Computer</th>
-                <th><input type="number" class="items" id="navComputerAmt" max="9999" readonly></th>
+                <th><input type="number" class="items" id="navComputerAmt" value="0" max="9999" readonly></th>
               </tr>
               <tr>
                 <th>Health 1</th>
-                <th><input type="number" class="items" id="health1Amt" max="9999" readonly></th>
+                <th><input type="number" class="items" id="health1Amt" value="0" max="9999" readonly></th>
               </tr>
               <tr>
                 <th>Health 2</th>
-                <th><input type="number" class="items" id="health2Amt" max="9999" readonly></th>
+                <th><input type="number" class="items" id="health2Amt" value="0" max="9999" readonly></th>
               </tr>
               <tr>
                 <th>Damage 1</th>
-                <th><input type="number" class="items" id="damage1Amt" max="9999" readonly></th>
+                <th><input type="number" class="items" id="damage1Amt" value="0" max="9999" readonly></th>
               </tr>
               <tr>
                 <th>Damage 2</th>
-                <th><input type="number" class="items" id="damage2Amt" max="9999" readonly></th>
+                <th><input type="number" class="items" id="damage2Amt" value="0" max="9999" readonly></th>
               </tr>
               <tr>
                 <th>Death Star</th>
-                <th><input type="number" class="items" id="deathStarAmt" max="9999" readonly></th>
+                <th><input type="number" class="items" id="deathStarAmt" value="0" max="9999" readonly></th>
               </tr>
             </table>
             
@@ -152,7 +157,7 @@
           <div id="screen2">
             <h1>Screen 2</h1>
             <div id="pageTwoBtns">
-              <button id="mineIron" class="Btn" onclick="mineIron()">Mine Iron</button><br>
+              <button id="mineIron" class="Btn" onclick="mineIron(); baseBtnHandler(this);">Mine Iron</button><br>
               <button id="checkPods" class="Btn" onclick="checkPods(); baseBtnHandler(this);">Check Pods</button>
             </div>
 
