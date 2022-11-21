@@ -48,7 +48,7 @@
             </tr>
             <tr>
               <th>Iron</th>
-              <th><input type="number" class="resources" id="ironAmt" value ="2000" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="ironAmt" value="0" max="9999" readonly></th>
           </tr>
             <tr>
               <th>Fuel</th>
@@ -59,17 +59,44 @@
               <th><input type="number" class="resources" id="repairPackAmt" max="9999" readonly></th>
           </tr>
         </table>
+        <table id="villageTable" align="right">
+          <caption>Village</caption>
+          <tr>
+            <th>Collection Pod</th>
+            <td><input type="number" value="0" class="village" id="collectionPodAmt" max="9999" readonly></td>
+          </tr>
+          <tr>
+            <th>Ships</th>
+            <td><input type="number" value="0" class="village" id="shipAmt" max="9999" readonly></td>
+          </tr>
+          <tr>
+            <th>Mechanic Shop</th>
+            <td><input type="number" value="0" class="village" id="mechanicAmt" max="9999" readonly></td>
+          </tr>
+          <tr>
+            <th>Refinery</th>
+            <td><input type="number" value="0" class="village" id="refineryAmt" max="9999" readonly></td>
+          </tr>
+          <tr>
+            <th>Space Hub</th>
+            <td><input type="number" value="0" class="village" id="spaceHubAmt" max="9999" readonly></td>
+          </tr>
+          <tr>
+            <th>Population</th>
+            <td><input type="number" value="0" class="village" id="population" max="9999" readonly></td>
+          </tr>
+        </table>
           <button id="sndMessage" onclick="eventText(Events('0'))">Send Message</button>
           <div id="screen1">
             <h1>Screen 1</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
-              <button id="o2tankBtn" class="Btn" onclick="o2Tank()">O2 Tank</button> <br>
-              <button id="collectionBtn" class="Btn" onclick="collectionPod()">Colection Pod</button> <br>
-              <button id="shipBtn" class="Btn" onclick="baseBtnHandler(this)">Ship</button> <br>
-              <button id="refineryBtn" class="Btn" onclick="buildCabin(); baseBtnHandler(this);">Refinery</button> <br>
-              <button id="mechanicBtn" class="Btn" onclick="baseBtnHandler(this)">Mechanic Shop</button> <br>
-              <button id="spaceHubBtn" class="Btn" onclick="baseBtnHandler(this)">Space Hub</button> <br>
+              <button id="o2tankBtn" class="Btn" onclick="buildO2Tank()">O2 Tank</button> <br>
+              <button id="collectionBtn" class="Btn" onclick="buildPod()">Colection Pod</button> <br>
+              <button id="shipBtn" class="Btn" onclick="buildShip()">Ship</button> <br>
+              <button id="refineryBtn" class="Btn" onclick="buildRefinery()">Refinery</button> <br>
+              <button id="mechanicBtn" class="Btn" onclick="buildMechanic()">Mechanic Shop</button> <br>
+              <button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub()">Space Hub</button> <br>
             </div>
             <div id="buyBtns">
               <h3>Buy</h3> <br>
@@ -118,13 +145,14 @@
                 <th><input type="number" class="items" id="deathStarAmt" max="9999" readonly></th>
               </tr>
             </table>
+            
           </div>
 
 
           <div id="screen2">
             <h1>Screen 2</h1>
             <div id="pageTwoBtns">
-              <button id="mineIron" class="Btn" onclick="mineIron(); baseBtnHandler(this);">Mine Iron</button><br>
+              <button id="mineIron" class="Btn" onclick="mineIron()">Mine Iron</button><br>
               <button id="checkPods" class="Btn" onclick="checkPods(); baseBtnHandler(this);">Check Pods</button>
             </div>
 
@@ -137,21 +165,7 @@
               <input id="mechanic" type="number" onchange="mechanicManager()" onKeyDown="return false" value="0" min="0" class="jobs"><br>
             </div>
 
-            <table id="villageTable" align="right">
-              <caption>Village</caption>
-              <tr>
-                <th>Collection Pod</th>
-                <td><input type="number" value="0" class="village" id="collectionPodAmt" max="9999" readonly></td>
-              </tr>
-              <tr>
-                <th>Cabins</th>
-                <td><input type="number" value="0" class="village" id="cabinAmt" max="9999" readonly></td>
-              </tr>
-              <tr>
-                <th>Population</th>
-                <td><input type="number" value="0" class="village" id="population" max="9999" readonly></td>
-              </tr>
-            </table>
+
           </div>
 
 

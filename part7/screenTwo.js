@@ -2,12 +2,14 @@
 
 //Buttons
 function mineIron() {//adds iron resources on click
-    document.getElementById("ironAmt").value++;
+    var ironAmt = document.getElementById("ironAmt");
+    ironAmt.value = parseInt(ironAmt.value) + 10; //mine 10 iron per click
 }
 
 function checkPods() {//adds fuel resources on click
     let fuel = document.getElementById("fuelAmt");
-    fuel.value = parseInt(fuel.value) + 5;
+    var podAmt = document.getElementById("collectionPodAmt");
+    fuel.value = parseInt(fuel.value) + parseInt(podAmt.value); //add amount of collection pods to fuel on check
 }
 
 

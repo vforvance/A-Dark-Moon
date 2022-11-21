@@ -15,7 +15,6 @@ function startGame(){
     document.getElementById("resourceTable").style.display = "none";
     //hide objects on screen 1
     document.getElementById("buildBtns").style.display = "none";
-    document.getElementById("craftBtns").style.display = "none";
     document.getElementById("buyBtns").style.display = "none";
     document.getElementById("itemTable").style.display = "none";
     
