@@ -47,96 +47,41 @@
                 <th>Amount</th>
             </tr>
             <tr>
-              <th>Rations</th>
-              <th><input type="number" class="resources" id="rationAmt"  max="9999" readonly></th>
-            </tr>
+              <th>Iron</th>
+              <th><input type="number" class="resources" id="ironAmt" value ="2000" max="9999" readonly></th>
+          </tr>
             <tr>
               <th>Fuel</th>
               <th><input type="number" class="resources" id="fuelAmt" value="0" max="9999" readonly></th>
             </tr>
             <tr>
-              <th>Stone</th>
-              <th><input type="number" class="resources" id="stoneAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Bones</th>
-              <th><input type="number" class="resources" id="bonesAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Animal Skin</th>
-              <th><input type="number" class="resources" id="animalSkinAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-                <th>Iron</th>
-                <th><input type="number" class="resources" id="ironAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Coal</th>
-              <th><input type="number" class="resources" id="coalAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Steel</th>
-              <th><input type="number" class="resources" id="steelAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Copper</th>
-              <th><input type="number" class="resources" id="copperAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Titanium</th>
-              <th><input type="number" class="resources" id="titaniumAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Uranium</th>
-              <th><input type="number" class="resources" id="uraniumAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Vibranium</th>
-              <th><input type="number" class="resources" id="vibraniumAmt" max="9999" readonly></th>
-            </tr>
-            <tr>
-              <th>Oil</th>
-              <th><input type="number" class="resources" id="oilAmt" max="9999" readonly></th>
-            </tr>
+              <th>Repair Packs</th>
+              <th><input type="number" class="resources" id="repairPackAmt" max="9999" readonly></th>
+          </tr>
         </table>
           <button id="sndMessage" onclick="eventText(Events('0'))">Send Message</button>
           <div id="screen1">
             <h1>Screen 1</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
-              <button id="trapBtn" class="Btn" onclick="baseBtnHandler(this)">Trap</button> <br>
-              <button id="backpackBtn" class="Btn" onclick="baseBtnHandler(this)">Backpack</button> <br>
-              <button id="cabinBtn" class="Btn" onclick="buildCabin(); baseBtnHandler(this);">Cabin</button> <br>
-              <button id="hostelBtn" class="Btn" onclick="baseBtnHandler(this)">Hostel</button> <br>
-              <button id="marketBtn" class="Btn" onclick="baseBtnHandler(this)">Market</button> <br>
-              <button id="foodPreserverBtn" class="Btn" onclick="baseBtnHandler(this)">Food Preserver</button> <br>
-              <button id="electricianBtn" class="Btn" onclick="baseBtnHandler(this)">Electrician</button> <br>
-              <button id="woodworkerBtn" class="Btn" onclick="baseBtnHandler(this)">Woodworker</button> <br>
-              <button id="ectBtn" class="Btn" onclick="baseBtnHandler(this)">Ect</button> <br>
-            </div>
-            <div id="craftBtns">
-              <h3>Craft</h3> <br>
-              <button id="preservedFoodBtn" class="Btn" onclick="baseBtnHandler(this)">Preserved Food</button> <br>
-              <button id="wiresBtn" class="Btn" onclick="baseBtnHandler(this)">Wires</button> <br>
-              <button id="batteryBtn" class="Btn" onclick="baseBtnHandler(this)">Battery</button> <br>
-              <button id="energyCellsBtn" class="Btn" onclick="baseBtnHandler(this)">Energy Cells</button> <br>
-              <button id="ectBtn" class="Btn" onclick="baseBtnHandler(this)">Ect</button> <br>
+              <button id="o2tankBtn" class="Btn" onclick="o2Tank()">O2 Tank</button> <br>
+              <button id="collectionBtn" class="Btn" onclick="collectionPod()">Colection Pod</button> <br>
+              <button id="shipBtn" class="Btn" onclick="baseBtnHandler(this)">Ship</button> <br>
+              <button id="refineryBtn" class="Btn" onclick="buildCabin(); baseBtnHandler(this);">Refinery</button> <br>
+              <button id="mechanicBtn" class="Btn" onclick="baseBtnHandler(this)">Mechanic Shop</button> <br>
+              <button id="spaceHubBtn" class="Btn" onclick="baseBtnHandler(this)">Space Hub</button> <br>
             </div>
             <div id="buyBtns">
               <h3>Buy</h3> <br>
-              <button id="coalBtn" class="Btn" onclick="baseBtnHandler(this)">Coal</button> <br>
               <button id="ironBtn" class="Btn" onclick="baseBtnHandler(this)">Iron</button> <br>
-              <button id="steelBtn" class="Btn" onclick="baseBtnHandler(this)">Steel</button> <br>
-              <button id="foodBtn" class="Btn" onclick="baseBtnHandler(this)">Food</button> <br>
-              <button id="gunPowderBtn" class="Btn" onclick="baseBtnHandler(this)">Gun Powder</button> <br>
-              <button id="titaniumBtn" class="Btn" onclick="baseBtnHandler(this)">Titanium</button> <br>
-              <button id="vibraniumBtn" class="Btn" onclick="baseBtnHandler(this)">Vibranium</button> <br>
-              <button id="uraniumBtn" class="Btn" onclick="baseBtnHandler(this)">Uranium</button> <br>
-              <button id="animalSkinBtn" class="Btn" onclick="baseBtnHandler(this)">Animal Skin</button> <br>
-              <button id="bonesBtn" class="Btn" onclick="baseBtnHandler(this)">Bones</button> <br>
-              <button id="navBeaconBtn" class="Btn" onclick="baseBtnHandler(this)">Nav Beacon</button> <br>
-              <button id="stoneBtn" class="Btn" onclick="baseBtnHandler(this)">Stone</button> <br>
-              
+              <button id="fuelBtn" class="Btn" onclick="baseBtnHandler(this)">Fuel</button> <br>
+              <button id="repairPackBtn" class="Btn" onclick="baseBtnHandler(this)">Repair Packs</button> <br>
+              <button id="navBtn" class="Btn" onclick="baseBtnHandler(this)">Nav Computer</button> <br>
+              <button id="health1Btn" class="Btn" onclick="baseBtnHandler(this)">Health Upgrade 1</button> <br>
+              <button id="health2Btn" class="Btn" onclick="baseBtnHandler(this)">Health Upgrade 2</button> <br>
+              <button id="dmg1Btn" class="Btn" onclick="baseBtnHandler(this)">Damage Upgrade 1</button> <br>
+              <button id="dmg2Btn" class="Btn" onclick="baseBtnHandler(this)">Damage Upgrade 2</button> <br>
+              <button id="deathStarBtn" class="Btn" onclick="baseBtnHandler(this)">Death Star</button> <br>
             </div>
             <table id="itemTable" align="right">
               <caption>Items</caption>
@@ -145,28 +90,32 @@
                 <th>Amount</th>
               </tr>
               <tr>
-                <th>Nav Beacon</th>
-                <th><input type="number" class="items" id="navBeaconAmt" max="9999" readonly></th>
+                <th>O2 Tank</th>
+                <th><input type="number" class="items" id="o2TankAmt" max="9999" readonly></th>
               </tr>
               <tr>
-                <th>Light Saber</th>
-                <th><input type="number" class="items" id="lightSaberAmt" max="9999" readonly></th>
+                <th>Nav Computer</th>
+                <th><input type="number" class="items" id="navComputerAmt" max="9999" readonly></th>
               </tr>
               <tr>
-                <th>Gun</th>
-                <th><input type="number" class="items" id="gunAmt" max="9999" readonly></th>
+                <th>Health 1</th>
+                <th><input type="number" class="items" id="health1Amt" max="9999" readonly></th>
               </tr>
               <tr>
-                <th>Bullets</th>
-                <th><input type="number" class="items" id="bulletsAmt" max="9999" readonly></th>
+                <th>Health 2</th>
+                <th><input type="number" class="items" id="health2Amt" max="9999" readonly></th>
               </tr>
               <tr>
-                <th>Grenades</th>
-                <th><input type="number" class="items" id="grenadesAmt" max="9999" readonly></th>
+                <th>Damage 1</th>
+                <th><input type="number" class="items" id="damage1Amt" max="9999" readonly></th>
               </tr>
               <tr>
-                <th>Light Saber</th>
-                <th><input type="number" class="items" id="lightSaberAmt" max="9999" readonly></th>
+                <th>Damage 2</th>
+                <th><input type="number" class="items" id="damage2Amt" max="9999" readonly></th>
+              </tr>
+              <tr>
+                <th>Death Star</th>
+                <th><input type="number" class="items" id="deathStarAmt" max="9999" readonly></th>
               </tr>
             </table>
           </div>
@@ -188,8 +137,12 @@
               <input id="mechanic" type="number" onchange="mechanicManager()" onKeyDown="return false" value="0" min="0" class="jobs"><br>
             </div>
 
-            <table id="villageTable">
+            <table id="villageTable" align="right">
               <caption>Village</caption>
+              <tr>
+                <th>Collection Pod</th>
+                <td><input type="number" value="0" class="village" id="collectionPodAmt" max="9999" readonly></td>
+              </tr>
               <tr>
                 <th>Cabins</th>
                 <td><input type="number" value="0" class="village" id="cabinAmt" max="9999" readonly></td>
