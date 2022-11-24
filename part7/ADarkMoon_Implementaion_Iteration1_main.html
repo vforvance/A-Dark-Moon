@@ -66,27 +66,39 @@
         </table>
           <button id="sndMessage" onclick="eventText(Events('0'))">Send Message</button>
           <div id="screen1">
-            <h1>Screen 1</h1>
+            <h1>A Dark Moon</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
-              <button id="o2tankBtn" class="Btn" onclick="buildO2Tank()">O2 Tank</button> <br>
-              <button id="collectionBtn" class="Btn" onclick="buildPod()">Colection Pod</button> <br>
-              <button id="shipBtn" class="Btn" onclick="buildShip()">Ship</button> <br>
-              <button id="refineryBtn" class="Btn" onclick="buildRefinery()">Refinery</button> <br>
-              <button id="mechanicBtn" class="Btn" onclick="buildMechanic()">Mechanic Shop</button> <br>
-              <button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub()">Space Hub</button> <br>
+              <button id="o2tankBtn" class="Btn" onclick="buildO2Tank()">O2 Tank</button><br>
+              <button id="collectionBtn" class="Btn" onclick="buildPod()">Colection Pod</button><br>
+              <button id="shipBtn" class="Btn" onclick="buildShip()">Ship</button><br>
+              <div class="tooltip"><button id="refineryBtn" class="Btn" onclick="buildRefinery()">Refinery</button>
+              <div class="tooltiptext">200 Iron <br> 100 Fuel</div></div>
+              <div class="tooltip"><button id="mechanicBtn" class="Btn" onclick="buildMechanic()">Mechanic Shop</button>
+              <div class="tooltiptext">200 Iron <br>200 Fuel</div></div>
+              <div class="tooltip"><button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub()">Space Hub</button>
+              <div class="tooltiptext">400 Iron<br> 200 Fuel</div></div>
             </div>
             <div id="buyBtns">
               <h3>Buy</h3> <br>
-              <button id="ironBtn" class="Btn" onclick="buyIron()">Iron</button> <br>
-              <button id="fuelBtn" class="Btn" onclick="buyFuel()">Fuel</button> <br>
-              <button id="repairPackBtn" class="Btn" onclick="buyRepairPack()">Repair Packs</button> <br>
-              <button id="navBtn" class="Btn" onclick="buyNavCPU()">Nav Computer</button> <br>
-              <button id="health1Btn" class="Btn" onclick="buyHealth1()">Health Upgrade 1</button> <br>
-              <button id="health2Btn" class="Btn" onclick="buyHealth2()">Health Upgrade 2</button> <br>
-              <button id="dmg1Btn" class="Btn" onclick="buyDmg1()">Damage Upgrade 1</button> <br>
-              <button id="dmg2Btn" class="Btn" onclick="buyDmg2()">Damage Upgrade 2</button> <br>
-              <button id="deathStarBtn" class="Btn" onclick="buyDeathStar()">Death Star</button> <br>
+              <div class="tooltip"><button id="ironBtn" class="Btn" onclick="buyIron()">Iron</button>
+              <div class="tooltiptext">20 Fuel</div></div>
+              <div class="tooltip"><button id="fuelBtn" class="Btn" onclick="buyFuel()">Fuel</button>
+              <div class="tooltiptext">50 Iron</div></div>
+              <div class="tooltip"><button id="repairPackBtn" class="Btn" onclick="buyRepairPack()">Repair Packs</button>
+              <div class="tooltiptext">100 Iron<br> 100 Fuel</div></div>
+              <div class="tooltip"><button id="navBtn" class="Btn" onclick="buyNavCPU()">Nav Computer</button>
+              <div class="tooltiptext">500 Iron<br> 300 Fuel <br> 100 Repair Packs</div></div>
+              <div class="tooltip"><button id="health1Btn" class="Btn" onclick="buyHealth1()">Health Upgrade 1</button>
+              <div class="tooltiptext">500 Iron<br>500 Fuel<br>200 Repair Packs</div></div>
+              <div class="tooltip"><button id="health2Btn" class="Btn" onclick="buyHealth2()">Health Upgrade 2</button>
+              <div class="tooltiptext">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
+              <div class="tooltip"><button id="dmg1Btn" class="Btn" onclick="buyDmg1()">Damage Upgrade 1</button>
+              <div class="tooltiptext">500 Iron<br> 500 Fuel<br> 200 Repair Packs</div></div>
+              <div class="tooltip"><button id="dmg2Btn" class="Btn" onclick="buyDmg2()">Damage Upgrade 2</button>
+              <div class="tooltiptext">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
+              <div class="tooltip"><button id="deathStarBtn" class="Btn" onclick="buyDeathStar()">Death Star</button>
+              <div class="tooltiptext">1000 Iron<br> 1000 Fuel<br>1000 Repair Packs<br> 10 Planet Cores</div></div>
             </div>
             <table id="itemTable" align="right">
               <caption>Items</caption>
@@ -128,7 +140,7 @@
 
 
           <div id="screen2">
-            <h1>Screen 2</h1>
+            <h1>The Harbour</h1>
             <table id="villageTable" align="right">
               <caption>Village</caption>
               <tr>
@@ -175,7 +187,7 @@
 
 
           <div id="screen3">
-            <h1>Screen 3</h1>
+            <h1>Endless Space</h1>
 			        <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
 			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
             <form id="exploreStats">

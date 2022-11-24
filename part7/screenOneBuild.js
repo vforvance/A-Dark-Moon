@@ -101,7 +101,7 @@ function buildSpaceHub()
     var spaceHubBtn = document.getElementById("spaceHubBtn");
     var spaceHubAmt = document.getElementById("spaceHubAmt");
 
-    if(ironAmt.value >= 200 && fuelAmt.value >= 200)
+    if(ironAmt.value >= 400 && fuelAmt.value >= 200)
     {
         ironAmt.value = parseInt(ironAmt.value) - 400;
         fuelAmt.value = parseInt(fuelAmt.value) - 200; 
