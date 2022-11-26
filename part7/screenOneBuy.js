@@ -53,6 +53,15 @@ function buyNavCPU()
 
         navBtn.style.opacity = "0.5";
         navBtn.disabled = true; 
+
+        //display exploration stuff
+        document.getElementById("screen3").style.display = "block";
+        document.getElementById("health1Btn").style.display = "block";
+        document.getElementById("dmg1Btn").style.display = "block";
+        document.getElementById("navComputerAmt").style.display = "block";
+        document.getElementById("screen3Tab").style.display = "block";
+
+
     }
 }
 
@@ -73,6 +82,11 @@ function buyHealth1()
 
         heatlh1Btn.style.opacity = "0.5";
         heatlh1Btn.disabled = true; 
+
+        //display health1 amount
+        document.getElementById("health1Amt").style.display = "block";
+        document.getElementById("health2Btn").style.display = "block";
+
     }
 }
 
@@ -93,6 +107,10 @@ function buyHealth2()
 
         heatlh2Btn.style.opacity = "0.5";
         heatlh2Btn.disabled = true; 
+
+        //display health2 stats
+        document.getElementById("health2Amt").style.display = "block";
+
     }
 }
 
@@ -113,6 +131,10 @@ function buyDmg1()
 
         damage1Btn.style.opacity = "0.5";
         damage1Btn.disabled = true; 
+
+        //display dmg1 stats
+        document.getElementById("damage1Amt").style.display = "block";
+        document.getElementById("dmg2Btn").style.display = "block";
     }
 }
 
@@ -133,6 +155,10 @@ function buyDmg2()
 
         damage2Btn.style.opacity = "0.5";
         damage2Btn.disabled = true; 
+
+        //display dmg2 stats
+        document.getElementById("damage2Amt").style.display = "block";
+
     }
 }
 

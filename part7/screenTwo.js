@@ -11,6 +11,12 @@ function mineIron() {//adds iron resources on click
     {
         ironAmt.value = parseInt(ironAmt.value) + 5; //mine 10 iron per click
     }
+    if(ironAmt.value >= 30)
+    {
+        document.getElementById("buildBtns").style.display = "block"; 
+        document.getElementById("o2tankBtn").style.display = "block";
+        document.getElementById("collectionBtn").style.display = "block"; 
+    }
     
 }
 

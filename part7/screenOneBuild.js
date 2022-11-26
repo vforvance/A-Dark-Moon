@@ -10,6 +10,9 @@ function buildO2Tank()
         //change o2 tank amount to 1 and diable button
         document.getElementById("o2TankAmt").value = 1;
         ironAmt.value -= 30;
+        //display o2 stats
+        document.getElementById("itemTable").style.display = "block";
+        document.getElementById("o2TankAmt").style.display = "block";
     } 
 }
 
@@ -31,6 +34,18 @@ function buildPod()
             ironAmt.value = ironAmt.value - (10 + 10*collectAmt.value); 
             collectAmt.value ++; 
         }
+
+        //display pod stats
+        document.getElementById("checkPods").style.display = "block";
+        document.getElementById("villageTable").style.display = "block";
+        document.getElementById("collectionPodAmt").style.display = "block";
+        document.getElementById("fuelAmt").style.display = "block";
+    }
+    if(collectAmt.value == 3)
+    {
+        //display ship stats
+        document.getElementById("shipBtn").style.display = "block";
+        document.getElementById("shipAmt").style.display = "block";
     }
 }
 
@@ -40,6 +55,11 @@ function buildShip()
     var shipAmt = document.getElementById("shipAmt");
     var ironAmt = document.getElementById("ironAmt");
     var popAmt = document.getElementById("population");
+
+    //display village pop stats
+    document.getElementById("jobTable").style.display = "block";
+    document.getElementById("miner").style.display = "block";
+    document.getElementById("population").style.display = "block";
 
     if(shipAmt.value < 10)
     {
@@ -55,6 +75,13 @@ function buildShip()
     {
         shipBtn.style.opacity = "0.5";
         shipBtn.disabled = true;
+    }
+    if(shipAmt.value == 3)
+    {
+        document.getElementById("refineryBtn").style.display = "block";
+        document.getElementById("mechanicBtn").style.display = "block";
+        document.getElementById("spaceHubBtn").style.display = "block";
+
     }
 }
 
@@ -73,6 +100,11 @@ function buildRefinery()
 
         refineryBtn.style.opacity = "0.5";
         refineryBtn.disabled = true;
+
+        //display refinery stats
+        document.getElementById("operator").style.display = "block";
+        document.getElementById("refineryAmt").style.display = "block";
+
     } 
 }
 
@@ -91,6 +123,12 @@ function buildMechanic()
 
         mechanicBtn.style.opacity = "0.5";
         mechanicBtn.disabled = true; 
+
+        //display mechanic stats
+        document.getElementById("mechanicAmt").style.display = "block";
+        document.getElementById("mechanic").style.display = "block";
+        document.getElementById("repairPackAmt").style.display = "block";
+
     }
 }
 
@@ -109,5 +147,15 @@ function buildSpaceHub()
 
         spaceHubBtn.style.opacity = "0.5";
         spaceHubBtn.disabled = true; 
+
+        //display spacehub stats
+        document.getElementById("buyBtns").style.display = "block";
+        document.getElementById("spaceHubAmt").style.display = "block"; 
+        document.getElementById("ironBtn").style.display = "block";
+        document.getElementById("fuelBtn").style.display = "block"; 
+        document.getElementById("repairPackBtn").style.display = "block"; 
+        document.getElementById("navBtn").style.display = "block";
+
+
     }
 }
