@@ -19,9 +19,38 @@ function sndMessage()
     sndMessageBtn.value++;
     if(sndMessageBtn.value == 5)
     {
+
         document.getElementById("screen2Tab").style.display = "block";
         document.getElementById("mineIron").style.display = "block";
         document.getElementById("resourceTable").style.display = "block";
         document.getElementById("ironAmt").style.display = "block";
     }
 }
+	//Update the text log 
+function eventText(logText) {
+    //store all text paragraphs
+    textNodes = document.getElementById('eventText').children; 
+        
+        //iterate through textnodes
+        for(let i = textNodes.length-1; i != 0; i--){
+            textNodes[i].innerText = textNodes[i-1].innerText;
+            textNodes[i].style.opacity = ((textNodes.length-i)/textNodes.length);
+            }
+            //add current event to the top
+            textNodes[0].innerText = logText;
+  }
+  //stores event text 
+  function Events(eventID) {
+    if(eventID == 0)
+    {
+        let fireEvents = ['message sent','sending message','waiting...'];
+        return(fireEvents[Math.floor(Math.random()*fireEvents.length)]);
+    }
+    if(eventID == 1)
+    {
+        let meTooEvents = ['floor creaks','metal walls are cold','they are restless'];
+        document.getElementById("ironAmt").value = document.getElementById("ironAmt").value - 2;
+        return(meTooEvents[Math.floor(Math.random()*meTooEvents.length)]);
+    }
+  }
+ 

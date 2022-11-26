@@ -39,9 +39,9 @@
       <div class="split right">
         <div class="centered">
           <div id="header">
-          <button id="screen1Tab" class = "headerButton" onclick="screen1Display()">The Moon</button>
+          <button id="screen1Tab" class = "headerButton" onclick="screen1Display()">A Dark Moon</button>
           <button id="screen2Tab" class = "headerButton" onclick="screen2Display()">The Harbour</button>
-          <button id="screen3Tab" class = "headerButton" onclick="screen3Display()">Space</button></div><br>
+          <button id="screen3Tab" class = "headerButton" onclick="screen3Display()">Endless Space</button></div><br>
           <table id="resourceTable" align="right">
             <caption>Resources</caption>
             <tr>
@@ -218,36 +218,7 @@
         //display screen funcitons
 
     document.getElementById("ironAmt").value = 10;
- 
 
-
-	//Update the text log 
-      function eventText(logText) {
-		//store all text paragraphs
-		textNodes = document.getElementById('eventText').children; 
-			
-			//iterate through textnodes
-			for(let i = textNodes.length-1; i != 0; i--){
-				textNodes[i].innerText = textNodes[i-1].innerText;
-				textNodes[i].style.opacity = ((textNodes.length-i)/textNodes.length);
-				}
-				//add current event to the top
-				textNodes[0].innerText = logText;
-      }
-	  //stores event text 
-	  function Events(eventID) {
-		if(eventID == 0)
-		{
-			let fireEvents = ['message sent','sending message','waiting...'];
-			return(fireEvents[Math.floor(Math.random()*fireEvents.length)]);
-		}
-		if(eventID == 1)
-		{
-			let meTooEvents = ['floor creaks','metal walls are cold','they are restless'];
-            document.getElementById("ironAmt").value = document.getElementById("ironAmt").value - 2;
-			return(meTooEvents[Math.floor(Math.random()*meTooEvents.length)]);
-		}
-      }
      
     </script>
 </body>
