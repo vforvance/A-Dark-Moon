@@ -59,6 +59,8 @@ function buildShip()
     //display village pop stats
     document.getElementById("jobTable").style.display = "block";
     document.getElementById("miner").style.display = "block";
+    document.getElementById("opLabel").style.display = "none";  
+    document.getElementById("mechLabel").style.display = "none";
     document.getElementById("population").style.display = "block";
 
     if(shipAmt.value < 10)
@@ -67,7 +69,8 @@ function buildShip()
         {
             ironAmt.value = ironAmt.value - (50 + 50*shipAmt.value); //increase cost by 50
             shipAmt.value++;
-            popAmt.value = parseInt(popAmt.value) + 4;//increase pop by 4 each click
+            populationChange(4);
+            //popAmt.value = parseInt(popAmt.value) + 4;//increase pop by 4 each click
             
         }
     }
@@ -103,6 +106,7 @@ function buildRefinery()
 
         //display refinery stats
         document.getElementById("operator").style.display = "block";
+        document.getElementById("opLabel").style.display = "block";
         document.getElementById("refineryAmt").style.display = "block";
 
     } 
@@ -127,6 +131,7 @@ function buildMechanic()
         //display mechanic stats
         document.getElementById("mechanicAmt").style.display = "block";
         document.getElementById("mechanic").style.display = "block";
+        document.getElementById("mechLabel").style.display = "block";
         document.getElementById("repairPackAmt").style.display = "block";
 
     }
