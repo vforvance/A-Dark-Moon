@@ -64,7 +64,7 @@
             <th><input type="number" class="resources" id="planetCoreAmt" value="0" max="9999" readonly></th>
         </tr>
         </table>
-          <button id="sndMessage" onclick="eventText(Events('0'))">Send Message</button>
+          <button id="sndMessage" value = "0" onclick="eventText(Events('0')); sndMessage();">Send Message</button>
           <div id="screen1">
             <h1>A Dark Moon</h1>
             <div id="buildBtns">
@@ -236,8 +236,7 @@
 	  function Events(eventID) {
 		if(eventID == 0)
 		{
-			let fireEvents = ['fire is stoked','fire is roaring','fire is warm'];
-            document.getElementById("ironAmt").value ++;
+			let fireEvents = ['message sent','sending message','waiting...'];
 			return(fireEvents[Math.floor(Math.random()*fireEvents.length)]);
 		}
 		if(eventID == 1)
