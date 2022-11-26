@@ -20,8 +20,6 @@ function sndMessage()
     if(sndMessageBtn.value == 5)
     {
         document.getElementById("screen2Tab").style.display = "block";
-        document.getElementById("screen2").style.display = "block";
-        document.getElementById("pageTwoBtns").style.display = "block";
         document.getElementById("mineIron").style.display = "block";
         document.getElementById("resourceTable").style.display = "block";
         document.getElementById("ironAmt").style.display = "block";

@@ -38,9 +38,10 @@
       
       <div class="split right">
         <div class="centered">
-          <button id="screen1Tab" onclick="screen1Display()">Screen 1</button>
-          <button id="screen2Tab" onclick="screen2Display()">Screen 2</button>
-          <button id="screen3Tab" onclick="screen3Display()">Screen 3</button><br>
+          <div id="header">
+          <button id="screen1Tab" class = "headerButton" onclick="screen1Display()">The Moon</button>
+          <button id="screen2Tab" class = "headerButton" onclick="screen2Display()">The Harbour</button>
+          <button id="screen3Tab" class = "headerButton" onclick="screen3Display()">Space</button></div><br>
           <table id="resourceTable" align="right">
             <caption>Resources</caption>
             <tr>
@@ -64,9 +65,9 @@
             <th><input type="number" class="resources" id="planetCoreAmt" value="0" max="9999" readonly></th>
         </tr>
         </table>
-          <button id="sndMessage" value = "0" onclick="eventText(Events('0')); sndMessage();">Send Message</button>
+          <button id="sndMessage" value = "0" onclick="eventText(Events('0')); sndMessage();">Send Message</button><br>
           <div id="screen1">
-            <h1>A Dark Moon</h1>
+            <h1 class="textHeader">A Dark Moon</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
               <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank()">O2 Tank</button>
@@ -141,7 +142,7 @@
 
 
           <div id="screen2">
-            <h1>The Harbour</h1>
+            <h1 class="textHeader">The Harbour</h1>
             <table id="villageTable" align="right">
               <caption>Village</caption>
               <tr>
@@ -188,7 +189,7 @@
 
 
           <div id="screen3">
-            <h1>Endless Space</h1>
+            <h1 class="textHeader">Endless Space</h1>
 			        <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
 			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
             <form id="exploreStats">
