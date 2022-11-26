@@ -40,7 +40,7 @@
         <div class="centered">
           <div id="header">
           <button id="screen1Tab" class = "headerButton" onclick="screen1Display()">A Dark Moon</button>
-          <button id="screen2Tab" class = "headerButton" onclick="screen2Display()">The Harbour</button>
+          <button id="screen2Tab" class = "headerButton" onclick="screen2Display()">The Harbor</button>
           <button id="screen3Tab" class = "headerButton" onclick="screen3Display()">Endless Space</button></div><br>
           <table id="resourceTable" align="right">
             <caption>Resources</caption>
@@ -65,20 +65,20 @@
             <th><input type="number" class="resources" id="planetCoreAmt" value="0" max="9999" readonly></th>
         </tr>
         </table>
-          <button id="sndMessage" value = "0" onclick="eventText(Events('0')); sndMessage();">Send Message</button><br>
+          <button id="sndMessage" value = "0" onclick="eventText(Events(0)); sndMessage();">Look Around</button><br>
           <div id="screen1">
             <h1 class="textHeader">A Dark Moon</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
-              <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank()">O2 Tank</button>
+              <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank(); eventText(Events(3));">O2 Tank</button>
               <div class="tooltiptext">30 Iron</div></div>
-              <button id="collectionBtn" class="Btn" onclick="buildPod()">Colection Pod</button><br>
-              <button id="shipBtn" class="Btn" onclick="buildShip()">Ship</button><br>
-              <div class="tooltip"><button id="refineryBtn" class="Btn" onclick="buildRefinery()">Refinery</button>
+              <button id="collectionBtn" class="Btn" onclick="buildPod(); eventText(Events(4));">Colection Pod</button><br>
+              <button id="shipBtn" class="Btn" onclick="buildShip(); eventText(Events(5));">Ship</button><br>
+              <div class="tooltip"><button id="refineryBtn" class="Btn" onclick="buildRefinery(); eventText(Events(6));">Refinery</button>
               <div class="tooltiptext">200 Iron <br> 100 Fuel</div></div>
-              <div class="tooltip"><button id="mechanicBtn" class="Btn" onclick="buildMechanic()">Mechanic Shop</button>
+              <div class="tooltip"><button id="mechanicBtn" class="Btn" onclick="buildMechanic(); eventText(Events(7));">Mechanic Shop</button>
               <div class="tooltiptext">200 Iron <br>200 Fuel</div></div>
-              <div class="tooltip"><button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub()">Space Hub</button>
+              <div class="tooltip"><button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub(); eventText(Events(8));">Space Hub</button>
               <div class="tooltiptext">400 Iron<br> 200 Fuel</div></div>
             </div>
             <div id="buyBtns">
@@ -142,7 +142,7 @@
 
 
           <div id="screen2">
-            <h1 class="textHeader">The Harbour</h1>
+            <h1 class="textHeader">The Harbor</h1>
             <table id="villageTable" align="right">
               <caption>Village</caption>
               <tr>
@@ -171,8 +171,8 @@
               </tr>
             </table>
             <div id="pageTwoBtns">
-              <button id="mineIron" class="Btn" onclick="mineIron(); //baseBtnHandler(this);">Mine Iron</button><br>
-              <button id="checkPods" class="Btn" onclick="checkPods(); //baseBtnHandler(this);">Check Pods</button>
+              <button id="mineIron" class="Btn" onclick="mineIron(); eventText(Events(1));//baseBtnHandler(this);">Mine Iron</button><br>
+              <button id="checkPods" class="Btn" onclick="checkPods(); eventText(Events(2))//baseBtnHandler(this);">Check Pods</button>
             </div>
 
             <div id="jobTable">
