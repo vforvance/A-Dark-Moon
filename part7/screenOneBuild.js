@@ -57,8 +57,8 @@ function buildShip()
     var popAmt = document.getElementById("population");
 
     //display village pop stats
-    document.getElementById("jobTable").style.display = "block";
-    document.getElementById("miner").style.display = "block";
+    document.getElementById("jobTable").style.display = "initial";
+    document.getElementById("miner").style.display = "initial";
     document.getElementById("opLabel").style.display = "none";  
     document.getElementById("mechLabel").style.display = "none";
     document.getElementById("population").style.display = "block";
@@ -105,8 +105,8 @@ function buildRefinery()
         refineryBtn.disabled = true;
 
         //display refinery stats
-        document.getElementById("operator").style.display = "block";
-        document.getElementById("opLabel").style.display = "block";
+        document.getElementById("operator").style.display = "initial";
+        document.getElementById("opLabel").style.display = "initial";
         document.getElementById("refineryAmt").style.display = "block";
 
     } 
@@ -130,8 +130,8 @@ function buildMechanic()
 
         //display mechanic stats
         document.getElementById("mechanicAmt").style.display = "block";
-        document.getElementById("mechanic").style.display = "block";
-        document.getElementById("mechLabel").style.display = "block";
+        document.getElementById("mechanic").style.display = "initial";
+        document.getElementById("mechLabel").style.display = "initial";
         document.getElementById("repairPackAmt").style.display = "block";
 
     }
