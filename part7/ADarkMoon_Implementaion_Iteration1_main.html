@@ -191,17 +191,60 @@
             <h1 class="textHeader">Endless Space</h1>
 			        <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
 			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
-            <form id="exploreStats">
-					    <input type="number" id="fuel" name="fuel" value="50" readonly>
-				      <label for="fuel">Fuel</label><br>
-					    <input type="number" id="food" name="food" value="50" readonly>
-				      <label for="food">Food</label><br> 
-					    <input type="number" id="water" name="water" value="50"readonly>  
-				      <label for="water">Water</label><br> 
+      
+			
+			
+			
+			
+			<form id="exploreStats">
 					    <input type="number" id="health" name="water" value="20"readonly> 
 				      <label for="health">Health</label><br>
             </form>
+		
+		 <table id="inventory" align="right">
+            <caption>Resources</caption>
+            <tr>
+                <th>Resource</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+              <th>Iron</th>
+              <th><input type="number" class="resources" id="iron" value="0" max="9999" readonly></th>
+          </tr>
+            <tr>
+              <th>Fuel</th>
+              <th><input type="number" class="resources" id="fuel" value="50" max="9999" readonly></th>
+            </tr>
+            <tr>
+              <th>Repair Packs</th>
+              <th><input type="number" class="resources" id="repairPacks" value="5" max="9999" readonly></th>
+          </tr>
+          <tr>
+            <th>Planet Cores</th>
+            <th><input type="number" class="resources" id="planetCore" value="0" max="9999" readonly></th>
+        </tr>
+        </table>
+		
+		<table id="conquestStats" align="right">
+            <caption>Resources</caption>
+            <tr>
+                <th>Resource</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+              <th>Planets Controlled</th>
+              <th><input type="number" class="" id="planetControlled" value="0" max="9999" readonly></th>
+          </tr>
+            <tr>
+              <th>Space Controlled</th>
+              <th><input type="number" class="" id="spaceControlled" value="0" max="9999" readonly></th>
+            </tr>
+        </table>
+		
 		  <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
+		  <button id="repair" onclick="repair()">Repair</button>	
+		  <button id="salvage" hidden onclick="playerAttack()">Salvage</button>	
+		  <button id="deathStarFire" hidden onclick="playerAttack()">Activation Lever</button>	
 		  
 		  <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
 		  <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden> 			 
