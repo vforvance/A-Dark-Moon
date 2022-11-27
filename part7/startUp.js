@@ -4,7 +4,7 @@
 let boolStart = true;
 
 function startGame(){
-    if(boolStart == false)
+    if(boolStart == true)
     {
     //display screen 1 and hide the rest
     document.getElementById("screen1").style.display = "block"; //
@@ -24,7 +24,7 @@ function startGame(){
     //elements in buildBtns
     document.getElementById("o2tankBtn").style.display = "none"; //
     document.getElementById("collectionBtn").style.display = "none"; //
-    document.getElementById("shipBtn").style.display = "none"; //
+    document.getElementById("shipBtn").style.display = "block"; //
     document.getElementById("refineryBtn").style.display = "none"; //
     document.getElementById("mechanicBtn").style.display = "none"; //
     document.getElementById("spaceHubBtn").style.display = "none"; //
@@ -68,7 +68,7 @@ function startGame(){
     document.getElementById("villageTable").style.display = "none"; //
     //elements in villageTable
     document.getElementById("collectionPodAmt").style.display = "none"; //
-    document.getElementById("shipAmt").style.display = "none"; //
+    document.getElementById("shipAmt").style.display = "block"; //
     document.getElementById("mechanicAmt").style.display = "none"; //
     document.getElementById("refineryAmt").style.display = "none"; //
     document.getElementById("spaceHubAmt").style.display = "none"; //

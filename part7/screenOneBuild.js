@@ -43,10 +43,11 @@ function buildPod()
     }
     if(collectAmt.value == 3)
     {
-        //display ship stats
-        document.getElementById("shipBtn").style.display = "block";
-        document.getElementById("shipAmt").style.display = "block";
+            //display ship stats
+            document.getElementById("shipBtn").style.display = "block";
+            document.getElementById("shipAmt").style.display = "block";
     }
+   
 }
 
 function buildShip()
