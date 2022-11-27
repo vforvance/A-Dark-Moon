@@ -87,6 +87,62 @@ function mechanicManager() {
     minerManager(-diff);
 }
 
+// timer for every ten seconds
+setInterval(autoMine, 10000);
+setInterval(autoRepair, 10000);
+setInterval(autoFuel, 10000);
+//keeps miners mining automatically once you have 5 miners
+function autoMine()
+{ 
+    let miners = document.getElementById("miner");
+    for (i = 1; i < miners.value; i++)
+    {
+        if (miners.value > 12)
+        {
+            ironAmt.value = parseInt(ironAmt.value) + 5
+        }
+        else
+        { 
+            ironAmt.value = parseInt(ironAmt.value) + 2
+        }
+    }
+
+}
+// mechanics creating repair pack automatically 
+function autoRepair()
+{
+    let mechanics = document.getElementById("mechanic");
+    for (i= 1; i < mechanics.value; i++)
+    {
+        if (mechanics.value > 7)
+        {
+            repairPackAmt.vlaue = parseInt(repairPackAmt.value) + 2 
+        }
+        else 
+        {
+            repairPackAmt.value = parseInt(repairPackAmt + 1)
+        }
+
+    }
+
+}
+// operators "creating fuel"
+function autoFuel()
+{
+    let operators = document.getElementById("operator");
+    for (i =1; i < operators.value; i++)
+    {
+        if (operators.value > 8)
+        {
+            fuelAmt.value = parseInt(fuelAmt.vlaue) + 5
+        }
+        else 
+        {
+            fuelAmt.value = parseInt(fuelAmt.value + 1)
+        }
+    }
+}
+
 //population management works well all around
 //I only need to remove the ability to select and type values
 //possibly make readonly and attach buttons
