@@ -38,9 +38,10 @@
       
       <div class="split right">
         <div class="centered">
-          <button id="screen1Tab" onclick="screen1Display()">Screen 1</button>
-          <button id="screen2Tab" onclick="screen2Display()">Screen 2</button>
-          <button id="screen3Tab" onclick="screen3Display()">Screen 3</button><br>
+          <div id="header">
+          <button id="screen1Tab" class = "headerButton" onclick="screen1Display()">A Dark Moon</button>
+          <button id="screen2Tab" class = "headerButton" onclick="screen2Display()">The Harbor</button>
+          <button id="screen3Tab" class = "headerButton" onclick="screen3Display()">Endless Space</button></div><br>
           <table id="resourceTable" align="right">
             <caption>Resources</caption>
             <tr>
@@ -64,56 +65,41 @@
             <th><input type="number" class="resources" id="planetCoreAmt" value="0" max="9999" readonly></th>
         </tr>
         </table>
-        <table id="villageTable" align="right">
-          <caption>Village</caption>
-          <tr>
-            <th>Collection Pod</th>
-            <td><input type="number" value="0" class="village" id="collectionPodAmt" max="9999" readonly></td>
-          </tr>
-          <tr>
-            <th>Ships</th>
-            <td><input type="number" value="0" class="village" id="shipAmt" max="9999" readonly></td>
-          </tr>
-          <tr>
-            <th>Mechanic Shop</th>
-            <td><input type="number" value="0" class="village" id="mechanicAmt" max="9999" readonly></td>
-          </tr>
-          <tr>
-            <th>Refinery</th>
-            <td><input type="number" value="0" class="village" id="refineryAmt" max="9999" readonly></td>
-          </tr>
-          <tr>
-            <th>Space Hub</th>
-            <td><input type="number" value="0" class="village" id="spaceHubAmt" max="9999" readonly></td>
-          </tr>
-          <tr>
-            <th>Population</th>
-            <td><input type="number" value="0" class="village" id="population" max="9999" readonly></td>
-          </tr>
-        </table>
-          <button id="sndMessage" onclick="eventText(Events('0'))">Send Message</button>
+          <button id="sndMessage" value = "0" onclick="eventText(Events(0)); sndMessage();">Look Around</button><br>
           <div id="screen1">
-            <h1>Screen 1</h1>
+            <h1 class="textHeader">A Dark Moon</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
-              <button id="o2tankBtn" class="Btn" onclick="buildO2Tank()">O2 Tank</button> <br>
-              <button id="collectionBtn" class="Btn" onclick="buildPod()">Colection Pod</button> <br>
-              <button id="shipBtn" class="Btn" onclick="buildShip()">Ship</button> <br>
-              <button id="refineryBtn" class="Btn" onclick="buildRefinery()">Refinery</button> <br>
-              <button id="mechanicBtn" class="Btn" onclick="buildMechanic()">Mechanic Shop</button> <br>
-              <button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub()">Space Hub</button> <br>
+              <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank(); eventText(Events(3));">O2 Tank<span class="tooltiptext">30 Iron</span></button></div>
+              <div class="tooltip"><button id="collectionBtn" class="Btn" onclick="buildPod(); eventText(Events(4));" onmouseover="dynamicToolTip(this)">Colection Pod <span id="podTT" class = "tooltiptext">10 Iron</span></button></div>
+              <div class="tooltip"><button id="shipBtn" class="Btn" onclick="buildShip(); eventText(Events(5)); " onmouseover="dynamicToolTip(this)">Ship <span id="shipTT" class = "tooltiptext">50 Iron</span></button></div>
+              <div class="tooltip"><button id="refineryBtn" class="Btn" onclick="buildRefinery(); eventText(Events(6));">Refinery</button>
+              <div class="tooltiptext">200 Iron <br> 100 Fuel</div></div>
+              <div class="tooltip"><button id="mechanicBtn" class="Btn" onclick="buildMechanic(); eventText(Events(7));">Mechanic Shop</button>
+              <div class="tooltiptext">200 Iron <br>200 Fuel</div></div>
+              <div class="tooltip"><button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub(); eventText(Events(8));">Space Hub</button>
+              <div class="tooltiptext">400 Iron<br> 200 Fuel</div></div>
             </div>
             <div id="buyBtns">
               <h3>Buy</h3> <br>
-              <button id="ironBtn" class="Btn" onclick="buyIron()">Iron</button> <br>
-              <button id="fuelBtn" class="Btn" onclick="buyFuel()">Fuel</button> <br>
-              <button id="repairPackBtn" class="Btn" onclick="buyRepairPack()">Repair Packs</button> <br>
-              <button id="navBtn" class="Btn" onclick="buyNavCPU()">Nav Computer</button> <br>
-              <button id="health1Btn" class="Btn" onclick="buyHealth1()">Health Upgrade 1</button> <br>
-              <button id="health2Btn" class="Btn" onclick="buyHealth2()">Health Upgrade 2</button> <br>
-              <button id="dmg1Btn" class="Btn" onclick="buyDmg1()">Damage Upgrade 1</button> <br>
-              <button id="dmg2Btn" class="Btn" onclick="buyDmg2()">Damage Upgrade 2</button> <br>
-              <button id="deathStarBtn" class="Btn" onclick="buyDeathStar()">Death Star</button> <br>
+              <div class="tooltip"><button id="ironBtn" class="Btn" onclick="buyIron()">Iron</button>
+              <div class="tooltiptext">20 Fuel</div></div>
+              <div class="tooltip"><button id="fuelBtn" class="Btn" onclick="buyFuel()">Fuel</button>
+              <div class="tooltiptext">50 Iron</div></div>
+              <div class="tooltip"><button id="repairPackBtn" class="Btn" onclick="buyRepairPack()">Repair Packs</button>
+              <div class="tooltiptext">100 Iron<br> 100 Fuel</div></div>
+              <div class="tooltip"><button id="navBtn" class="Btn" onclick="buyNavCPU()">Nav Computer</button>
+              <div class="tooltiptext">500 Iron<br> 300 Fuel <br> 100 Repair Packs</div></div>
+              <div class="tooltip"><button id="health1Btn" class="Btn" onclick="buyHealth1()">Health Upgrade 1</button>
+              <div class="tooltiptext">500 Iron<br>500 Fuel<br>200 Repair Packs</div></div>
+              <div class="tooltip"><button id="health2Btn" class="Btn" onclick="buyHealth2()">Health Upgrade 2</button>
+              <div class="tooltiptext">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
+              <div class="tooltip"><button id="dmg1Btn" class="Btn" onclick="buyDmg1()">Damage Upgrade 1</button>
+              <div class="tooltiptext">500 Iron<br> 500 Fuel<br> 200 Repair Packs</div></div>
+              <div class="tooltip"><button id="dmg2Btn" class="Btn" onclick="buyDmg2()">Damage Upgrade 2</button>
+              <div class="tooltiptext">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
+              <div class="tooltip"><button id="deathStarBtn" class="Btn" onclick="buyDeathStar()">Death Star</button>
+              <div class="tooltiptext">1000 Iron<br> 1000 Fuel<br>1000 Repair Packs<br> 10 Planet Cores</div></div>
             </div>
             <table id="itemTable" align="right">
               <caption>Items</caption>
@@ -155,18 +141,45 @@
 
 
           <div id="screen2">
-            <h1>Screen 2</h1>
+            <h1 class="textHeader">The Harbor</h1>
+            <table id="villageTable" align="right">
+              <caption>Village</caption>
+              <tr>
+                <th>Collection Pod</th>
+                <td><input type="number" value="0" class="village" id="collectionPodAmt" max="9999" readonly></td>
+              </tr>
+              <tr>
+                <th>Ships</th>
+                <td><input type="number" value="0" class="village" id="shipAmt" max="9999" readonly></td>
+              </tr>
+              <tr>
+                <th>Mechanic Shop</th>
+                <td><input type="number" value="0" class="village" id="mechanicAmt" max="9999" readonly></td>
+              </tr>
+              <tr>
+                <th>Refinery</th>
+                <td><input type="number" value="0" class="village" id="refineryAmt" max="9999" readonly></td>
+              </tr>
+              <tr>
+                <th>Space Hub</th>
+                <td><input type="number" value="0" class="village" id="spaceHubAmt" max="9999" readonly></td>
+              </tr>
+              <tr>
+                <th>Population</th>
+                <td><input type="number" value="0" class="village" id="population" max="9999" readonly></td>
+              </tr>
+            </table>
             <div id="pageTwoBtns">
-              <button id="mineIron" class="Btn" onclick="mineIron(); baseBtnHandler(this);">Mine Iron</button><br>
-              <button id="checkPods" class="Btn" onclick="checkPods(); baseBtnHandler(this);">Check Pods</button>
+              <button id="mineIron" class="Btn" onclick="mineIron(); eventText(Events(1));//baseBtnHandler(this);">Mine Iron</button><br>
+              <button id="checkPods" class="Btn" onclick="checkPods(); eventText(Events(2))//baseBtnHandler(this);">Check Pods</button>
             </div>
 
             <div id="jobTable">
               <label for="miner">Miner</label>
               <input id="miner" value="0" type="number" class="jobs" readonly><br>
-              <label for="operator">Operator</label>
+              <label for="operator" id="opLabel">Operator</label>
               <input id="operator" type="number" onchange="operatorManager()" onKeyDown="return false" value="0" min="0" class="jobs"><br>
-              <label for="mechanic">Mechanic</label>
+              <label for="mechanic" id="mechLabel">Mechanic</label>
               <input id="mechanic" type="number" onchange="mechanicManager()" onKeyDown="return false" value="0" min="0" class="jobs"><br>
             </div>
 
@@ -175,7 +188,7 @@
 
 
           <div id="screen3">
-            <h1>Screen 3</h1>
+            <h1 class="textHeader">Endless Space</h1>
 			        <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
 			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
             <form id="exploreStats">
@@ -204,37 +217,7 @@
         //display screen funcitons
 
     document.getElementById("ironAmt").value = 10;
- 
 
-
-	//Update the text log 
-      function eventText(logText) {
-		//store all text paragraphs
-		textNodes = document.getElementById('eventText').children; 
-			
-			//iterate through textnodes
-			for(let i = textNodes.length-1; i != 0; i--){
-				textNodes[i].innerText = textNodes[i-1].innerText;
-				textNodes[i].style.opacity = ((textNodes.length-i)/textNodes.length);
-				}
-				//add current event to the top
-				textNodes[0].innerText = logText;
-      }
-	  //stores event text 
-	  function Events(eventID) {
-		if(eventID == 0)
-		{
-			let fireEvents = ['fire is stoked','fire is roaring','fire is warm'];
-            document.getElementById("ironAmt").value ++;
-			return(fireEvents[Math.floor(Math.random()*fireEvents.length)]);
-		}
-		if(eventID == 1)
-		{
-			let meTooEvents = ['floor creaks','metal walls are cold','they are restless'];
-            document.getElementById("ironAmt").value = document.getElementById("ironAmt").value - 2;
-			return(meTooEvents[Math.floor(Math.random()*meTooEvents.length)]);
-		}
-      }
      
     </script>
 </body>

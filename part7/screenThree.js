@@ -1,8 +1,8 @@
 	  
-	  //generate exploration grid
-	  //@ represents player location
-	  //collum value 0/1: 0 = not visited, 1 = visted 
-	  function generateGrid(size){
+//generate exploration grid
+//@ represents player location
+// grid values
+function generateGrid(size){
 		const grid = document.getElementById("grid");
 			for(let row = 0; row <= size; row++){
 				  var nRow = grid.insertRow(row);
@@ -18,7 +18,7 @@
 					}
 		}
 		//Create points of intrest
-		for(let i = 0; i < (35*35)*.24; i++)
+		for(let i = 0; i < (35*35)*.05; i++)
 		{
 			let row = Math.floor(Math.random() * 36);
 			let col = Math.floor(Math.random() * 36);
@@ -26,35 +26,59 @@
 			if(x.name == "empty")
 			{
 				x.innerHTML = "?";
-				x.name = "planet";
+				x.name = "unknown";
+				x.value = "planet"
+			}
+		}
+		//Create points of intrest
+		for(let i = 0; i < (35*35)*.12; i++)
+		{
+			let row = Math.floor(Math.random() * 36);
+			let col = Math.floor(Math.random() * 36);
+			let x = document.getElementById("grid").rows[row].cells[col];
+			if(x.name == "empty")
+			{
+				x.innerHTML = "?";
+				x.name = "unknown";
+				x.value = "ship"
+			}
+		}
+		for(let i = 0; i < (35*35)*.07; i++)
+		{
+			let row = Math.floor(Math.random() * 36);
+			let col = Math.floor(Math.random() * 36);
+			let x = document.getElementById("grid").rows[row].cells[col];
+			if(x.name == "empty")
+			{
+				x.innerHTML = "?";
+				x.name = "unknown";
+				x.value = "flotila"
 			}
 		}
 		
 		//set start position
-		let startRow = Math.floor(Math.random() * 36);
-		let startCol = Math.floor(Math.random() * 36);
+		let startRow = 17;
+		let startCol = 17;
 		document.getElementById("playerPosRow").value = startRow;
 		document.getElementById("playerPosCol").value = startCol;
 		var x = document.getElementById("grid").rows[startRow].cells[startCol];
 		//reveal local start add player
 		revealArea(startRow,startCol);
 		x.style.opacity = "100";
-		x.value = "1"
+		x.name = "home";
 		x.innerHTML = "@";
-		document.addEventListener("keydown", myFunction);
-	}	
-	//player movement	
-	function myFunction() {
+		document.addEventListener("keydown", movement);
+		//set old homeworld
+}	
+//player movement	
+function movement() {
 	let row = document.getElementById("playerPosRow").value;
 	let col = document.getElementById("playerPosCol").value;
 	if(event.key == "ArrowUp")
 	{
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
-			if(x.name == "empty")
-				x.innerHTML = "*";
-			else if(x.name == "planet")
-				x.innerHTML = "P";
+			changeTile(row,col);
 
 			//check for battle
 			x = document.getElementById("grid").rows[row-1].cells[col];
@@ -64,23 +88,20 @@
 			//update player location
 			x.innerHTML = "@";
 			x.style.opacity = "100";
-			x.value = "1";
 				
 			//update row
 			document.getElementById("playerPosRow").value = row-1;
 			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
-			
+			returnHome(x);
 	}
 	if(event.key == "ArrowDown")
 	{
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
-			if(x.name == "empty")
-				x.innerHTML = "*";
-			else if(x.name == "planet")
-				x.innerHTML = "P";
+			changeTile(row,col);
 
 			//check for battle
 			x = document.getElementById("grid").rows[row-(-1)].cells[col];
@@ -91,22 +112,20 @@
 			//update player location
 			x.innerHTML = "@";
 			x.style.opacity = "100";
-			x.value = "1";
 			
 			//update row
 			document.getElementById("playerPosRow").value = row-(-1);
 			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
+			returnHome(x);
 	}
 	if(event.key == "ArrowLeft")
 	{
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
-			if(x.name == "empty")
-				x.innerHTML = "*";
-			else if(x.name == "planet")
-				x.innerHTML = "P";
+			changeTile(row,col);
 
 
 			x = document.getElementById("grid").rows[row].cells[col-1];
@@ -116,22 +135,19 @@
 			
 			x.innerHTML = "@";
 			x.style.opacity = "100";
-			x.value = "1";
 			
 			//update row
 			document.getElementById("playerPosCol").value = col-1;
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
+			returnHome(x);
 	}
 	if(event.key == "ArrowRight")
 	{
 			var x = document.getElementById("grid").rows[row].cells[col];
-			
-			if(x.name == "empty")
-				x.innerHTML = "*";
-			else if(x.name == "planet")
-				x.innerHTML = "P";
+			changeTile(row,col);
 
 			x = document.getElementById("grid").rows[row].cells[col-(-1)];
 			
@@ -141,32 +157,25 @@
 			
 			x.innerHTML = "@";
 			x.style.opacity = "100";
-			x.value = "1";
 			
 			//update row
 			document.getElementById("playerPosCol").value = col-(-1);
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
+			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
+			returnHome(x);
 	}
 }
 //consume fuel, water, food
 function consumeFWF()
 {	//get values from html
 	var fuel = document.getElementById("fuel").value;
-	var water = document.getElementById("water").value;
-	var food = document.getElementById("food").value;
 	
 	fuel = fuel-1;
-	water = water-1;
-	food = food-1;
-	
 	//update values
 	document.getElementById("fuel").value = fuel;
-	document.getElementById("water").value = water;
-	document.getElementById("food").value = food;
-
-	if(fuel <=0 || water <=0 || food <=0)
+	if(fuel <=0)
 	{
 		killPlayer();
 	}
@@ -175,7 +184,7 @@ function consumeFWF()
 
 function startBattle(){
 	//prevent movement
-	document.removeEventListener("keydown", myFunction);
+	document.removeEventListener("keydown", movement);
 	let inBattle =  document.getElementById("inBattle");
 	
 	//set  values and reveal enemy elements
@@ -206,7 +215,7 @@ function attackPlayer(){
 		//battle not over player still alive keep fighting
 		playerHealth.value = playerHealth.value - 1;
 		playerHealth.innerHTML = playerHealth.value;
-		if(playerHealth.value >0 )
+		if(playerHealth.value > 0 )
 		{
 			setTimeout(() => {attackPlayer()}, 5000); 
 		}
@@ -225,7 +234,14 @@ function playerAttack(){
 	//enemy has dided battle over
 	if(enemyHealth.value <=0)
 	{
-		document.addEventListener("keydown", myFunction);
+		//set tile under player control
+		let row = document.getElementById("playerPosRow").value;
+		let col = document.getElementById("playerPosCol").value;
+		var x = document.getElementById("grid").rows[row].cells[col];
+		x.name = x.value;
+		//allow player movement
+		document.addEventListener("keydown", movement);
+		battleLoot(x);
 		battleOver();
 	}
 	enemy.innerHTML = "Enemy: "+enemyHealth.value;
@@ -240,7 +256,44 @@ function battleOver(){
 		playerAttackButton.hidden = true;
 	inBattle.value = "0";
 }
-
+function battleLoot(currentPos){
+	if(currentPos.name =="ship"){
+		var stockFuel = document.getElementById("fuel").value;
+		stockFuel = +stockFuel + +3;
+		document.getElementById("fuel").value = stockFuel;
+	}
+	else if(currentPos.name =="flotila")
+	{
+		var salvageBtn = document.getElementById("salvage").hidden= false;
+	}
+}
+function repair(){
+	let repairPacks = document.getElementById("repairPacks").value;
+	if(repairPacks > "0" ){
+		//add back health
+		let health = document.getElementById("health");
+		health.value = +health.value + +5;
+		if(health.value>=health.max){
+			health.value = +1+health.max;
+		}
+		document.getElementById("health").value = +health;
+			//consume repair kit
+			repairPacks = repairPacks - 1;
+			document.getElementById("repairPacks").value = repairPacks;
+			//cooldown
+		
+	}
+}
+function salvage(){
+	//add loot
+	battleLoot();
+	//cooldown
+}
+function fireDeathStar(){
+	//destroy planet
+	//add planet core
+	//cooldown
+}
 function revealArea(playerRow,playerCol)
 {
 		
@@ -253,7 +306,7 @@ function revealArea(playerRow,playerCol)
 				if(checkBounds(row,col))
 				{
 					x = document.getElementById("grid").rows[row].cells[col];
-					if(x.value ==0){
+					if(x.style.opacity == "0"){
 						x.style.opacity = ".5";
 					}
 				}
@@ -264,7 +317,7 @@ function revealArea(playerRow,playerCol)
 				if(checkBounds(row,col))
 				{
 					x = document.getElementById("grid").rows[row].cells[col];
-					if(x.value ==0){
+					if(x.style.opacity == "0"){
 						x.style.opacity = ".5";
 					}
 				}
@@ -295,21 +348,85 @@ function checkBounds(playerRow,playerCol)
 	
 }
 
-
 function killPlayer()
 {
-	document.removeEventListener("keydown", myFunction);
+	document.removeEventListener("keydown", movement);
 	battleOver();
 	let row = document.getElementById("playerPosRow").value;
 	let col = document.getElementById("playerPosCol").value;
-	var x = document.getElementById("grid").rows[row].cells[col];
+	changeTile(row,col);
+}
+function pos(row,col){
+		var x = document.getElementById("grid").rows[row].cells[col];
+		console.log(row,col);
+		console.log(x.name);
+} 
+function stats(currentPos){
+	//have not visted tile
+	if(currentPos.opacity != 100)
+	{
+		//update tiles owned
+		let tilesControlled = document.getElementById("spaceControlled").value;
+		tilesControlled = +tilesControlled + +1;
+		document.getElementById("spaceControlled").value = tilesControlled;
+		//tile is a planet
+		if(currentPos.name == "planet")
+		{
+			//update planet controlled
+		}
+	}
+}
+function returnHome(currentPos){
+	if(currentPos.name =="home")
+	{
+		document.removeEventListener("keydown", movement);
+		//remove player from map
+		let stockIron = document.getElementById("ironAmt").value;
+		let iron = document.getElementById("iron").value;
+		document.getElementById("ironAmt").value = stockIron + iron;
 
+		let stockFuel = document.getElementById("fuelAmt").value;
+		let fuel = document.getElementById("fuel").value;
+		document.getElementById("fuelAmt").value = stockFuel + fuel;
+
+		let stockRepairPacks = document.getElementById("repairPackAmt").value;
+		let repairPacks = document.getElementById("repairPacks").value;
+		document.getElementById("repairPackAmt").value = stockRepairPacks +repairPacks;
+		//add player inventory to resources 
+
+		//set inventory back to 0
+	}
+}
+function changeTile(row, col){
+	
+	var x = document.getElementById("grid").rows[row].cells[col];
 
 	if(x.name == "empty")
 		x.innerHTML = "*";
-	else if(x.name == "planet")
+	else if(x.name == "home")
+		x.innerHTML == "H";
+	else if(x.name == "planet"){
+		x.innerHTML = "O";
+	}
+	else if(x.name == "ship"){
+		x.name = "empty";
+		x.innerHTML = "*";
+	}
+	else if(x.name == "flotila"){
+		x.innerHTML = "G";
+	}
+	else if(x.name == "unknown")
 		x.innerHTML = "?";
+} 
+function endGame(ending){
+	//conquest ending
+	if(ending =="0")
+	{
+		;
+	}
+	//homebound ending
+	if(ending =="1")
+	{
+		;
+	}
 }
-function pos(row,col){
-		console.log(row,col);
-}  

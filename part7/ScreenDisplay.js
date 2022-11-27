@@ -5,6 +5,7 @@ function screen1Display(){
 }
 function screen2Display(){
   document.getElementById("screen2").style.display = "block";
+  document.getElementById("pageTwoBtns").style.display = "block";
   document.getElementById("screen1").style.display = "none";
   document.getElementById("screen3").style.display = "none";
 }
