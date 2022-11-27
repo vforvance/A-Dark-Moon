@@ -90,7 +90,7 @@ function eventText(logText) {
     
     }
     else if (eventId == 13) {//player destroys a planet
-        return"expedition ship returns to the desolate moon";
+        return"the signal of the expedition is lost";
     
     }
   }

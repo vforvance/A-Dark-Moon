@@ -334,7 +334,7 @@ function battleOver(){
 function battleLoot(diffMod){
 	
 		var stockFuel = document.getElementById("fuel").value;
-		stockFuel = +stockFuel + +1*diffMod;
+		stockFuel = +stockFuel + + (+diffMod+1)*diffMod;
 		document.getElementById("fuel").value = stockFuel;
 		
 		var stockIron = document.getElementById("iron").value;
@@ -342,7 +342,7 @@ function battleLoot(diffMod){
 		document.getElementById("iron").value = stockIron;
 		
 		var stockRepair = document.getElementById("repairPacks").value;
-		stockRepair = +stockRepair + +2;
+		stockRepair = +stockRepair + +diffMod + +2;
 		document.getElementById("repairPacks").value = stockRepair;
 	
 }
@@ -378,7 +378,7 @@ function salvage(){
 		x.name = "empty";
 	}
 	//add loot
-	battleLoot(10);
+	battleLoot(12);
 	//cooldown	
 	setTimeout(() => {var salvageBtn = document.getElementById("salvage").disabled  = false;}, "7000");
 }
@@ -493,6 +493,7 @@ function killPlayer(){
 	//remove player from map
 	changeTile(x);
 	reset();
+	eventText(Events(13));
 	//punish resources 
 	let stockIron = document.getElementById("ironAmt").value;
 	document.getElementById("ironAmt").value = +stockIron - Math.round(+stockIron*.5);
@@ -656,7 +657,7 @@ function embark(){
 	{
 		fuelAmt.value = parseInt(fuelAmt.value) - 350;
         repairPackAmt.value = parseInt(repairPackAmt.value) - 50;
-		
+
 		document.addEventListener("keydown", movement);
 		document.getElementById("shipAction").hidden = false;
 		document.getElementById("viewPort").hidden = false;
