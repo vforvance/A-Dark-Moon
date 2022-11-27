@@ -73,7 +73,7 @@ function eventText(logText) {
         return "a large space hub orbits the moon, buzzing with traders";
     }
     else if (eventId == 9) {//player attacks w/ ship
-        let attack = ["missles and kenetic batteries fire into the void", "silent lasers glitter through deep space", "the hull creaks from combat"];
+        let attack = ["missiles and kinetic batteries fire into the void", "silent lasers glitter through deep space", "the hull creaks from combat"];
         return attack[Math.floor(Math.random()*attack.length)];
     }
     else if (eventId == 10) {//player repairs the ship
@@ -91,6 +91,10 @@ function eventText(logText) {
     }
     else if (eventId == 13) {//player destroys a planet
         return"the signal of the expedition is lost";
+    
+    }
+    else if (eventId == 14) {//player destroys a planet
+        return"the expedition ship leaves for deep space";
     
     }
   }
