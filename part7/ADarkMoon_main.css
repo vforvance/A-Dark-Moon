@@ -90,6 +90,14 @@ input[type=number] {
     float: left;
     margin: 80px;  
 }
+#embarkBtn{
+    position:absolute;
+    margin-bottom:5px;
+    margin-left: 10px;
+    font-size: 16px;
+    height: 110px;
+    top: 200px;
+}
 #shipAction{
     float: left;
     margin-bottom:5px;

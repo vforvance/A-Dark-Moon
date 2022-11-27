@@ -3,6 +3,7 @@
 //@ represents player location
 // grid values
 function generateGrid(size){
+	document.getElementById("grid").style.opacity = ".4";
 		const grid = document.getElementById("grid");
 			for(let row = 0; row <= size; row++){
 				  var nRow = grid.insertRow(row);
@@ -68,7 +69,7 @@ function generateGrid(size){
 		x.name = "home";
 		x.value = "home"
 		x.innerHTML = "@"; 
-		document.addEventListener("keydown", movement);
+		
 		//set old homeworld
 		let homeRow = Math.floor(Math.random() * 3);
 		let homeCol = Math.floor(Math.random() * 3);
@@ -96,6 +97,7 @@ function movement() {
 				if(x.innerHTML == "!"){
 					startBattle(5,x);
 				}
+				
 				//update player location
 				x.innerHTML = "@";
 				stats(x);
@@ -145,6 +147,7 @@ function movement() {
 
 
 			x = document.getElementById("grid").rows[row].cells[col-1];
+		
 			if(x.innerHTML == "?"){
 				startBattle(Math.floor(Math.random() * 5),x);
 			}
@@ -171,7 +174,7 @@ function movement() {
 			changeTile(x);
 
 			x = document.getElementById("grid").rows[row].cells[col-(-1)];
-			
+			console.log(x.name);
 			if(x.innerHTML == "?"){
 				startBattle(Math.floor(Math.random() * 5),x);
 			}
@@ -450,6 +453,7 @@ function killPlayer(){
 	var x = document.getElementById("grid").rows[row].cells[col];
 	//remove player from map
 	changeTile(x);
+	reset();
 	//punish resources 
 	let stockIron = document.getElementById("ironAmt").value;
 	document.getElementById("ironAmt").value = +stockIron - Math.round(+stockIron*.5);
@@ -502,6 +506,7 @@ function onEnter(currentPos){
 	if(currentPos.name =="home")
 	{
 		document.removeEventListener("keydown", movement);
+		reset();
 		//remove player from map
 		let stockIron = document.getElementById("ironAmt").value;
 		let iron = document.getElementById("iron").value;
@@ -578,4 +583,25 @@ function endGame(ending){
 	{
 		;
 	}
+}
+//reset screen 3 for new expedition
+function reset(){
+	document.getElementById("shipAction").hidden = true;
+	document.getElementById("viewPort").hidden = true;
+	document.getElementById("inventory").hidden = true;
+	document.getElementById("embarkBtn").hidden = false;
+	document.getElementById("grid").style.opacity = ".4";
+
+
+}
+//start expedition
+function embark(){
+	document.addEventListener("keydown", movement);
+	document.getElementById("shipAction").hidden = false;
+	document.getElementById("viewPort").hidden = false;
+	document.getElementById("inventory").hidden = false;
+	document.getElementById("embarkBtn").hidden = true;
+	document.getElementById("grid").style.opacity = "1";
+
+	
 }

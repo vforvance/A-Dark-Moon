@@ -193,7 +193,7 @@
 			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
 			
 		
-		 <table id="inventory" align="right">
+		 <table id="inventory" align="right" hidden>
             <caption>Inventroy</caption>
             <tr>
                 <th>Resource</th>
@@ -232,7 +232,7 @@
               <th><input type="number" class="resources" id="spaceControlled" value="0" max="9999" readonly></th>
             </tr>
         </table>
-        <div id="shipAction">
+        <div id="shipAction" hidden>
           <h3>Ship Actions</h3> <br>
           <form id="exploreStats">
             <label for="health">Health</label>
@@ -244,13 +244,18 @@
             <button id="salvage" hidden onclick="salvage(); eventText(Events(11));">Salvage</button>	
             <button id="deathStarFire" hidden onclick="fireDeathStar();eventText(Events(12));">Activation Lever</button>	
         </div>
-        <div id="viewPort">
+        <div id="viewPort" hidden>
           <h3>Viewport</h3> <br>
           <form id="enemyStats">
             <label id ="enemy" for="enemyHealth" hidden></label>
             <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
             <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden>
           </form>	 
+        </div>
+        <div id="embarkBtn">
+          <h3>Embark</h3> <br>
+          <div class="tooltip"><button id="embark" class="Btn" onclick="embark()">Embark</button>
+          <div class="tooltiptext">200 Fuel <br>10 Repair Packs</div></div>
         </div>
 		   <input type="number" id="inBattle" name="inBattle" value="0" readonly hidden>	
 			
