@@ -4,7 +4,7 @@
 let boolStart = true;
 
 function startGame(){
-    if(boolStart == true)
+    if(boolStart == false)
     {
     //display screen 1 and hide the rest
     document.getElementById("screen1").style.display = "block"; //

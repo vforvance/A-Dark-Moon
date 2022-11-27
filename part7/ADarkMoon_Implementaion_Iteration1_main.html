@@ -197,7 +197,7 @@
 			
 			
 			<form id="exploreStats">
-					    <input type="number" id="health" name="water" value="20"readonly> 
+					    <input type="number" id="health" name="health" value="10" max="10" readonly> 
 				      <label for="health">Health</label><br>
             </form>
 		
@@ -243,8 +243,8 @@
 		
 		  <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
 		  <button id="repair" onclick="repair()">Repair</button>	
-		  <button id="salvage" hidden onclick="playerAttack()">Salvage</button>	
-		  <button id="deathStarFire" hidden onclick="playerAttack()">Activation Lever</button>	
+		  <button id="salvage" hidden onclick="salvage()">Salvage</button>	
+		  <button id="deathStarFire" hidden onclick="fireDeathStar()">Activation Lever</button>	
 		  
 		  <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
 		  <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden> 			 
