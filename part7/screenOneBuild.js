@@ -13,6 +13,7 @@ function buildO2Tank()
         //display o2 stats
         document.getElementById("itemTable").style.display = "block";
         document.getElementById("o2TankAmt").style.display = "block";
+        document.getElementById("o2TT").style.display = "none";
     } 
 }
 
@@ -21,10 +22,11 @@ function buildPod()
     var collectBtn = document.getElementById("collectionBtn");
     var collectAmt = document.getElementById("collectionPodAmt");
     var ironAmt = document.getElementById("ironAmt");
-    if(collectAmt.value >= 10) //limit pods to 10
+    if(parseInt(collectAmt.value) == 10) //limit pods to 10
     {
         collectBtn.style.opacity = "0.5";
         collectBtn.disabled = true;
+        document.getElementById("podTT").style.display = "none";
     }
     else
     {
@@ -58,13 +60,12 @@ function buildShip()
     var popAmt = document.getElementById("population");
 
     //display village pop stats
-    document.getElementById("jobTable").style.display = "initial";
-    document.getElementById("miner").style.display = "initial";
-    document.getElementById("opLabel").style.display = "none";  
-    document.getElementById("mechLabel").style.display = "none";
-    document.getElementById("population").style.display = "block";
-
-    if(shipAmt.value < 10)
+    if(shipAmt.value == 10)
+    {
+        shipBtn.style.opacity = "0.5";
+        shipBtn.disabled = true;
+    }
+    else
     {
         if(ironAmt.value >= (50 + 50*shipAmt.value))
         {
@@ -74,11 +75,12 @@ function buildShip()
             //popAmt.value = parseInt(popAmt.value) + 4;//increase pop by 4 each click
             
         }
-    }
-    else
-    {
-        shipBtn.style.opacity = "0.5";
-        shipBtn.disabled = true;
+
+        document.getElementById("jobTable").style.display = "block";
+        document.getElementById("miner").style.display = "block";
+        document.getElementById("opLabel").style.display = "none";  
+        document.getElementById("mechLabel").style.display = "none";
+        document.getElementById("population").style.display = "block";    
     }
     if(shipAmt.value == 3)
     {
@@ -106,8 +108,8 @@ function buildRefinery()
         refineryBtn.disabled = true;
 
         //display refinery stats
-        document.getElementById("operator").style.display = "initial";
-        document.getElementById("opLabel").style.display = "initial";
+        document.getElementById("operator").style.display = "block";
+        document.getElementById("opLabel").style.display = "block";
         document.getElementById("refineryAmt").style.display = "block";
 
     } 

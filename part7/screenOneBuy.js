@@ -55,7 +55,6 @@ function buyNavCPU()
         navBtn.disabled = true; 
 
         //display exploration stuff
-        document.getElementById("screen3").style.display = "block";
         document.getElementById("health1Btn").style.display = "block";
         document.getElementById("dmg1Btn").style.display = "block";
         document.getElementById("navComputerAmt").style.display = "block";
@@ -175,6 +174,10 @@ function buyDmg2()
 
         //display dmg2 stats
         document.getElementById("damage2Amt").style.display = "block";
+        document.getElementById("deathStarBtn").style.display = "block";
+        document.getElementById("deathStarAmt").style.display = "block";
+
+
 
     }
 }
