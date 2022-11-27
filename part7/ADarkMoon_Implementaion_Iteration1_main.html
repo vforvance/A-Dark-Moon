@@ -192,10 +192,6 @@
 			        <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
 			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
 			
-			<form id="exploreStats">
-					    <input type="number" id="health" name="health" value="10" max="10" readonly> 
-				      <label for="health">Health</label><br>
-            </form>
 		
 		 <table id="inventory" align="right">
             <caption>Inventroy</caption>
@@ -236,15 +232,26 @@
               <th><input type="number" class="resources" id="spaceControlled" value="0" max="9999" readonly></th>
             </tr>
         </table>
-		
-		  <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
-		  <button id="repair" onclick="repair()">Repair</button>	
-		  <button id="salvage" hidden onclick="salvage()">Salvage</button>	
-		  <button id="deathStarFire" hidden onclick="fireDeathStar()">Activation Lever</button>	
-		  
-		  <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
-		  <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden> 			 
-		  <p id ="enemy"></p>
+        <div id="shipAction">
+          <h3>Ship Actions</h3> <br>
+          <form id="exploreStats">
+            <label for="health">Health</label>
+            <input type="number" class="resources" id="health" name="health" value="11" max="11" readonly>
+            <input type="number" id="playerDamage" name="playerDamage" value="2"readonly hidden> 
+          </form>
+            <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
+            <button id="repair" onclick="repair()">Repair</button>	
+            <button id="salvage" hidden onclick="salvage()">Salvage</button>	
+            <button id="deathStarFire" hidden onclick="fireDeathStar()">Activation Lever</button>	
+        </div>
+        <div id="viewPort">
+          <h3>Viewport</h3> <br>
+          <form id="enemyStats">
+            <label id ="enemy" for="enemyHealth" hidden></label>
+            <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
+            <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden>
+          </form>	 
+        </div>
 		   <input type="number" id="inBattle" name="inBattle" value="0" readonly hidden>	
 			
 		  <table id ="grid">

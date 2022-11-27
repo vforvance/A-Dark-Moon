@@ -83,31 +83,34 @@ function movement() {
 	let col = document.getElementById("playerPosCol").value;
 	if(event.key == "ArrowUp")
 	{
-			//change leaving tile
-			var x = document.getElementById("grid").rows[row].cells[col];
-			changeTile(x);
+			if(checkBounds(row-1,col)){
+				//change leaving tile
+				var x = document.getElementById("grid").rows[row].cells[col];
+				changeTile(x);
 
-			//check for battle
-			x = document.getElementById("grid").rows[row-1].cells[col];
-			if(x.innerHTML == "?"){
-				startBattle(Math.floor(Math.random() * 6));
-			}
-			if(x.innerHTML == "!"){
-				startBattle(14);
-			}
-			//update player location
-			x.innerHTML = "@";
-			stats(x);
-			x.style.opacity = "100";
-				
-			//update row
-			document.getElementById("playerPosRow").value = row-1;
-			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
-			consumeFWF();
-			onEnter(x);
+				//check for battle
+				x = document.getElementById("grid").rows[row-1].cells[col];
+				if(x.innerHTML == "?"){
+					startBattle(Math.floor(Math.random() * 5,),x);
+				}
+				if(x.innerHTML == "!"){
+					startBattle(5,x);
+				}
+				//update player location
+				x.innerHTML = "@";
+				stats(x);
+				x.style.opacity = "100";
+					
+				//update row
+				document.getElementById("playerPosRow").value = row-1;
+				revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
+				consumeFWF();
+				onEnter(x);
+		}
 	}
 	if(event.key == "ArrowDown")
-	{
+	{	
+		if(checkBounds(row-(-1),col)){
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
 			changeTile(x);
@@ -115,10 +118,10 @@ function movement() {
 			//check for battle
 			x = document.getElementById("grid").rows[row-(-1)].cells[col];
 			if(x.innerHTML == "?"){
-				startBattle(Math.floor(Math.random() * 6));
+				startBattle(Math.floor(Math.random() * 5),x);
 			}
 			else if(x.innerHTML == "!"){
-				startBattle(14);
+				startBattle(5,x);
 			}
 			
 			//update player location
@@ -131,9 +134,11 @@ function movement() {
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
 			onEnter(x);
+		}
 	}
 	if(event.key == "ArrowLeft")
 	{
+		if(checkBounds(row,col-1)){
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
 			changeTile(x);
@@ -141,10 +146,10 @@ function movement() {
 
 			x = document.getElementById("grid").rows[row].cells[col-1];
 			if(x.innerHTML == "?"){
-				startBattle(Math.floor(Math.random() * 6));
+				startBattle(Math.floor(Math.random() * 5),x);
 			}
 			else if(x.innerHTML == "!"){
-				startBattle(14);
+				startBattle(5,x);
 			}
 			
 			x.innerHTML = "@";
@@ -156,19 +161,22 @@ function movement() {
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
 			onEnter(x);
+		}
 	}
+
 	if(event.key == "ArrowRight")
 	{
+		if(checkBounds(row,col-(-1))){
 			var x = document.getElementById("grid").rows[row].cells[col];
 			changeTile(x);
 
 			x = document.getElementById("grid").rows[row].cells[col-(-1)];
 			
 			if(x.innerHTML == "?"){
-				startBattle(Math.floor(Math.random() * 6));
+				startBattle(Math.floor(Math.random() * 5),x);
 			}
 			else if(x.innerHTML == "!"){
-				startBattle(14);
+				startBattle(5,x);
 			}
 			
 			x.innerHTML = "@";
@@ -180,6 +188,7 @@ function movement() {
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
 			onEnter(x);
+		}
 	}
 }
 //consume fuel, water, food
@@ -190,29 +199,53 @@ function consumeFWF()
 	fuel = fuel-1;
 	//update values
 	document.getElementById("fuel").value = fuel;
-	if(fuel <=0)
+	if(fuel <0)
 	{
 		killPlayer();
 	}
 	
 }
 
-function startBattle(difficulty){
+function startBattle(difficulty,currentPos){
+	let challenge = difficulty;
+	let enemyNames = [];
+	let difficultyName = ["Weak ","Standard ","Meanacing ","Dangerous ","Elite ","Vanguard "];
+	if(currentPos.value =="ship")
+	{
+		enemyNames = ["Cargo ship","Corvette","Frigate","Destroyer","Attack craft","Battleship"];
+	}
+	else if(currentPos.value =="flotila")
+	{
+		challenge = challenge +2;
+		enemyNames = ["Cargo fleet","Escort fleet","Attack fleet","Strike group","Defense cluster","Battle group"];
+	}
+	else if(currentPos.value =="planet")
+	{
+		challenge = challenge +3;
+		enemyNames = ["Planetary Cargo fleet","Planetary Escort fleet","Planetary Attack fleet","Planetary Strike group"
+			,"Planetary Defense cluster","Planetary Battle group"];
+	}
+	else if(currentPos.value =="oldHome")
+	{
+		challenge = challenge +7;
+		enemyNames = [" Wanderer Battle Brick"," Wanderer Battle Brick"," Wanderer Battle Brick"," Wanderer Battle Brick"
+			,"Wanderer Battle Brick"," Wanderer Battle Brick"];
+	}
 	//prevent movement
 	document.removeEventListener("keydown", movement);
 	let inBattle =  document.getElementById("inBattle");
 	
 	//set  values and reveal enemy elements
-	let enemy = document.getElementById("enemy");
 	let enemyHealth = document.getElementById("enemyHealth");
-	enemy.hidden = false;
+	let enemy = document.getElementById("enemy");
 	enemyHealth.hidden = false;
+	enemy.hidden = false;
 	inBattle.value = "1";
-	enemyHealth.value = +10+ +Math.floor(Math.random() * difficulty);
-	enemy.innerHTML = "Enemy: "+enemyHealth.value;
+	enemyHealth.value = +9+ +Math.floor(Math.random() * challenge)+ +challenge;
+	enemy.innerHTML = difficultyName[difficulty]+enemyNames[(Math.floor(Math.random() * 5))];
 	
-	//fight player
-	attackPlayer(difficulty);
+	//fight player // more difficult longer attack start time
+	setTimeout(() => {attackPlayer(challenge);}, (1000*Math.floor(Math.random() * difficulty))); 
 }
 function attackPlayer(difficulty){
 	//reveal player attack button
@@ -222,17 +255,17 @@ function attackPlayer(difficulty){
 	let inBattle =  document.getElementById("inBattle");
 	
 	//battle is over
-	if(inBattle.value == 0)
+	if(inBattle.value == 0 ||playerHealth.value <= 0 )
 	{
 		battleOver();
 	}
 	else{
 		//battle not over player still alive keep fighting
-		playerHealth.value = playerHealth.value - Math.floor(Math.random() * difficulty)- +1;
+		playerHealth.value = playerHealth.value - Math.floor(Math.random() * difficulty)- +difficulty;
 		playerHealth.innerHTML = playerHealth.value;
 		if(playerHealth.value > 0 )
 		{
-			setTimeout(() => {attackPlayer(difficulty)}, 10000-(1000*difficulty)); 
+			setTimeout(() => {attackPlayer(difficulty)}, 12000-(1000*Math.floor(Math.random() * difficulty))); 
 		}
 		//player has died 
 		else{
@@ -243,11 +276,11 @@ function attackPlayer(difficulty){
 }
 function playerAttack(){
 	var salvageBtn = document.getElementById("playerAttack").disabled  = true;
-	let enemy = document.getElementById("enemy");
+	let playerAttack =  document.getElementById("playerDamage").value;
 	let enemyHealth = document.getElementById("enemyHealth");	
 	
-	enemyHealth.value = enemyHealth.value- 3;
-	setTimeout(() => {var salvageBtn = document.getElementById("playerAttack").disabled  = false;}, "1000")
+	enemyHealth.value = enemyHealth.value- (Math.floor(Math.random() * playerAttack))-1;
+	setTimeout(() => {var salvageBtn = document.getElementById("playerAttack").disabled  = false;}, "8000"-(Math.floor(Math.random() * playerAttack)))
 	//enemy has died battle over
 	if(enemyHealth.value <=0)
 	{
@@ -275,12 +308,12 @@ function playerAttack(){
 			var deathStarBtn = document.getElementById("deathStarFire").hidden= false;
 		}
 	}
-	enemy.innerHTML = "Enemy: "+enemyHealth.value;
+	enemyHealth.innerHTML = "Enemy    "+enemyHealth.value;
 }
 function battleOver(){
 	let inBattle =  document.getElementById("inBattle");
-	let enemy = document.getElementById("enemy");
 	let enemyHealth = document.getElementById("enemyHealth");
+	let enemy = document.getElementById("enemy");
 	enemyHealth.hidden = true;
 	enemy.hidden = true;
 	let playerAttackButton = document.getElementById("playerAttack");
@@ -294,7 +327,7 @@ function battleLoot(diffMod){
 		document.getElementById("fuel").value = stockFuel;
 		
 		var stockIron = document.getElementById("iron").value;
-		stockIron = +stockIron + +50*diffMod;
+		stockIron = +stockIron + +10*diffMod;
 		document.getElementById("iron").value = stockIron;
 		
 		var stockRepair = document.getElementById("repairPacks").value;
@@ -305,12 +338,12 @@ function battleLoot(diffMod){
 
 function repair(){
 	let repairButton = document.getElementById("repair").disabled = true;
-	setTimeout(() => {var salvageBtn = document.getElementById("repair").disabled  = false;}, "7000");
+	setTimeout(() => {var salvageBtn = document.getElementById("repair").disabled  = false;}, "6000");
 	let repairPacks = document.getElementById("repairPacks").value;
 	if(repairPacks > 0 ){
 		//add back health
 		let health = document.getElementById("health");
-		health.value = +health.value + +5;
+		health.value = +health.value + +Math.floor(health.max*.30)+ +2;
 		if(health.value>=health.max){
 			health.value = health.max;
 		}

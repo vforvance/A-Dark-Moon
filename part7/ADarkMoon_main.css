@@ -90,7 +90,21 @@ input[type=number] {
     float: left;
     margin: 80px;  
 }
-
+#shipAction{
+    float: left;
+    margin-bottom:5px;
+    margin-left: 10px;
+    font-size: 16px;
+    height: 30px;
+}
+#viewPort{
+    position:absolute;
+    margin-bottom:5px;
+    margin-left: 10px;
+    font-size: 16px;
+    height: 110px;
+    top: 200px;
+}
 #sndMessage{
     float: left;
     margin-bottom:5px;
