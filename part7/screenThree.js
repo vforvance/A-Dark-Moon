@@ -209,7 +209,7 @@ function consumeFWF()
 function startBattle(difficulty,currentPos){
 	let challenge = difficulty;
 	let enemyNames = [];
-	let difficultyName = ["Weak ","Standard ","Meanacing ","Dangerous ","Elite ","Vanguard "];
+	let difficultyName = ["Weak ","Standard ","Menacing ","Dangerous ","Elite ","Vanguard "];
 	if(currentPos.value =="ship")
 	{
 		enemyNames = ["Cargo ship","Corvette","Frigate","Destroyer","Attack craft","Battleship"];
@@ -245,7 +245,7 @@ function startBattle(difficulty,currentPos){
 	enemy.innerHTML = difficultyName[difficulty]+enemyNames[(Math.floor(Math.random() * 5))];
 	
 	//fight player // more difficult longer attack start time
-	setTimeout(() => {attackPlayer(challenge);}, (1000*Math.floor(Math.random() * difficulty))); 
+	setTimeout(() => {attackPlayer(challenge);}, (2500)); 
 }
 function attackPlayer(difficulty){
 	//reveal player attack button
@@ -387,11 +387,11 @@ function fireDeathStar(){
 }
 function revealArea(playerRow,playerCol){
 		
-		for(let i = -2; i <3;i++)
+		for(let i = -1; i <2;i++)
 		{
 			row = +playerRow + +i;
 			//get right adjecent col
-			for(let k = -1; k < 3	;k++){
+			for(let k = -1; k < 2	;k++){
 				let col = +playerCol + +k;
 				if(checkBounds(row,col))
 				{
@@ -402,7 +402,7 @@ function revealArea(playerRow,playerCol){
 				}
 			}
 			//get left adjecent col
-			for(let j = -1; j > -3;j--){
+			for(let j = -1; j > -2;j--){
 				let col = +playerCol + +j;
 				if(checkBounds(row,col))
 				{
