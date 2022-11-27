@@ -3,21 +3,18 @@
 //Buttons
 function mineIron() {//adds iron resources on click
     var ironAmt = document.getElementById("ironAmt");
-    if(document.getElementById("o2TankAmt").value == 1)
-    {
+    if (document.getElementById("o2TankAmt").value == 1) {
         ironAmt.value = parseInt(ironAmt.value) + 10; //mine 10 iron per click
     }
-    else
-    {
+    else {
         ironAmt.value = parseInt(ironAmt.value) + 5; //mine 10 iron per click
     }
-    if(ironAmt.value >= 30)
-    {
-        document.getElementById("buildBtns").style.display = "block"; 
+    if (ironAmt.value >= 30) {
+        document.getElementById("buildBtns").style.display = "block";
         document.getElementById("o2tankBtn").style.display = "block";
-        document.getElementById("collectionBtn").style.display = "block"; 
+        document.getElementById("collectionBtn").style.display = "block";
     }
-    
+
 }
 
 function checkPods() {//adds fuel resources on click
@@ -86,6 +83,16 @@ function mechanicManager() {
 
     minerManager(-diff);
 }
+//keeps miners mining automatically once you have 5 miners 
+function Automine()
+{
+    for (i = getMinerPop; i > 4; i++)
+    {
+       setInterval(mineIron(), 5000) //inifinte loop that lets miners contionusly mine  
+    }
+
+}
+
 
 //population management works well all around
 //I only need to remove the ability to select and type values
