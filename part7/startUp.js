@@ -4,7 +4,7 @@
 let boolStart = true;
 
 function startGame(){
-    if(boolStart == false)
+    if(boolStart == true)
     {
     //display screen 1 and hide the rest
     document.getElementById("screen1").style.display = "block"; //
@@ -17,7 +17,7 @@ function startGame(){
     document.getElementById("ironAmt").style.display = "none"; //
     document.getElementById("fuelAmt").style.display = "none"; //
     document.getElementById("repairPackAmt").style.display = "none"; //
-    document.getElementById("planetCoreAmt").style.display = "none";
+    document.getElementById("planetCoreAmt").style.display = "none";//
 
     //hide objects on screen 1
     document.getElementById("buildBtns").style.display = "none"; //
@@ -39,7 +39,7 @@ function startGame(){
     document.getElementById("health2Btn").style.display = "none"; //
     document.getElementById("dmg1Btn").style.display = "none"; //
     document.getElementById("dmg2Btn").style.display = "none"; //
-    document.getElementById("deathStarBtn").style.display = "none";
+    document.getElementById("deathStarBtn").style.display = "none"; //
 
     document.getElementById("itemTable").style.display = "none"; //
     //elements in item table
@@ -49,7 +49,7 @@ function startGame(){
     document.getElementById("health2Amt").style.display = "none"; //
     document.getElementById("damage1Amt").style.display = "none"; //
     document.getElementById("damage2Amt").style.display = "none"; //
-    document.getElementById("deathStarAmt").style.display = "none";
+    document.getElementById("deathStarAmt").style.display = "none"; //
 
     //hide objects on screen 2
     document.getElementById("screen2Tab").style.display = "none"; //

@@ -24,6 +24,7 @@ function sndMessage()
         document.getElementById("mineIron").style.display = "block";
         document.getElementById("resourceTable").style.display = "block";
         document.getElementById("ironAmt").style.display = "block";
+        document.getElementById("planetCoreAmt").style.display = "block";
     }
 }
 	//Update the text log 
