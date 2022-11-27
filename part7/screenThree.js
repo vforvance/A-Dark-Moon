@@ -378,6 +378,33 @@ function salvage(){
 	//cooldown	
 	setTimeout(() => {var salvageBtn = document.getElementById("salvage").disabled  = false;}, "7000");
 }
+function land(){
+	document.removeEventListener("keydown", movement);
+		reset();
+		//remove player from map
+		let stockIron = document.getElementById("ironAmt").value;
+		let iron = document.getElementById("iron").value;
+		document.getElementById("ironAmt").value = +stockIron + +iron;
+
+		let stockFuel = document.getElementById("fuelAmt").value;
+		let fuel = document.getElementById("fuel").value;
+		document.getElementById("fuelAmt").value = +stockFuel + +fuel;
+
+		let stockRepairPacks = document.getElementById("repairPackAmt").value;
+		let repairPacks = document.getElementById("repairPacks").value;
+		document.getElementById("repairPackAmt").value = +stockRepairPacks + +repairPacks;
+		
+		let stockPlanetCore = document.getElementById("planetCoreAmt").value;
+		let cores = document.getElementById("planetCore").value;
+		document.getElementById("planetCoreAmt").value = +stockPlanetCore + +cores;
+		//add player inventory to resources 
+
+		//set inventory back to 0
+		document.getElementById("repairPacks").value ="0";
+		document.getElementById("fuel").value = "0";
+		document.getElementById("iron").value = "0";
+		document.getElementById("planetCore").value = "0";
+}
 //remove planet for planet core
 function fireDeathStar(){
 	let row = document.getElementById("playerPosRow").value;
@@ -505,31 +532,8 @@ function onEnter(currentPos){
 	//return to moon
 	if(currentPos.name =="home")
 	{
-		document.removeEventListener("keydown", movement);
-		reset();
-		//remove player from map
-		let stockIron = document.getElementById("ironAmt").value;
-		let iron = document.getElementById("iron").value;
-		document.getElementById("ironAmt").value = +stockIron + +iron;
-
-		let stockFuel = document.getElementById("fuelAmt").value;
-		let fuel = document.getElementById("fuel").value;
-		document.getElementById("fuelAmt").value = +stockFuel + +fuel;
-
-		let stockRepairPacks = document.getElementById("repairPackAmt").value;
-		let repairPacks = document.getElementById("repairPacks").value;
-		document.getElementById("repairPackAmt").value = +stockRepairPacks + +repairPacks;
-		
-		let stockPlanetCore = document.getElementById("planetCoreAmt").value;
-		let cores = document.getElementById("planetCore").value;
-		document.getElementById("planetCoreAmt").value = +stockPlanetCore + +cores;
-		//add player inventory to resources 
-
-		//set inventory back to 0
-		document.getElementById("repairPacks").value ="0";
-		document.getElementById("fuel").value = "0";
-		document.getElementById("iron").value = "0";
-		document.getElementById("planetCore").value = "0";
+		var landBtn = document.getElementById("land").hidden = false;
+	
 	}
 	//if currentPos is graveyad
 	if(currentPos.name == "flotila")
@@ -544,8 +548,9 @@ function onEnter(currentPos){
 }
 //update previous space
 function changeTile(x){
-	var salvageBtn = document.getElementById("salvage").hidden = true;
+	var salvageBtn = document.getElementById("land").hidden = true;
 	var deathStarBtn = document.getElementById("deathStarFire").hidden = true;
+	var landBtn = document.getElementById("land").hidden = true;
 	//hide all buttons
 	if(x.name == "empty")
 		x.innerHTML = "*";
@@ -592,6 +597,14 @@ function reset(){
 	document.getElementById("embarkBtn").hidden = false;
 	document.getElementById("grid").style.opacity = ".4";
 
+	let startRow = 17;
+	let startCol = 17;
+	document.getElementById("playerPosRow").value = startRow;
+	document.getElementById("playerPosCol").value = startCol;
+	var x = document.getElementById("grid").rows[startRow].cells[startCol];
+		
+	x.innerHTML = "@"; 
+
 
 }
 //start expedition
@@ -601,7 +614,9 @@ function embark(){
 	document.getElementById("viewPort").hidden = false;
 	document.getElementById("inventory").hidden = false;
 	document.getElementById("embarkBtn").hidden = true;
+	var landBtn = document.getElementById("land").hidden = false;
 	document.getElementById("grid").style.opacity = "1";
-
 	
+	document.getElementById("repairPacks").value ="5";
+	document.getElementById("fuel").value = "50";
 }

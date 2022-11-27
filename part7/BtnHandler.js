@@ -88,5 +88,9 @@ function eventText(logText) {
         return"the planet begins to crack and glow before detonating";
     
     }
+    else if (eventId == 13) {//player destroys a planet
+        return"expedition ship returns to the desolate moon";
+    
+    }
   }
  
