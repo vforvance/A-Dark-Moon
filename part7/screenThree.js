@@ -66,9 +66,16 @@ function generateGrid(size){
 		revealArea(startRow,startCol);
 		x.style.opacity = "100";
 		x.name = "home";
+		x.value = "home"
 		x.innerHTML = "@";
 		document.addEventListener("keydown", movement);
 		//set old homeworld
+		let homeRow = Math.floor(Math.random() * 3);
+		let homeCol = Math.floor(Math.random() * 3);
+		x = document.getElementById("grid").rows[homeRow].cells[homeCol];
+		x.name = "oldHome";
+		x.value = "oldHome"
+		x.innerHTML = "&";
 }	
 //player movement	
 function movement() {
@@ -78,93 +85,98 @@ function movement() {
 	{
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
-			changeTile(row,col);
+			changeTile(x);
 
 			//check for battle
 			x = document.getElementById("grid").rows[row-1].cells[col];
 			if(x.innerHTML == "?"){
-				startBattle();
+				startBattle(Math.floor(Math.random() * 6));
+			}
+			else if(x.innerHTML == "&"){
+				startBattle(14);
 			}
 			//update player location
 			x.innerHTML = "@";
+			stats(x);
 			x.style.opacity = "100";
 				
 			//update row
 			document.getElementById("playerPosRow").value = row-1;
-			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
-			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
-			returnHome(x);
+			onEnter(x);
 	}
 	if(event.key == "ArrowDown")
 	{
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
-			changeTile(row,col);
+			changeTile(x);
 
 			//check for battle
 			x = document.getElementById("grid").rows[row-(-1)].cells[col];
 			if(x.innerHTML == "?"){
-				startBattle();
+				startBattle(Math.floor(Math.random() * 6));
+			}
+			else if(x.innerHTML == "&"){
+				startBattle(14);
 			}
 			
 			//update player location
 			x.innerHTML = "@";
+			stats(x);
 			x.style.opacity = "100";
 			
 			//update row
 			document.getElementById("playerPosRow").value = row-(-1);
-			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
-			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
-			returnHome(x);
+			onEnter(x);
 	}
 	if(event.key == "ArrowLeft")
 	{
 			//change leaving tile
 			var x = document.getElementById("grid").rows[row].cells[col];
-			changeTile(row,col);
+			changeTile(x);
 
 
 			x = document.getElementById("grid").rows[row].cells[col-1];
 			if(x.innerHTML == "?"){
-				startBattle();
+				startBattle(Math.floor(Math.random() * 6));
+			}
+			else if(x.innerHTML == "&"){
+				startBattle(14);
 			}
 			
 			x.innerHTML = "@";
+			stats(x);
 			x.style.opacity = "100";
 			
 			//update row
 			document.getElementById("playerPosCol").value = col-1;
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
-			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
-			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
-			returnHome(x);
+			onEnter(x);
 	}
 	if(event.key == "ArrowRight")
 	{
 			var x = document.getElementById("grid").rows[row].cells[col];
-			changeTile(row,col);
+			changeTile(x);
 
 			x = document.getElementById("grid").rows[row].cells[col-(-1)];
 			
 			if(x.innerHTML == "?"){
-				startBattle();
+				startBattle(Math.floor(Math.random() * 6));
 			}
 			
 			x.innerHTML = "@";
+			stats(x);
 			x.style.opacity = "100";
 			
 			//update row
 			document.getElementById("playerPosCol").value = col-(-1);
 			revealArea(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
-			//pos(document.getElementById("playerPosRow").value, document.getElementById("playerPosCol").value);
-			stats(document.getElementById("playerPosRow").value,document.getElementById("playerPosCol").value);
 			consumeFWF();
-			returnHome(x);
+			onEnter(x);
 	}
 }
 //consume fuel, water, food
@@ -182,7 +194,7 @@ function consumeFWF()
 	
 }
 
-function startBattle(){
+function startBattle(difficulty){
 	//prevent movement
 	document.removeEventListener("keydown", movement);
 	let inBattle =  document.getElementById("inBattle");
@@ -193,13 +205,13 @@ function startBattle(){
 	enemy.hidden = false;
 	enemyHealth.hidden = false;
 	inBattle.value = "1";
-	enemyHealth.value = "100";
+	enemyHealth.value = +10+ +Math.floor(Math.random() * difficulty);
 	enemy.innerHTML = "Enemy: "+enemyHealth.value;
 	
 	//fight player
-	attackPlayer();
+	attackPlayer(difficulty);
 }
-function attackPlayer(){
+function attackPlayer(difficulty){
 	//reveal player attack button
 	let playerAttackButton = document.getElementById("playerAttack");
 		playerAttackButton.hidden = false;
@@ -213,11 +225,11 @@ function attackPlayer(){
 	}
 	else{
 		//battle not over player still alive keep fighting
-		playerHealth.value = playerHealth.value - 1;
+		playerHealth.value = playerHealth.value - Math.floor(Math.random() * difficulty)- +1;
 		playerHealth.innerHTML = playerHealth.value;
 		if(playerHealth.value > 0 )
 		{
-			setTimeout(() => {attackPlayer()}, 5000); 
+			setTimeout(() => {attackPlayer(difficulty)}, 10000-(1000*difficulty)); 
 		}
 		//player has died 
 		else{
@@ -227,11 +239,13 @@ function attackPlayer(){
 	}
 }
 function playerAttack(){
+	var salvageBtn = document.getElementById("playerAttack").disabled  = true;
 	let enemy = document.getElementById("enemy");
 	let enemyHealth = document.getElementById("enemyHealth");	
 	
-	enemyHealth.value = enemyHealth.value- 25;
-	//enemy has dided battle over
+	enemyHealth.value = enemyHealth.value- 3;
+	setTimeout(() => {var salvageBtn = document.getElementById("playerAttack").disabled  = false;}, "1000")
+	//enemy has died battle over
 	if(enemyHealth.value <=0)
 	{
 		//set tile under player control
@@ -239,10 +253,24 @@ function playerAttack(){
 		let col = document.getElementById("playerPosCol").value;
 		var x = document.getElementById("grid").rows[row].cells[col];
 		x.name = x.value;
+		stats(x,true);
 		//allow player movement
 		document.addEventListener("keydown", movement);
-		battleLoot(x);
+		if(x.name =="ship")
+		{
+			battleLoot(1);
+		}
+
 		battleOver();
+		if(x.name =="flotila")
+		{
+			var salvageBtn = document.getElementById("salvage").hidden= false;
+		}
+		//and has death star tech
+		else if(x.name =="planet")
+		{
+			var deathStarBtn = document.getElementById("deathStarFire").hidden= false;
+		}
 	}
 	enemy.innerHTML = "Enemy: "+enemyHealth.value;
 }
@@ -256,46 +284,72 @@ function battleOver(){
 		playerAttackButton.hidden = true;
 	inBattle.value = "0";
 }
-function battleLoot(currentPos){
-	if(currentPos.name =="ship"){
+function battleLoot(diffMod){
+	
 		var stockFuel = document.getElementById("fuel").value;
-		stockFuel = +stockFuel + +3;
+		stockFuel = +stockFuel + +1*diffMod;
 		document.getElementById("fuel").value = stockFuel;
-	}
-	else if(currentPos.name =="flotila")
-	{
-		var salvageBtn = document.getElementById("salvage").hidden= false;
-	}
+		
+		var stockIron = document.getElementById("iron").value;
+		stockIron = +stockIron + +50*diffMod;
+		document.getElementById("iron").value = stockIron;
+		
+		var stockRepair = document.getElementById("repairPacks").value;
+		stockRepair = +stockRepair + +2;
+		document.getElementById("repairPacks").value = stockRepair;
+	
 }
+
 function repair(){
+	let repairButton = document.getElementById("repair").disabled = true;
+	setTimeout(() => {var salvageBtn = document.getElementById("repair").disabled  = false;}, "7000");
 	let repairPacks = document.getElementById("repairPacks").value;
-	if(repairPacks > "0" ){
+	if(repairPacks > 0 ){
 		//add back health
 		let health = document.getElementById("health");
 		health.value = +health.value + +5;
 		if(health.value>=health.max){
-			health.value = +1+health.max;
+			health.value = health.max;
 		}
-		document.getElementById("health").value = +health;
-			//consume repair kit
-			repairPacks = repairPacks - 1;
-			document.getElementById("repairPacks").value = repairPacks;
+		document.getElementById("health").value = +health.value;
+		//consume repair kit
+		repairPacks = repairPacks - 1;
+		document.getElementById("repairPacks").value = repairPacks;
 			//cooldown
-		
 	}
 }
 function salvage(){
+	var salvageBtn = document.getElementById("salvage").disabled  = true;
+	let usage = Math.floor(Math.random() * 100);
+	if(usage <=35)
+	{
+		let row = document.getElementById("playerPosRow").value;
+		let col = document.getElementById("playerPosCol").value;
+		var x = document.getElementById("grid").rows[row].cells[col];
+		document.getElementById("salvage").hidden = true;
+		x.name = "empty";
+	}
 	//add loot
-	battleLoot();
-	//cooldown
+	battleLoot(7);
+	//cooldown	
+	setTimeout(() => {var salvageBtn = document.getElementById("salvage").disabled  = false;}, "7000");
 }
 function fireDeathStar(){
+	let row = document.getElementById("playerPosRow").value;
+	let col = document.getElementById("playerPosCol").value;
+	var x = document.getElementById("grid").rows[row].cells[col];
+	var deathStarBtn = document.getElementById("deathStarFire").hidden = true;
 	//destroy planet
+	x.name = "shattered";
 	//add planet core
-	//cooldown
+	let cores = document.getElementById("planetCore").value;
+	document.getElementById("planetCore").value = +cores + +1;
+	
+	let planetsControlled = document.getElementById("planetControlled").value;
+	planetsControlled = +planetsControlled - +1;
+	document.getElementById("planetControlled").value = planetsControlled;
 }
-function revealArea(playerRow,playerCol)
-{
+function revealArea(playerRow,playerCol){
 		
 		for(let i = -2; i <3;i++)
 		{
@@ -324,89 +378,132 @@ function revealArea(playerRow,playerCol)
 			}
 		}
 }
-function checkBounds(playerRow,playerCol)
-{
+function checkBounds(playerRow,playerCol){
 	let gridSize = 35;
 	if(playerRow >=0 && playerRow <= 35)
 	{
 		if(playerCol >=0 && playerCol <= 35)
 		{
-			console.log(playerRow,playerCol);
 			return true;
 		}
 		else
 		{
-			console.log("OFB",playerRow,playerCol);
 			return false;
 		}
 	}
 	else
 	{
-		console.log("OFB",playerRow,playerCol);
 		return false;
 	}
 	
 }
 
-function killPlayer()
-{
+function killPlayer(){
 	document.removeEventListener("keydown", movement);
 	battleOver();
 	let row = document.getElementById("playerPosRow").value;
 	let col = document.getElementById("playerPosCol").value;
-	changeTile(row,col);
+	var x = document.getElementById("grid").rows[row].cells[col];
+	changeTile(x);
+	//punish resources 
+	//remove player from map
+	let stockIron = document.getElementById("ironAmt").value;
+	document.getElementById("ironAmt").value = +stockIron - Math.round(+stockIron*.5);
+
+	let stockFuel = document.getElementById("fuelAmt").value;
+	document.getElementById("fuelAmt").value = +stockFuel - Math.round(+stockFuel*.5);
+
+	let stockRepairPacks = document.getElementById("repairPackAmt").value;
+	document.getElementById("repairPackAmt").value = +stockRepairPacks - Math.round(+stockRepairPacks*.5);
+		
+	let stockPlanetCore = document.getElementById("planetCoreAmt").value;
+	document.getElementById("planetCoreAmt").value = +stockPlanetCore - Math.round(+stockPlanetCore*.5);
+	
+
+	//set inventory back to 0
+	document.getElementById("repairPacks").value ="0";
+	document.getElementById("fuel").value = "0";
+	document.getElementById("iron").value = "0";
+	document.getElementById("planetCore").value = "0";
 }
+
 function pos(row,col){
 		var x = document.getElementById("grid").rows[row].cells[col];
 		console.log(row,col);
 		console.log(x.name);
 } 
-function stats(currentPos){
+
+function stats(currentPos,battleOveride){
 	//have not visted tile
-	if(currentPos.opacity != 100)
+	window.getComputedStyle(currentPos).getPropertyValue("opacity")
+	if(window.getComputedStyle(currentPos).getPropertyValue("opacity") != "1")
 	{
 		//update tiles owned
 		let tilesControlled = document.getElementById("spaceControlled").value;
 		tilesControlled = +tilesControlled + +1;
 		document.getElementById("spaceControlled").value = tilesControlled;
-		//tile is a planet
+	}
+	if(battleOveride)
+	//tile is a planet
 		if(currentPos.name == "planet")
 		{
-			//update planet controlled
+			let planetsControlled = document.getElementById("planetControlled").value;
+			planetsControlled = +planetsControlled + +1;
+			document.getElementById("planetControlled").value = planetsControlled;
 		}
-	}
 }
-function returnHome(currentPos){
+function onEnter(currentPos){
+	//return to moon
 	if(currentPos.name =="home")
 	{
 		document.removeEventListener("keydown", movement);
 		//remove player from map
 		let stockIron = document.getElementById("ironAmt").value;
 		let iron = document.getElementById("iron").value;
-		document.getElementById("ironAmt").value = stockIron + iron;
+		document.getElementById("ironAmt").value = +stockIron + +iron;
 
 		let stockFuel = document.getElementById("fuelAmt").value;
 		let fuel = document.getElementById("fuel").value;
-		document.getElementById("fuelAmt").value = stockFuel + fuel;
+		document.getElementById("fuelAmt").value = +stockFuel + +fuel;
 
 		let stockRepairPacks = document.getElementById("repairPackAmt").value;
 		let repairPacks = document.getElementById("repairPacks").value;
-		document.getElementById("repairPackAmt").value = stockRepairPacks +repairPacks;
+		document.getElementById("repairPackAmt").value = +stockRepairPacks + +repairPacks;
+		
+		let stockPlanetCore = document.getElementById("planetCoreAmt").value;
+		let cores = document.getElementById("planetCore").value;
+		document.getElementById("planetCoreAmt").value = +stockPlanetCore + +cores;
 		//add player inventory to resources 
 
 		//set inventory back to 0
+		document.getElementById("repairPacks").value ="0";
+		document.getElementById("fuel").value = "0";
+		document.getElementById("iron").value = "0";
+		document.getElementById("planetCore").value = "0";
+	}
+	//if currentPos is graveyad
+	if(currentPos.name == "flotila")
+	{
+		var salvageBtn = document.getElementById("salvage").hidden = false;
+	}
+	//and has death star tech
+	else if(currentPos.name =="planet")
+	{
+		var deathStarBtn = document.getElementById("deathStarFire").hidden = false;
 	}
 }
-function changeTile(row, col){
-	
-	var x = document.getElementById("grid").rows[row].cells[col];
-
+function changeTile(x){
+	var salvageBtn = document.getElementById("salvage").hidden = true;
+	var deathStarBtn = document.getElementById("deathStarFire").hidden = true;
+	//hide all buttons
 	if(x.name == "empty")
 		x.innerHTML = "*";
-	else if(x.name == "home")
-		x.innerHTML == "H";
+	else if(x.name == "home"){
+		x.innerHTML = "H";
+	}
 	else if(x.name == "planet"){
 		x.innerHTML = "O";
+		console.log(x.name);
 	}
 	else if(x.name == "ship"){
 		x.name = "empty";
@@ -417,6 +514,9 @@ function changeTile(row, col){
 	}
 	else if(x.name == "unknown")
 		x.innerHTML = "?";
+	else if(x.name == "shattered"){
+		x.innerHTML = "X";
+	}
 } 
 function endGame(ending){
 	//conquest ending
