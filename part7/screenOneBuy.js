@@ -59,6 +59,7 @@ function buyNavCPU()
         document.getElementById("dmg1Btn").style.display = "block";
         document.getElementById("navComputerAmt").style.display = "block";
         document.getElementById("screen3Tab").style.display = "block";
+        document.getElementById("navTT").style.display = "none";
 
 
     }
@@ -89,6 +90,8 @@ function buyHealth1()
         //display health1 amount
         document.getElementById("health1Amt").style.display = "block";
         document.getElementById("health2Btn").style.display = "block";
+        document.getElementById("health1TT").style.display = "none";
+
 
     }
 }
@@ -118,6 +121,8 @@ function buyHealth2()
 
         //display health2 stats
         document.getElementById("health2Amt").style.display = "block";
+        document.getElementById("health2TT").style.display = "none";
+
 
     }
 }
@@ -147,6 +152,8 @@ function buyDmg1()
         //display dmg1 stats
         document.getElementById("damage1Amt").style.display = "block";
         document.getElementById("dmg2Btn").style.display = "block";
+        document.getElementById("dmg1TT").style.display = "none";
+
     }
 }
 
@@ -176,6 +183,8 @@ function buyDmg2()
         document.getElementById("damage2Amt").style.display = "block";
         document.getElementById("deathStarBtn").style.display = "block";
         document.getElementById("deathStarAmt").style.display = "block";
+        document.getElementById("dmg2TT").style.display = "none";
+
 
 
 
@@ -201,6 +210,7 @@ function buyDeathStar()
 
         deathStarBtn.style.opacity = "0.5";
         deathStarBtn.disabled = true; 
+        document.getElementById("deathStarTT").style.display = "none";
         endGame();
     }
 }

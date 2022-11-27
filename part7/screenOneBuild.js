@@ -111,6 +111,7 @@ function buildRefinery()
         document.getElementById("operator").style.display = "block";
         document.getElementById("opLabel").style.display = "block";
         document.getElementById("refineryAmt").style.display = "block";
+        document.getElementById("refineryTT").style.display = "none";
 
     } 
 }
@@ -136,6 +137,8 @@ function buildMechanic()
         document.getElementById("mechanic").style.display = "initial";
         document.getElementById("mechLabel").style.display = "initial";
         document.getElementById("repairPackAmt").style.display = "block";
+        document.getElementById("mechanicTT").style.display = "none";
+
 
     }
 }
@@ -163,6 +166,8 @@ function buildSpaceHub()
         document.getElementById("fuelBtn").style.display = "block"; 
         document.getElementById("repairPackBtn").style.display = "block"; 
         document.getElementById("navBtn").style.display = "block";
+        document.getElementById("spaceHubTT").style.display = "none";
+
 
 
     }
