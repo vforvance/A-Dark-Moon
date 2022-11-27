@@ -83,17 +83,19 @@ function mechanicManager() {
 
     minerManager(-diff);
 }
-//keeps miners mining automatically once you have 5 miners 
+
+// timer for every ten seconds
+setInterval(Automine, 10000);
+//keeps miners mining automatically once you have 5 miners
 function Automine()
-{
-    for (i = getMinerPop; i > 4; i++)
+{ 
+    let miners = document.getElementById("miner");
+    for (i = 4; i < miners.value; i++)
     {
-       setInterval(mineIron(), 5000) //inifinte loop that lets miners contionusly mine  
+       ironAmt.value = parseInt(ironAmt.value) + 5
     }
 
 }
-
-
 //population management works well all around
 //I only need to remove the ability to select and type values
 //possibly make readonly and attach buttons
