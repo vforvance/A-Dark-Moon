@@ -28,6 +28,18 @@ body {
     margin: 30px;  
     box-align: right;
 }
+#inventory{
+    border: 1px solid black;
+    clear: right;
+    margin: 30px;  
+    box-align: right;
+}
+#conquestStats{
+    border: 1px solid black;
+    clear: right;
+    margin: 30px;  
+    box-align: right;
+}
 
 #itemTable{
     border: 1px solid black;
@@ -54,7 +66,13 @@ input[type=number] {
     bottom: 15%;
     right: 30px;
 }
-
+#grid{
+    border: 1px solid black;
+    clear: right;
+    position: absolute;
+    bottom: 15%;
+    left: 450px;
+}
 #pageTwoBtns{
     float: left;
     margin: 80px;
