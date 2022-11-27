@@ -674,5 +674,6 @@ function embark(){
 
 		let health = document.getElementById("health");
 		health.value = health.max;
+		eventText(Events(14));
 	}
 }
