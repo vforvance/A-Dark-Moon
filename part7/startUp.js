@@ -23,7 +23,7 @@ function startGame(){
     document.getElementById("buildBtns").style.display = "none"; //
     //elements in buildBtns
     document.getElementById("o2tankBtn").style.display = "none"; //
-    document.getElementById("collectionBtn").style.display = "none"; //
+    document.getElementById("collectionBtn").style.display = "block"; //
     document.getElementById("shipBtn").style.display = "block"; //
     document.getElementById("refineryBtn").style.display = "none"; //
     document.getElementById("mechanicBtn").style.display = "none"; //

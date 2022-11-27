@@ -49,6 +49,8 @@ function buildPod()
             document.getElementById("shipBtn").style.display = "block";
             document.getElementById("shipAmt").style.display = "block";
     }
+    dynamicToolTip(collectBtn);
+
    
 }
 
@@ -89,6 +91,7 @@ function buildShip()
         document.getElementById("spaceHubBtn").style.display = "block";
 
     }
+    dynamicToolTip(shipBtn);
 }
 
 function buildRefinery()
