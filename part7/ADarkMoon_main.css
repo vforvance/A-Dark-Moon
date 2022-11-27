@@ -21,7 +21,10 @@ body {
     right: 0;
     background-color: #5A5A5A;
 }
-
+#homebound {
+    font-family: Arial;
+    color: black;
+}
 #resourceTable{
     border: 1px solid black;
     box-align: right;
