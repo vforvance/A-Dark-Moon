@@ -21,10 +21,28 @@ body {
     right: 0;
     background-color: #5A5A5A;
 }
-
+#homebound {
+    font-family: Arial;
+    color: black;
+}#conquest   {
+    font-family: Arial;
+    color: black;
+}
 #resourceTable{
     border: 1px solid black;
     box-align: right;
+    margin: 30px;  
+    box-align: right;
+}
+#inventory{
+    border: 1px solid black;
+    clear: right;
+    margin: 30px;  
+    box-align: right;
+}
+#conquestStats{
+    border: 1px solid black;
+    clear: right;
     margin: 30px;  
     box-align: right;
 }
@@ -54,7 +72,13 @@ input[type=number] {
     bottom: 15%;
     right: 30px;
 }
-
+#grid{
+    border: 1px solid black;
+    clear: right;
+    position: absolute;
+    bottom: 15%;
+    left: 450px;
+}
 #pageTwoBtns{
     float: left;
     margin: 80px;
@@ -72,7 +96,29 @@ input[type=number] {
     float: left;
     margin: 80px;  
 }
-
+#embarkBtn{
+    position:absolute;
+    margin-bottom:5px;
+    margin-left: 10px;
+    font-size: 16px;
+    height: 110px;
+    top: 200px;
+}
+#shipAction{
+    float: left;
+    margin-bottom:5px;
+    margin-left: 10px;
+    font-size: 16px;
+    height: 30px;
+}
+#viewPort{
+    position:absolute;
+    margin-bottom:5px;
+    margin-left: 10px;
+    font-size: 16px;
+    height: 110px;
+    top: 200px;
+}
 #sndMessage{
     float: left;
     margin-bottom:5px;

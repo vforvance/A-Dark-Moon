@@ -12,7 +12,33 @@
 	  <script src="screenThree.js"></script>
     <script src="startUp.js"></script>
 </head>
+
 <body onload="generateGrid(35); startGame();">
+  <div id= "homebound" hidden>
+    <h1>A DARK MOON</h1>
+      <h2>Homebound ending</h2>
+      <p>The wanderers of a dark moon have found their way back home...</p><br>
+      <h2>Programmed by:</h2>
+      <h2>Harvey Ji</h2>
+      <h2>Tanner Spitzer</h2>
+      <h2>Isaac Landrum</h2>
+      <h2>Aureliano Hubert Maximus</h2>
+      <h2>Ryan Strong</h2>
+      <h2>Vance Muzangu</h2>
+  </div>
+  <div id= "conquest" hidden>
+    <h1>A DARK MOON</h1>
+      <h2>Conquest ending</h2>
+      <p>The wanderers of a dark moon and their new found power set their gaze on the galaxy...</p><br>
+      <h2>Programmed by:</h2>
+      <h2>Harvey Ji</h2>
+      <h2>Tanner Spitzer</h2>
+      <h2>Isaac Landrum</h2>
+      <h2>Aureliano Hubert Maximus</h2>
+      <h2>Ryan Strong</h2>
+      <h2>Vance Muzangu</h2>
+  </div>
+  <div id="universe">
     <div class="split left">
       <div id="eventText">
 			<p></p>
@@ -50,19 +76,19 @@
             </tr>
             <tr>
               <th>Iron</th>
-              <th><input type="number" class="resources" id="ironAmt" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="ironAmt" value="9000" max="9999" readonly></th>
           </tr>
             <tr>
               <th>Fuel</th>
-              <th><input type="number" class="resources" id="fuelAmt" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="fuelAmt" value="9000" max="9999" readonly></th>
             </tr>
             <tr>
               <th>Repair Packs</th>
-              <th><input type="number" class="resources" id="repairPackAmt" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="repairPackAmt" value="9000" max="9999" readonly></th>
           </tr>
           <tr>
             <th>Planet Cores</th>
-            <th><input type="number" class="resources" id="planetCoreAmt" value="0" max="9999" readonly></th>
+            <th><input type="number" class="resources" id="planetCoreAmt" value="10" max="9999" readonly></th>
         </tr>
         </table>
           <button id="sndMessage" value = "0" onclick="eventText(Events(0)); sndMessage();">Look Around</button><br>
@@ -70,15 +96,15 @@
             <h1 class="textHeader">A Dark Moon</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
-              <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank(); eventText(Events(3));">O2 Tank<span class="tooltiptext">30 Iron</span></button></div>
+              <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank(); eventText(Events(3));">O2 Tank<span id="o2TT" class="tooltiptext">30 Iron</span></button></div>
               <div class="tooltip"><button id="collectionBtn" class="Btn" onclick="buildPod(); eventText(Events(4));" onmouseover="dynamicToolTip(this)">Colection Pod <span id="podTT" class = "tooltiptext">10 Iron</span></button></div>
-              <div class="tooltip"><button id="shipBtn" class="Btn" onclick="buildShip(); eventText(Events(5)); " onmouseover="dynamicToolTip(this)">Ship <span id="shipTT" class = "tooltiptext">50 Iron</span></button></div>
+              <div class="tooltip"><button id="shipBtn" class="Btn" onclick="buildShip(); eventText(Events(5));" onmouseover="dynamicToolTip(this)">Ship <span id="shipTT" class = "tooltiptext">50 Iron</span></button></div>
               <div class="tooltip"><button id="refineryBtn" class="Btn" onclick="buildRefinery(); eventText(Events(6));">Refinery</button>
-              <div class="tooltiptext">200 Iron <br> 100 Fuel</div></div>
+              <div class="tooltiptext" id="refineryTT">200 Iron <br> 100 Fuel</div></div>
               <div class="tooltip"><button id="mechanicBtn" class="Btn" onclick="buildMechanic(); eventText(Events(7));">Mechanic Shop</button>
-              <div class="tooltiptext">200 Iron <br>200 Fuel</div></div>
+              <div class="tooltiptext" id="mechanicTT">200 Iron <br>200 Fuel</div></div>
               <div class="tooltip"><button id="spaceHubBtn" class="Btn" onclick="buildSpaceHub(); eventText(Events(8));">Space Hub</button>
-              <div class="tooltiptext">400 Iron<br> 200 Fuel</div></div>
+              <div class="tooltiptext" id="spaceHubTT">400 Iron<br> 200 Fuel</div></div>
             </div>
             <div id="buyBtns">
               <h3>Buy</h3> <br>
@@ -89,17 +115,17 @@
               <div class="tooltip"><button id="repairPackBtn" class="Btn" onclick="buyRepairPack()">Repair Packs</button>
               <div class="tooltiptext">100 Iron<br> 100 Fuel</div></div>
               <div class="tooltip"><button id="navBtn" class="Btn" onclick="buyNavCPU()">Nav Computer</button>
-              <div class="tooltiptext">500 Iron<br> 300 Fuel <br> 100 Repair Packs</div></div>
+              <div class="tooltiptext" id="navTT">500 Iron<br> 300 Fuel <br> 100 Repair Packs</div></div>
               <div class="tooltip"><button id="health1Btn" class="Btn" onclick="buyHealth1()">Health Upgrade 1</button>
-              <div class="tooltiptext">500 Iron<br>500 Fuel<br>200 Repair Packs</div></div>
+              <div class="tooltiptext" id="health1TT">500 Iron<br>500 Fuel<br>200 Repair Packs</div></div>
               <div class="tooltip"><button id="health2Btn" class="Btn" onclick="buyHealth2()">Health Upgrade 2</button>
-              <div class="tooltiptext">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
+              <div class="tooltiptext" id="health2TT">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
               <div class="tooltip"><button id="dmg1Btn" class="Btn" onclick="buyDmg1()">Damage Upgrade 1</button>
-              <div class="tooltiptext">500 Iron<br> 500 Fuel<br> 200 Repair Packs</div></div>
+              <div class="tooltiptext" id="dmg1TT">500 Iron<br> 500 Fuel<br> 200 Repair Packs</div></div>
               <div class="tooltip"><button id="dmg2Btn" class="Btn" onclick="buyDmg2()">Damage Upgrade 2</button>
-              <div class="tooltiptext">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
+              <div class="tooltiptext" id="dmg2TT">750 Iron<br> 750 Fuel<br>400 Repair Packs</div></div>
               <div class="tooltip"><button id="deathStarBtn" class="Btn" onclick="buyDeathStar()">Death Star</button>
-              <div class="tooltiptext">1000 Iron<br> 1000 Fuel<br>1000 Repair Packs<br> 10 Planet Cores</div></div>
+              <div class="tooltiptext" id="deathStarTT">1000 Iron<br> 1000 Fuel<br>1000 Repair Packs<br> 10 Planet Cores</div></div>
             </div>
             <table id="itemTable" align="right">
               <caption>Items</caption>
@@ -191,18 +217,10 @@
             <h1 class="textHeader">Endless Space</h1>
 			        <input type="number" id="playerPosRow" name="playerPos" value="" hidden readonly>
 			        <input type="number" id="playerPosCol" name="playerPos" value="" hidden readonly>
-      
 			
-			
-			
-			
-			<form id="exploreStats">
-					    <input type="number" id="health" name="water" value="20"readonly> 
-				      <label for="health">Health</label><br>
-            </form>
 		
-		 <table id="inventory" align="right">
-            <caption>Resources</caption>
+		 <table id="inventory" align="right" hidden>
+            <caption>Inventroy</caption>
             <tr>
                 <th>Resource</th>
                 <th>Amount</th>
@@ -226,29 +244,50 @@
         </table>
 		
 		<table id="conquestStats" align="right">
-            <caption>Resources</caption>
+            <caption>Galaxy Control</caption>
             <tr>
                 <th>Resource</th>
                 <th>Amount</th>
             </tr>
             <tr>
               <th>Planets Controlled</th>
-              <th><input type="number" class="" id="planetControlled" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="planetControlled" value="0" max="9999" readonly></th>
           </tr>
             <tr>
-              <th>Space Controlled</th>
-              <th><input type="number" class="" id="spaceControlled" value="0" max="9999" readonly></th>
+              <th>Space Explored</th>
+              <th><input type="number" class="resources" id="spaceControlled" value="0" max="9999" readonly></th>
             </tr>
         </table>
-		
-		  <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
-		  <button id="repair" onclick="repair()">Repair</button>	
-		  <button id="salvage" hidden onclick="playerAttack()">Salvage</button>	
-		  <button id="deathStarFire" hidden onclick="playerAttack()">Activation Lever</button>	
-		  
-		  <input type="number" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
-		  <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden> 			 
-		  <p id ="enemy"></p>
+        <div id="shipAction" hidden>
+          <h3>Ship Actions</h3> <br>
+          <form id="exploreStats">
+            <label for="health">Health</label>
+            <input type="number" class="resources" id="health" name="health" value="11" max="11" readonly>
+            <input type="number" id="playerDamage" name="playerDamage" value="3"readonly hidden> 
+          </form>
+            <button id="playerAttack" hidden onclick="playerAttack();eventText(Events(9));">Attack</button>
+            <button id="land" hidden onclick="land(); eventText(Events(13));">Land</button>		
+            <button id="repair" onclick="repair(); eventText(Events(10));">Repair</button>	
+            <button id="salvage" hidden onclick="salvage(); eventText(Events(11));">Salvage</button>	
+            <button id="deathStarFire" hidden onclick="fireDeathStar();eventText(Events(12));">Activation Lever</button>	
+        </div>
+        <div id="viewPort" hidden>
+          <h3>Viewport</h3> <br>
+          <form id="enemyStats">
+            <label id ="enemy" for="enemyHealth" hidden></label>
+            <input type="number" class="resources" id="enemyHealth" name="enemyHealth" value=""readonly hidden>
+            <input type="number" id="enemyDamage" name="enemyDamage" value=""readonly hidden>
+          </form>	 
+        </div>
+        <div id="embarkBtn">
+          <h3>Embark</h3> <br>
+          <div class="tooltip"><button id="embark" class="Btn" onclick="embark()">Embark</button>
+          <div class="tooltiptext">350 Fuel <br>50 Repair Packs</div></div>
+          <label for="shipHealth">Max Health</label>
+          <input type="number" class="resources" id="shipHealth" value="11" readonly>
+          <label for="maxDamage">Max Damage</label>
+          <input type="number" class="resources" id="maxDamage" name="maxDamage" value="3" readonly > 
+        </div>
 		   <input type="number" id="inBattle" name="inBattle" value="0" readonly hidden>	
 			
 		  <table id ="grid">
@@ -259,9 +298,10 @@
     <script>
         //display screen funcitons
 
-    document.getElementById("ironAmt").value = 10;
+    document.getElementById("ironAmt").value = 10000;
 
      
     </script>
+    </div>>
 </body>
 </html>

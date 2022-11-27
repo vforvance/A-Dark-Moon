@@ -4,7 +4,7 @@
 let boolStart = true;
 
 function startGame(){
-    if(boolStart == false)
+    if(boolStart == true)
     {
     //display screen 1 and hide the rest
     document.getElementById("screen1").style.display = "block"; //
@@ -17,14 +17,14 @@ function startGame(){
     document.getElementById("ironAmt").style.display = "none"; //
     document.getElementById("fuelAmt").style.display = "none"; //
     document.getElementById("repairPackAmt").style.display = "none"; //
-    document.getElementById("planetCoreAmt").style.display = "none";
+    document.getElementById("planetCoreAmt").style.display = "none";//
 
     //hide objects on screen 1
     document.getElementById("buildBtns").style.display = "none"; //
     //elements in buildBtns
     document.getElementById("o2tankBtn").style.display = "none"; //
-    document.getElementById("collectionBtn").style.display = "none"; //
-    document.getElementById("shipBtn").style.display = "none"; //
+    document.getElementById("collectionBtn").style.display = "block"; //
+    document.getElementById("shipBtn").style.display = "block"; //
     document.getElementById("refineryBtn").style.display = "none"; //
     document.getElementById("mechanicBtn").style.display = "none"; //
     document.getElementById("spaceHubBtn").style.display = "none"; //
@@ -39,7 +39,7 @@ function startGame(){
     document.getElementById("health2Btn").style.display = "none"; //
     document.getElementById("dmg1Btn").style.display = "none"; //
     document.getElementById("dmg2Btn").style.display = "none"; //
-    document.getElementById("deathStarBtn").style.display = "none";
+    document.getElementById("deathStarBtn").style.display = "none"; //
 
     document.getElementById("itemTable").style.display = "none"; //
     //elements in item table
@@ -49,7 +49,7 @@ function startGame(){
     document.getElementById("health2Amt").style.display = "none"; //
     document.getElementById("damage1Amt").style.display = "none"; //
     document.getElementById("damage2Amt").style.display = "none"; //
-    document.getElementById("deathStarAmt").style.display = "none";
+    document.getElementById("deathStarAmt").style.display = "none"; //
 
     //hide objects on screen 2
     document.getElementById("screen2Tab").style.display = "none"; //
@@ -68,7 +68,7 @@ function startGame(){
     document.getElementById("villageTable").style.display = "none"; //
     //elements in villageTable
     document.getElementById("collectionPodAmt").style.display = "none"; //
-    document.getElementById("shipAmt").style.display = "none"; //
+    document.getElementById("shipAmt").style.display = "block"; //
     document.getElementById("mechanicAmt").style.display = "none"; //
     document.getElementById("refineryAmt").style.display = "none"; //
     document.getElementById("spaceHubAmt").style.display = "none"; //
