@@ -164,3 +164,23 @@ function buildSpaceHub()
 
     }
 }
+
+function dynamicToolTip(ele){
+    if(ele.id="collectionButton"){
+        var podAmt = document.getElementById("collectionPodAmt");
+        var cost = 10 + 10*podAmt.value;
+        if(podAmt.value < 10){
+            var span = document.getElementById("podTT");
+            span.textContent = cost + " Iron";
+        }
+    }
+
+    if(ele.id="shipBtn"){
+        var shipAmt = document.getElementById("shipAmt");
+        var cost = 50 + 50*shipAmt.value;
+        if(shipAmt.value < 10){
+            var span = document.getElementById("shipTT");
+            span.textContent = cost + " Iron";
+        }
+    }
+}

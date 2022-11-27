@@ -70,10 +70,9 @@
             <h1 class="textHeader">A Dark Moon</h1>
             <div id="buildBtns">
               <h3>Build</h3> <br>
-              <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank(); eventText(Events(3));">O2 Tank</button>
-              <div class="tooltiptext">30 Iron</div></div>
-              <button id="collectionBtn" class="Btn" onclick="buildPod(); eventText(Events(4));">Colection Pod</button><br>
-              <button id="shipBtn" class="Btn" onclick="buildShip(); eventText(Events(5));">Ship</button><br>
+              <div class="tooltip"><button id="o2tankBtn" class="Btn" onclick="buildO2Tank(); eventText(Events(3));">O2 Tank<span class="tooltiptext">30 Iron</span></button></div>
+              <div class="tooltip"><button id="collectionBtn" class="Btn" onclick="buildPod(); eventText(Events(4));" onmouseover="dynamicToolTip(this)">Colection Pod <span id="podTT" class = "tooltiptext">10 Iron</span></button></div>
+              <div class="tooltip"><button id="shipBtn" class="Btn" onclick="buildShip(); eventText(Events(5)); " onmouseover="dynamicToolTip(this)">Ship <span id="shipTT" class = "tooltiptext">50 Iron</span></button></div>
               <div class="tooltip"><button id="refineryBtn" class="Btn" onclick="buildRefinery(); eventText(Events(6));">Refinery</button>
               <div class="tooltiptext">200 Iron <br> 100 Fuel</div></div>
               <div class="tooltip"><button id="mechanicBtn" class="Btn" onclick="buildMechanic(); eventText(Events(7));">Mechanic Shop</button>
