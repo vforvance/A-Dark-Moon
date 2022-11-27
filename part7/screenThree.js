@@ -580,12 +580,38 @@ function changeTile(x){
 		x.innerHTML = "X";
 	}
 } 
+
 //end the game
 function endGame(){
 	//homebound ending
-	
-		console.log("gameOVER");
-	
+	reset();
+	document.getElementById("universe");
+	fadeOut(document.getElementById("universe"));
+	let credits = document.getElementById("homebound");
+	credits.style.opacity = 0;
+	credits.hidden = false;
+	fadein(credits);
+}
+function fadeOut(op)
+{
+	let newOpVal = window.getComputedStyle(op).getPropertyValue("opacity") - +.001;
+	op.style.opacity = newOpVal;
+	if(newOpVal >= "0"){
+		setTimeout(() => {fadeOut(op);}, 15	)
+	}
+	else{
+		op.hidden = true
+	}
+}
+function fadein(op)
+{
+	let newOpVal = +window.getComputedStyle(op).getPropertyValue("opacity") + +.001;
+	console.log(newOpVal);
+	op.style.opacity = newOpVal;
+	if(newOpVal <= 1){
+		setTimeout(() => {fadein(op);}, 15	)
+	}
+
 }
 //reset screen 3 for new expedition
 function reset(){
@@ -594,6 +620,9 @@ function reset(){
 	document.getElementById("inventory").hidden = true;
 	document.getElementById("embarkBtn").hidden = false;
 	document.getElementById("grid").style.opacity = ".4";
+	document.getElementById("screen1Tab").disabled = false;
+	document.getElementById("screen2Tab").disabled = false;
+	document.getElementById("sndMessage").disabled = false;
 
 	let startRow = 17;
 	let startCol = 17;
@@ -614,11 +643,16 @@ function embark(){
 	document.getElementById("embarkBtn").hidden = true;
 	var landBtn = document.getElementById("land").hidden = false;
 	document.getElementById("grid").style.opacity = "1";
-	
+	document.getElementById("screen1Tab").disabled = true;
+	document.getElementById("screen2Tab").disabled = true;
+	document.getElementById("sndMessage").disabled = true;
+
 	document.getElementById("repairPacks").value ="5";
 	document.getElementById("fuel").value = "50";
 
 	let health = document.getElementById("health");
 	health.value = health.max;
+
+	endGame();
 		
 }
