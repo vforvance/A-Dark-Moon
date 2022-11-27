@@ -75,7 +75,7 @@ function generateGrid(size){
 		x = document.getElementById("grid").rows[homeRow].cells[homeCol];
 		x.name = "oldHome";
 		x.value = "oldHome"
-		x.innerHTML = "&";
+		x.innerHTML = "!";
 }	
 //player movement	
 function movement() {
@@ -92,7 +92,7 @@ function movement() {
 			if(x.innerHTML == "?"){
 				startBattle(Math.floor(Math.random() * 6));
 			}
-			else if(x.innerHTML == "&"){
+			if(x.innerHTML == "!"){
 				startBattle(14);
 			}
 			//update player location
@@ -117,7 +117,7 @@ function movement() {
 			if(x.innerHTML == "?"){
 				startBattle(Math.floor(Math.random() * 6));
 			}
-			else if(x.innerHTML == "&"){
+			else if(x.innerHTML == "!"){
 				startBattle(14);
 			}
 			
@@ -143,7 +143,7 @@ function movement() {
 			if(x.innerHTML == "?"){
 				startBattle(Math.floor(Math.random() * 6));
 			}
-			else if(x.innerHTML == "&"){
+			else if(x.innerHTML == "!"){
 				startBattle(14);
 			}
 			
@@ -166,6 +166,9 @@ function movement() {
 			
 			if(x.innerHTML == "?"){
 				startBattle(Math.floor(Math.random() * 6));
+			}
+			else if(x.innerHTML == "!"){
+				startBattle(14);
 			}
 			
 			x.innerHTML = "@";
@@ -404,9 +407,9 @@ function killPlayer(){
 	let row = document.getElementById("playerPosRow").value;
 	let col = document.getElementById("playerPosCol").value;
 	var x = document.getElementById("grid").rows[row].cells[col];
+	//remove player from map
 	changeTile(x);
 	//punish resources 
-	//remove player from map
 	let stockIron = document.getElementById("ironAmt").value;
 	document.getElementById("ironAmt").value = +stockIron - Math.round(+stockIron*.5);
 
@@ -514,6 +517,8 @@ function changeTile(x){
 	}
 	else if(x.name == "unknown")
 		x.innerHTML = "?";
+	else if(x.name == "oldHome")
+		x.innerHTML = "!";
 	else if(x.name == "shattered"){
 		x.innerHTML = "X";
 	}
