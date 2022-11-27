@@ -81,6 +81,15 @@ function mechanicManager() {
     minerManager(-diff);
 }
 
+//keeps miners mining automatically once you have 5 miners 
+function Automine()
+{
+    for (i = getMinerPop; i > 4; i++)
+    {
+       setInterval(mineIron(), 5000) //inifinte loop that lets miners contionusly mine  
+    }
+
+}
 //population management works well all around
 //I only need to remove the ability to select and type values
 //possibly make readonly and attach buttons
