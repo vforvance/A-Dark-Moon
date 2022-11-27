@@ -265,7 +265,7 @@ function attackPlayer(difficulty){
 	}
 	else{
 		//battle not over player still alive keep fighting
-		playerHealth.value = playerHealth.value - Math.floor(Math.random() * difficulty)- +difficulty;
+		playerHealth.value = playerHealth.value - Math.ceil(Math.random() * difficulty + +.01)- +difficulty;
 		playerHealth.innerHTML = playerHealth.value;
 		if(playerHealth.value > 0 )
 		{
@@ -284,7 +284,7 @@ function playerAttack(){
 	let playerAttack =  document.getElementById("playerDamage").value;
 	let enemyHealth = document.getElementById("enemyHealth");	
 	
-	enemyHealth.value = enemyHealth.value- (Math.floor(Math.random() * playerAttack))-1;
+	enemyHealth.value = enemyHealth.value- (Math.ceil(Math.random() * playerAttack + +.01));
 	setTimeout(() => {var salvageBtn = document.getElementById("playerAttack").disabled  = false;}, "8000"-(Math.floor(Math.random() * playerAttack)))
 	//enemy has died battle over
 	if(enemyHealth.value <=0)
@@ -308,12 +308,16 @@ function playerAttack(){
 			var salvageBtn = document.getElementById("salvage").hidden= false;
 		}
 		//and has death star tech
-		else if(x.name =="planet")
+		else if(x.name =="planet" && document.getElementById("playerDamage").value == "16")
 		{
 			var deathStarBtn = document.getElementById("deathStarFire").hidden= false;
 		}
+		else(x.name == "oldHome")
+		{
+			endGame(0);
+		}
 	}
-	enemyHealth.innerHTML = "Enemy    "+enemyHealth.value;
+	enemyHealth.innerHTML = "Enemy  "+enemyHealth.value;
 }
 //end combat
 function battleOver(){
@@ -334,7 +338,7 @@ function battleLoot(diffMod){
 		document.getElementById("fuel").value = stockFuel;
 		
 		var stockIron = document.getElementById("iron").value;
-		stockIron = +stockIron + +10*diffMod;
+		stockIron = +stockIron + +15*diffMod;
 		document.getElementById("iron").value = stockIron;
 		
 		var stockRepair = document.getElementById("repairPacks").value;
@@ -374,7 +378,7 @@ function salvage(){
 		x.name = "empty";
 	}
 	//add loot
-	battleLoot(7);
+	battleLoot(10);
 	//cooldown	
 	setTimeout(() => {var salvageBtn = document.getElementById("salvage").disabled  = false;}, "7000");
 }
@@ -541,14 +545,14 @@ function onEnter(currentPos){
 		var salvageBtn = document.getElementById("salvage").hidden = false;
 	}
 	//and has death star tech
-	else if(currentPos.name =="planet")
+	else if(currentPos.name =="planet" && document.getElementById("playerDamage").value == "16")
 	{
 		var deathStarBtn = document.getElementById("deathStarFire").hidden = false;
 	}
 }
 //update previous space
 function changeTile(x){
-	var salvageBtn = document.getElementById("land").hidden = true;
+	var salvageBtn = document.getElementById("salvage").hidden = true;
 	var deathStarBtn = document.getElementById("deathStarFire").hidden = true;
 	var landBtn = document.getElementById("land").hidden = true;
 	//hide all buttons
@@ -577,17 +581,11 @@ function changeTile(x){
 	}
 } 
 //end the game
-function endGame(ending){
-	//conquest ending
-	if(ending =="0")
-	{
-		;
-	}
+function endGame(){
 	//homebound ending
-	if(ending =="1")
-	{
-		;
-	}
+	
+		console.log("gameOVER");
+	
 }
 //reset screen 3 for new expedition
 function reset(){
@@ -602,9 +600,9 @@ function reset(){
 	document.getElementById("playerPosRow").value = startRow;
 	document.getElementById("playerPosCol").value = startCol;
 	var x = document.getElementById("grid").rows[startRow].cells[startCol];
-		
+	
 	x.innerHTML = "@"; 
-
+	
 
 }
 //start expedition
@@ -619,4 +617,8 @@ function embark(){
 	
 	document.getElementById("repairPacks").value ="5";
 	document.getElementById("fuel").value = "50";
+
+	let health = document.getElementById("health");
+	health.value = health.max;
+		
 }

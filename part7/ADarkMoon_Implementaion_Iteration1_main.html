@@ -50,19 +50,19 @@
             </tr>
             <tr>
               <th>Iron</th>
-              <th><input type="number" class="resources" id="ironAmt" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="ironAmt" value="9000" max="9999" readonly></th>
           </tr>
             <tr>
               <th>Fuel</th>
-              <th><input type="number" class="resources" id="fuelAmt" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="fuelAmt" value="9000" max="9999" readonly></th>
             </tr>
             <tr>
               <th>Repair Packs</th>
-              <th><input type="number" class="resources" id="repairPackAmt" value="0" max="9999" readonly></th>
+              <th><input type="number" class="resources" id="repairPackAmt" value="9000" max="9999" readonly></th>
           </tr>
           <tr>
             <th>Planet Cores</th>
-            <th><input type="number" class="resources" id="planetCoreAmt" value="0" max="9999" readonly></th>
+            <th><input type="number" class="resources" id="planetCoreAmt" value="9" max="9999" readonly></th>
         </tr>
         </table>
           <button id="sndMessage" value = "0" onclick="eventText(Events(0)); sndMessage();">Look Around</button><br>
@@ -236,8 +236,8 @@
           <h3>Ship Actions</h3> <br>
           <form id="exploreStats">
             <label for="health">Health</label>
-            <input type="number" class="resources" id="health" name="health" value="30" max="30" readonly>
-            <input type="number" id="playerDamage" name="playerDamage" value="9"readonly hidden> 
+            <input type="number" class="resources" id="health" name="health" value="11" max="11" readonly>
+            <input type="number" id="playerDamage" name="playerDamage" value="3"readonly hidden> 
           </form>
             <button id="playerAttack" hidden onclick="playerAttack();eventText(Events(9));">Attack</button>
             <button id="land" hidden onclick="land(); eventText(Events(13));">Land</button>		
@@ -257,6 +257,10 @@
           <h3>Embark</h3> <br>
           <div class="tooltip"><button id="embark" class="Btn" onclick="embark()">Embark</button>
           <div class="tooltiptext">200 Fuel <br>10 Repair Packs</div></div>
+          <label for="shipHealth">Max Health</label>
+          <input type="number" class="resources" id="shipHealth" value="11" readonly>
+          <label for="maxDamage">Max Damage</label>
+          <input type="number" class="resources" id="maxDamage" name="maxDamage" value="3" readonly > 
         </div>
 		   <input type="number" id="inBattle" name="inBattle" value="0" readonly hidden>	
 			
@@ -268,7 +272,7 @@
     <script>
         //display screen funcitons
 
-    document.getElementById("ironAmt").value = 10;
+    document.getElementById("ironAmt").value = 10000;
 
      
     </script>
