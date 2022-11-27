@@ -312,9 +312,9 @@ function playerAttack(){
 		{
 			var deathStarBtn = document.getElementById("deathStarFire").hidden= false;
 		}
-		else(x.name == "oldHome")
+		else if(x.name == "oldHome")
 		{
-			endGame(0);
+			endGame(1);
 		}
 	}
 	enemyHealth.innerHTML = "Enemy  "+enemyHealth.value;
@@ -420,6 +420,14 @@ function fireDeathStar(){
 	//add planet core
 	let cores = document.getElementById("planetCore").value;
 	document.getElementById("planetCore").value = +cores + +1;
+	var stockFuel = document.getElementById("fuel").value;
+	
+	stockFuel = +stockFuel + +600;
+	document.getElementById("fuel").value = stockFuel;
+		
+	var stockIron = document.getElementById("iron").value;
+	stockIron = +stockIron + +700;
+	document.getElementById("iron").value = stockIron;
 	
 	let planetsControlled = document.getElementById("planetControlled").value;
 	planetsControlled = +planetsControlled - +1;
@@ -582,12 +590,19 @@ function changeTile(x){
 } 
 
 //end the game
-function endGame(){
-	//homebound ending
+function endGame(ending){
+	console.log(ending);
 	reset();
 	document.getElementById("universe");
 	fadeOut(document.getElementById("universe"));
-	let credits = document.getElementById("homebound");
+	let credits;
+	if(ending == 1){
+	 credits = document.getElementById("homebound");
+	}
+	else if (ending == 0 )
+	{
+	 credits = document.getElementById("conquest");
+	}
 	credits.style.opacity = 0;
 	credits.hidden = false;
 	fadein(credits);
@@ -606,7 +621,6 @@ function fadeOut(op)
 function fadein(op)
 {
 	let newOpVal = +window.getComputedStyle(op).getPropertyValue("opacity") + +.001;
-	console.log(newOpVal);
 	op.style.opacity = newOpVal;
 	if(newOpVal <= 1){
 		setTimeout(() => {fadein(op);}, 15	)
@@ -636,23 +650,28 @@ function reset(){
 }
 //start expedition
 function embark(){
-	document.addEventListener("keydown", movement);
-	document.getElementById("shipAction").hidden = false;
-	document.getElementById("viewPort").hidden = false;
-	document.getElementById("inventory").hidden = false;
-	document.getElementById("embarkBtn").hidden = true;
-	var landBtn = document.getElementById("land").hidden = false;
-	document.getElementById("grid").style.opacity = "1";
-	document.getElementById("screen1Tab").disabled = true;
-	document.getElementById("screen2Tab").disabled = true;
-	document.getElementById("sndMessage").disabled = true;
-
-	document.getElementById("repairPacks").value ="5";
-	document.getElementById("fuel").value = "50";
-
-	let health = document.getElementById("health");
-	health.value = health.max;
-
-	endGame();
+	var fuelAmt = document.getElementById("fuelAmt");
+    var repairPackAmt = document.getElementById("repairPackAmt");
+	if( fuelAmt.value >= 350 && repairPackAmt.value >= 50)
+	{
+		fuelAmt.value = parseInt(fuelAmt.value) - 350;
+        repairPackAmt.value = parseInt(repairPackAmt.value) - 50;
 		
+		document.addEventListener("keydown", movement);
+		document.getElementById("shipAction").hidden = false;
+		document.getElementById("viewPort").hidden = false;
+		document.getElementById("inventory").hidden = false;
+		document.getElementById("embarkBtn").hidden = true;
+		var landBtn = document.getElementById("land").hidden = false;
+		document.getElementById("grid").style.opacity = "1";
+		document.getElementById("screen1Tab").disabled = true;
+		document.getElementById("screen2Tab").disabled = true;
+		document.getElementById("sndMessage").disabled = true;
+
+		document.getElementById("repairPacks").value ="5";
+		document.getElementById("fuel").value = "50";
+
+		let health = document.getElementById("health");
+		health.value = health.max;
+	}
 }

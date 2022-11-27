@@ -201,37 +201,6 @@ function buyDeathStar()
 
         deathStarBtn.style.opacity = "0.5";
         deathStarBtn.disabled = true; 
-        endGame();
+        endGame(0);
     }
-}
-function endGame(){
-	//homebound ending
-	reset();
-	document.getElementById("universe");
-	fadeOut(document.getElementById("universe"));
-	let credits = document.getElementById("conquest");
-	credits.style.opacity = 0;
-	credits.hidden = false;
-	fadein(credits);
-}
-function fadeOut(op)
-{
-	let newOpVal = window.getComputedStyle(op).getPropertyValue("opacity") - +.001;
-	op.style.opacity = newOpVal;
-	if(newOpVal >= "0"){
-		setTimeout(() => {fadeOut(op);}, 15	)
-	}
-	else{
-		op.hidden = true
-	}
-}
-function fadein(op)
-{
-	let newOpVal = +window.getComputedStyle(op).getPropertyValue("opacity") + +.001;
-	console.log(newOpVal);
-	op.style.opacity = newOpVal;
-	if(newOpVal <= 1){
-		setTimeout(() => {fadein(op);}, 15	)
-	}
-
 }
