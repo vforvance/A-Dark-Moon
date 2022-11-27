@@ -236,13 +236,13 @@
           <h3>Ship Actions</h3> <br>
           <form id="exploreStats">
             <label for="health">Health</label>
-            <input type="number" class="resources" id="health" name="health" value="11" max="11" readonly>
-            <input type="number" id="playerDamage" name="playerDamage" value="2"readonly hidden> 
+            <input type="number" class="resources" id="health" name="health" value="30" max="30" readonly>
+            <input type="number" id="playerDamage" name="playerDamage" value="9"readonly hidden> 
           </form>
-            <button id="playerAttack" hidden onclick="playerAttack()">Attack</button>	
-            <button id="repair" onclick="repair()">Repair</button>	
-            <button id="salvage" hidden onclick="salvage()">Salvage</button>	
-            <button id="deathStarFire" hidden onclick="fireDeathStar()">Activation Lever</button>	
+            <button id="playerAttack" hidden onclick="playerAttack();eventText(Events(9));">Attack</button>	
+            <button id="repair" onclick="repair(); eventText(Events(10));">Repair</button>	
+            <button id="salvage" hidden onclick="salvage(); eventText(Events(11));">Salvage</button>	
+            <button id="deathStarFire" hidden onclick="fireDeathStar();eventText(Events(12));">Activation Lever</button>	
         </div>
         <div id="viewPort">
           <h3>Viewport</h3> <br>

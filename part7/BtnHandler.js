@@ -71,5 +71,22 @@ function eventText(logText) {
     else if (eventId == 8) {//build space hub pg1
         return "a large space hub orbits the moon, buzzing with traders";
     }
+    else if (eventId == 9) {//player attacks w/ ship
+        let attack = ["missles and kenetic batteries fire into the void", "silent lasers glitter through deep space", "the hull creaks from combat"];
+        return attack[Math.floor(Math.random()*attack.length)];
+    }
+    else if (eventId == 10) {//player repairs the ship
+        let repair = ["attempts are made to hold the ship together", "hasty patch work is done on the hull"];
+        return repair[Math.floor(Math.random()*repair.length)];
+    }
+    else if (eventId == 11) {//player salavages a ship graveyard
+        let salvage = ["a mass of dead ships lie silent", "salvaging crew scour the ruined ships", "old hulks are torn and gutted"];
+        return salvage[Math.floor(Math.random()*salvage.length)];
+    
+    }
+    else if (eventId == 12) {//player destroys a planet
+        return"the planet begins to crack and glow before detonating";
+    
+    }
   }
  
